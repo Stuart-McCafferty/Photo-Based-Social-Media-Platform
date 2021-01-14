@@ -1,14 +1,16 @@
 import * as React from 'react';
 import { View, Text, Button } from 'react-native';
+import * as Font from 'expo-font';
+import {AppLoading} from 'expo'
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import CameraScreen from './screens/CameraScreen';
-import ExploreScreen from './screens/ExploreScreen';
-import FeedScreen from './screens/FeedScreen';
-import LeaderboardScreen from './screens/LeaderboardScreen';
-import ProfileScreen from './screens/ProfileScreen';
+import CameraScreen from './src/screens/CameraScreen/CameraScreen';
+import ExploreScreen from './src/screens/ExploreScreen/ExploreScreen';
+import FeedScreen from './src/screens/FeedScreen/FeedScreen';
+import LeaderboardScreen from './src/screens/LeaderboardScreen/LeaderboardScreen';
+import ProfileScreen from './src/screens/ProfileScreen/ProfileScreen';
 
 const Tab = createBottomTabNavigator();
 const FeedStack = createStackNavigator();

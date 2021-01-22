@@ -7,7 +7,6 @@ npm-debug.*
 *.key
 *.mobileprovision
 *.orig.*
-STUARTS SCREENS/**/*
 web-build/
 package-lock.json
 

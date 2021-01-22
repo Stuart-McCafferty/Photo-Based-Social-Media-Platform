@@ -16,6 +16,8 @@ import LeaderboardScreen from './src/screens/LeaderboardScreen/LeaderboardScreen
 import ProfileScreen from './src/screens/ProfileScreen/ProfileScreen';
 */
 
+import Navigation from './src/navigations/navigation';
+
 
 
 //TESTING - simpler when nothing is in the way

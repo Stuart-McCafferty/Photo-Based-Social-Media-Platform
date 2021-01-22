@@ -10,6 +10,14 @@ const FeedStack = createStackNavigator();
 const CameraStack = createStackNavigator();
 const ExploreStack = createStackNavigator();
 
+import CameraScreen from '../../STUARTS SCREENS/CameraScreen';
+import ExploreScreen from '../../STUARTS SCREENS/ExploreScreen';
+import FeedScreen from '../../STUARTS SCREENS/FeedScreen';
+import LeaderboardScreen from '../../STUARTS SCREENS/LeaderboardScreen';
+import ProfileScreen from '../../STUARTS SCREENS/ProfileScreen';
+import NotifcationsScreen from '../../STUARTS SCREENS/NotificationScreen';
+import ChallengeScreen from '../../STUARTS SCREENS/ChallengeScreen';
+
 
 const Navigation = () => {
   return (
@@ -47,3 +55,5 @@ const Navigation = () => {
   </NavigationContainer>
 );
 }
+
+export default Navigation;

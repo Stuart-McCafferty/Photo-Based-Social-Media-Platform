@@ -10,6 +10,16 @@ const FeedStack = createStackNavigator();
 const CameraStack = createStackNavigator();
 const ExploreStack = createStackNavigator();
 
+//screen imports here
+/*
+import CameraScreen from './src/screens/CameraScreen/CameraScreen';
+import ExploreScreen from './src/screens/ExploreScreen/ExploreScreen';
+import FeedScreen from './src/screens/FeedScreen/FeedScreen';
+import LeaderboardScreen from './src/screens/LeaderboardScreen/LeaderboardScreen';
+import ProfileScreen from './src/screens/ProfileScreen/ProfileScreen';
+*/
+
+//TESTING 
 import CameraScreen from '../../STUARTS SCREENS/CameraScreen';
 import ExploreScreen from '../../STUARTS SCREENS/ExploreScreen';
 import FeedScreen from '../../STUARTS SCREENS/FeedScreen';

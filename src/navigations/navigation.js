@@ -1,7 +1,10 @@
 import * as React from 'react';
+import { Button, Text, Image, View} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Icon from 'react-native-vector-icons/FontAwesome5';
+
 
 
 //creates navigation
@@ -19,7 +22,7 @@ import LeaderboardScreen from './src/screens/LeaderboardScreen/LeaderboardScreen
 import ProfileScreen from './src/screens/ProfileScreen/ProfileScreen';
 */
 
-//TESTING 
+//TESTING - COMMENT THESE OUT
 import CameraScreen from '../../STUARTS SCREENS/CameraScreen';
 import ExploreScreen from '../../STUARTS SCREENS/ExploreScreen';
 import FeedScreen from '../../STUARTS SCREENS/FeedScreen';
@@ -29,13 +32,47 @@ import NotifcationsScreen from '../../STUARTS SCREENS/NotificationScreen';
 import ChallengeScreen from '../../STUARTS SCREENS/ChallengeScreen';
 
 
+function ProfileIcon(){
+  return(
+  <Icon.Button
+    name="user"
+    color="black"
+    backgroundColor="white"
+    onPress={() => navigation.navigate('Profile')}
+  >
+  </Icon.Button>
+  )
+}
+
+function NotificationIcon(){
+  return(
+    <Icon.Button
+      name="bell"
+      color="black"
+      backgroundColor="white"
+      onPress={() => navigation.navigate("Notification")}
+    >
+    </Icon.Button>
+  )
+}
+
+
 const Navigation = () => {
   return (
   <NavigationContainer>
     <Tab.Navigator>
       <Tab.Screen name="Feed">
         {() => (
-          <FeedStack.Navigator>
+          <FeedStack.Navigator
+            screenOptions={{
+              headerRight: () => (
+                <>
+                <ProfileIcon />
+                <NotificationIcon />
+                </>
+              ),
+            }}
+          >
             <FeedStack.Screen name="Feed" component={FeedScreen} />
             <FeedStack.Screen name="Leaderboard" component={LeaderboardScreen} />
             <FeedStack.Screen name="Profile" component={ProfileScreen} />
@@ -43,6 +80,7 @@ const Navigation = () => {
           </FeedStack.Navigator>
         )}
       </Tab.Screen>
+
       <Tab.Screen name="Camera">
         {() => (
           <CameraStack.Navigator>

@@ -10,10 +10,6 @@ export default function ProfileScreen({ navigation }) {
         onPress={() => navigation.push('Profile')}
       />
       <Button
-        title="Go to Notification"
-        onPress={() => navigation.navigate('Notification')}
-      />
-      <Button
         title="Go to Leaderboard"
         onPress={() => navigation.navigate('Leaderboard')}
       />

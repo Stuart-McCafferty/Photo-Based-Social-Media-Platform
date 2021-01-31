@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button, Text, Image, View} from 'react-native';
+import { Button, Text, Image, View, StyleSheet} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -41,6 +41,7 @@ function ProfileIcon(){
     color="black"
     backgroundColor="white"
     onPress={() => navigation.navigate('Profile')}
+    size="20"
   >
   </Icon.Button>
   )
@@ -54,6 +55,7 @@ function NotificationIcon(){
       color="black"
       backgroundColor="white"
       onPress={() => navigation.navigate("Notification")}
+      size="20"
     >
     </Icon.Button>
   )
@@ -63,16 +65,31 @@ function NotificationIcon(){
 const Navigation = () => {
   return (
   <NavigationContainer>
-    <Tab.Navigator>
-      <Tab.Screen name="Feed">
+    <Tab.Navigator
+      initialRouteName="Feed"
+      tabBarOptions={{
+        activeTintColor: 'red',
+      }}
+    >
+      <Tab.Screen
+        name="Feed"
+        options={{
+          tabBarLabel: 'home',
+          tabBarIcon: ({ color, size }) => (
+            <Icon name="home" color={color} size={size} />
+          ),
+        }}
+      >
         {() => (
           <FeedStack.Navigator
             screenOptions={{
               headerRight: () => (
+                <View style={styles.iconContainer}>
                 <>
                 <ProfileIcon />
                 <NotificationIcon />
                 </>
+                </View>
               ),
             }}
           >
@@ -84,16 +101,43 @@ const Navigation = () => {
         )}
       </Tab.Screen>
 
-      <Tab.Screen name="Camera">
+      <Tab.Screen
+        name="Camera"
+          options={{
+            tabBarLabel: 'camera',
+            tabBarIcon: ({ color, size }) => (
+              <Icon name="camera" color={color} size={size} />
+            ),
+          }}
+        >
         {() => (
           <CameraStack.Navigator>
             <CameraStack.Screen name="Camera" component={CameraScreen} />
           </CameraStack.Navigator>
         )}
       </Tab.Screen>
-      <Tab.Screen name="Explore">
+      <Tab.Screen
+        name="Explore"
+          options={{
+            tabBarLabel: 'Explore',
+            tabBarIcon: ({ color, size }) => (
+              <Icon name="globe" color={color} size={size} />
+            ),
+          }}
+        >
         {() => (
-          <ExploreStack.Navigator>
+          <ExploreStack.Navigator
+            screenOptions={{
+              headerRight: () => (
+                <View style={styles.iconContainer}>
+                <>
+                <ProfileIcon />
+                <NotificationIcon />
+                </>
+                </View>
+              ),
+            }}
+          >
             <ExploreStack.Screen name="Explore" component={ExploreScreen} />
             <ExploreStack.Screen name="Profile" component={ProfileScreen} />
             <ExploreStack.Screen name="Notification" component={NotifcationsScreen} />
@@ -104,7 +148,21 @@ const Navigation = () => {
       </Tab.Screen>
     </Tab.Navigator>
   </NavigationContainer>
-);
+  );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1
+  },
+  icon: {
+    paddingLeft: 10
+  },
+  iconContainer: {
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    width: 80
+  }
+});
 
 export default Navigation;

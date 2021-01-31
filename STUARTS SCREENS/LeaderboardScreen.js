@@ -9,14 +9,6 @@ export default function LeaderboardScreen({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text>Leaderboard Screen</Text>
-      <Button
-        title="Go to Profiles"
-        onPress={() => navigation.navigate('Profile')}
-      />
-      <Button
-        title="Go to Notifcations"
-        onPress={() => navigation.navigate('Notification')}
-      />
     </View>
   );
 }

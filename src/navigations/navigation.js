@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import { useNavigation } from '@react-navigation/native';
 
 
 
@@ -33,6 +34,7 @@ import ChallengeScreen from '../../STUARTS SCREENS/ChallengeScreen';
 
 
 function ProfileIcon(){
+  const navigation = useNavigation();
   return(
   <Icon.Button
     name="user"
@@ -45,6 +47,7 @@ function ProfileIcon(){
 }
 
 function NotificationIcon(){
+  const navigation = useNavigation();
   return(
     <Icon.Button
       name="bell"

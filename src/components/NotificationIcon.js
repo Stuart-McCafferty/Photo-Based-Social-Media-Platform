@@ -12,7 +12,7 @@ export default function NotificationIcon(){
       color="black"
       backgroundColor="white"
       onPress={() => navigation.navigate("Notification")}
-      size="20"
+      size={20}
     >
     </Icon.Button>
   )

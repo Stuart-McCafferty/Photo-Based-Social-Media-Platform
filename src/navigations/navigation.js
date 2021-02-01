@@ -24,6 +24,7 @@ import ProfileScreen from '../../STUARTS SCREENS/ProfileScreen';
 import NotifcationsScreen from '../../STUARTS SCREENS/NotificationScreen';
 import ChallengeScreen from '../../STUARTS SCREENS/ChallengeScreen';
 import LoginScreen from '../../STUARTS SCREENS/LoginScreen';
+import UploadScreen from '../../STUARTS SCREENS/UploadScreen';
 
 //component imports
 import ProfileIcon from '../components/ProfileIcon';

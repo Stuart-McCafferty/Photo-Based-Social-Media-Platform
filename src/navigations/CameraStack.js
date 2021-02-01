@@ -15,11 +15,13 @@ import ProfileScreen from '../../STUARTS SCREENS/ProfileScreen';
 import NotifcationsScreen from '../../STUARTS SCREENS/NotificationScreen';
 import ChallengeScreen from '../../STUARTS SCREENS/ChallengeScreen';
 import LoginScreen from '../../STUARTS SCREENS/LoginScreen';
+import UploadScreen from '../../STUARTS SCREENS/UploadScreen';
 
 export default function CameraStackNav(){
   return (
     <CameraStack.Navigator>
       <CameraStack.Screen name="Camera" component={CameraScreen} />
+      <CameraStack.Screen name="Upload" component={UploadScreen} />
     </CameraStack.Navigator>
   )
 }

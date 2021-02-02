@@ -6,25 +6,6 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { useNavigation } from '@react-navigation/native';
 
-//screen imports here
-/*
-import CameraScreen from './src/screens/CameraScreen/CameraScreen';
-import ExploreScreen from './src/screens/ExploreScreen/ExploreScreen';
-import FeedScreen from './src/screens/FeedScreen/FeedScreen';
-import LeaderboardScreen from './src/screens/LeaderboardScreen/LeaderboardScreen';
-import ProfileScreen from './src/screens/ProfileScreen/ProfileScreen';
-*/
-
-//TESTING - COMMENT THESE OUT
-import CameraScreen from '../../STUARTS SCREENS/CameraScreen';
-import ExploreScreen from '../../STUARTS SCREENS/ExploreScreen';
-import FeedScreen from '../../STUARTS SCREENS/FeedScreen';
-import LeaderboardScreen from '../../STUARTS SCREENS/LeaderboardScreen';
-import ProfileScreen from '../../STUARTS SCREENS/ProfileScreen';
-import NotifcationsScreen from '../../STUARTS SCREENS/NotificationScreen';
-import ChallengeScreen from '../../STUARTS SCREENS/ChallengeScreen';
-import LoginScreen from '../../STUARTS SCREENS/LoginScreen';
-import UploadScreen from '../../STUARTS SCREENS/UploadScreen';
 
 //component imports
 import ProfileIcon from '../components/ProfileIcon';

@@ -1,17 +1,22 @@
-//imports
-import * as React from 'react';
-import { View, Text, Button } from 'react-native';
-import * as Font from 'expo-font';
-import {AppLoading} from 'expo'
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import React from 'react';
+import { StyleSheet, Text, View, StatusBar } from 'react-native';
 
-//file imports
-import Navigation from './src/navigations/navigation';
+import Search from './src/components/Search';
+import AppHeader from './src/components/AppHeader';
+import ProfileScreen from './src/screens/ProfileScreen';
+
 
 export default function App() {
+
   return (
-    <Navigation />
+    <>
+        <StatusBar barStyle="light-content" />
+        <Search></Search>
+        <ProfileScreen></ProfileScreen>
+    </>
+
   );
 }
+
+
+

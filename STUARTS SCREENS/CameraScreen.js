@@ -4,7 +4,6 @@ import { Camera } from 'expo-camera';
 import * as ImagePicker from 'expo-image-picker';
 import Constants from 'expo-constants';
 
-
 export default function CameraScreen({ navigation }) {
   const [hasPermission, setHasPermission] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
@@ -47,7 +46,7 @@ export default function CameraScreen({ navigation }) {
     if (!result.cancelled) {
       setImage(result.uri);
     }
-    navigation.navigate('Upload',{image: image})
+    navigation.navigate('Upload',{image: result.uri})
   };
 
 
@@ -70,11 +69,15 @@ export default function CameraScreen({ navigation }) {
             <TouchableOpacity
               style={styles.button}
               onPress={pickImage}>
+              <Text style={styles.text}> Take Pic </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={pickImage}>
               <Text style={styles.text}> Gallery </Text>
             </TouchableOpacity>
           </View>
         </Camera>
-
       </View>
     </View>
   );

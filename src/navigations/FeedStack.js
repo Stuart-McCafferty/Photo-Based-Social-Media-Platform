@@ -6,15 +6,17 @@ import { createStackNavigator } from '@react-navigation/stack';
 //create navigation
 const FeedStack = createStackNavigator();
 
+
+/*
+import LeaderboardScreen from './src/screens/LeaderboardScreen/LeaderboardScreen';
+import ProfileScreen from './src/screens/ProfileScreen/ProfileScreen';
+*/
+
 //screen imports
-import CameraScreen from '../../STUARTS SCREENS/CameraScreen';
-import ExploreScreen from '../../STUARTS SCREENS/ExploreScreen';
-import FeedScreen from '../../STUARTS SCREENS/FeedScreen';
+import FeedScreen from '../screens/FeedScreen/FeedScreen';
 import LeaderboardScreen from '../../STUARTS SCREENS/LeaderboardScreen';
 import ProfileScreen from '../../STUARTS SCREENS/ProfileScreen';
 import NotifcationsScreen from '../../STUARTS SCREENS/NotificationScreen';
-import ChallengeScreen from '../../STUARTS SCREENS/ChallengeScreen';
-import LoginScreen from '../../STUARTS SCREENS/LoginScreen';
 
 //component imports
 import ProfileIcon from '../components/ProfileIcon';

@@ -14,60 +14,7 @@ export default class FeedScreen extends React.Component{
     }
     render(){
         return(
-        <View style={{flex:1}}>
-                        <View style={{                  // HEADER SECTION
-                height:120,
-                width:"100%",
-                paddingHorizontal:20,
-                alignItems:"center"
-            }}>
-                <View style={{
-                    flexDirection:"row",
-                    paddingVertical:50,
-                    alignItems:"center"
-                }}>
-                    <Text style={{
-                        paddingVertical:20
-                    }}></Text>
-
-                    <View style={{                  // SEARCH BAR
-                        flexDirection:"row",
-                        borderColor:"black",
-                        borderWidth:1,
-                        paddingVertical:5,
-                        alignItems:"center",
-                        width:"75%",
-                        paddingHorizontal:10
-                    }}>
-                        <TextInput
-                            placeholder="search..."
-                            style={{
-
-                            fontFamily:"Medium",
-                            fontSize:12,
-                            width:"90%",
-                            color:"black"
-                    }}
-                        />
-                        <Icon name="search1"
-                            size={24}
-                            color="black"/>
-                    </View>
-                    <View style={{
-                        paddingHorizontal: 10
-                    }}>
-                        <Icon name = "bells"
-                            size={32}
-                            color="black"/>
-                    </View>
-                    <View>
-                        <Icon name = "user"
-                            onPress={()=>this.props.navigation.navigate('Profile')}
-                            size={32}
-                            color="black"/>
-                    </View>
-                </View>
-            </View>
+        <View>
           <ScrollView
             showsVerticalScrollIndicator={false}
             style={{

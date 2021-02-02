@@ -8,7 +8,7 @@ export default function CameraScreen({ navigation }) {
   const [hasPermission, setHasPermission] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
   const [image, setImage] = useState(null);
-/*
+
   useEffect(() => {
     (async () => {
       const { status } = await Camera.requestPermissionsAsync();
@@ -22,8 +22,8 @@ export default function CameraScreen({ navigation }) {
   if (hasPermission === false) {
     return <Text>No access to camera</Text>;
   }
-*/
 
+/*
   useEffect(() => {
     (async () => {
       if (Platform.OS !== 'web') {
@@ -34,7 +34,7 @@ export default function CameraScreen({ navigation }) {
       }
     })();
   }, []);
-
+*/
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,

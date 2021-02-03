@@ -26,7 +26,6 @@ export default class Post extends React.Component{
                         <TouchableOpacity
                         onPress={onPress}
                         style={{
-                            marginBottom:20,
                             borderRadius:5,
                             padding:5,
                             backgroundColor:"#fafafa"

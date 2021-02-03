@@ -19,7 +19,7 @@ export default function MainTab(){
     <Tab.Navigator
       initialRouteName="Feed"
       tabBarOptions={{
-        activeTintColor: 'red',
+        activeTintColor: '#004a44',
       }}
     >
       <Tab.Screen
@@ -28,7 +28,7 @@ export default function MainTab(){
         options={{
           tabBarLabel: 'home',
           tabBarIcon: ({ color, size }) => (
-            <Icon name="home" color={color} size={size} />
+            <Icon name="home" color={color} size={size}/>
           ),
         }}
       />
@@ -46,7 +46,7 @@ export default function MainTab(){
         name="Explore"
         component={ExploreStackNav}
           options={{
-            tabBarLabel: 'Explore',
+            tabBarLabel: 'explore',
             tabBarIcon: ({ color, size }) => (
               <Icon name="globe" color={color} size={size} />
             ),

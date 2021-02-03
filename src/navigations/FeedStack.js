@@ -36,7 +36,7 @@ export default function FeedStackNav(){
         ),
       }}
     >
-      <FeedStack.Screen name="Feed" component={FeedScreen} />
+      <FeedStack.Screen name="Eden" component={FeedScreen} />
       <FeedStack.Screen name="Leaderboard" component={LeaderboardScreen} />
       <FeedStack.Screen name="Profile" component={ProfileScreen} />
       <FeedStack.Screen name="Notification" component={NotifcationsScreen} />

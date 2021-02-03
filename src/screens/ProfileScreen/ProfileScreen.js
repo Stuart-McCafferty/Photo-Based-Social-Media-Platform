@@ -32,7 +32,7 @@ export default class ProfileScreen extends React.Component {
                 <View style={styles.followButton}>
                     <Button
                         title="FOLLOW"
-                        color="#00523f"
+                        color="#004a44"
                         onPress={() => Alert.alert('Followed!')}
                     />
                 </View>

@@ -1,6 +1,6 @@
 import React from 'react';
 import {View,Text,Image,ImagBackground, ImageBackground} from 'react-native';
-import Icon from "@expo/vector-icons/Entypo"
+import Icon from 'react-native-vector-icons/FontAwesome5';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
 
@@ -53,7 +53,7 @@ export default class Post extends React.Component{
                         alignItems:"flex-end"
                     }}>
                         <Icon
-                            name="sound-mix"
+                            name="sliders-h"
                             color="black"
                             size={20}
                         />
@@ -92,7 +92,7 @@ export default class Post extends React.Component{
                                     backgroundColor:"#e8e8e8"
                                 }}
                             >
-                                <Icon name="menu"
+                                <Icon name="comment-alt"
                                 color="black"
                                 size={20}/>
                             </TouchableOpacity>
@@ -109,7 +109,7 @@ export default class Post extends React.Component{
                                     marginRight:20
                                 }}
                             >
-                                <Icon name= {this.state.liked === true ? "heart":"heart-outlined"}
+                                <Icon name= {this.state.liked === true ? "heart":"heart"}
                                 color= {this.state.liked===true? "red":"black"}
                                 size={20}/>
                             </TouchableOpacity>

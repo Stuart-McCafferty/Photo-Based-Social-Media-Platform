@@ -1,7 +1,7 @@
 import React from 'react';
 import {View,Text,Image,ImageBackground,TouchableOpacity} from 'react-native';
 import {ScrollView,TextInput} from 'react-native-gesture-handler';
-import Icon from '@expo/vector-icons/AntDesign';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 import Post from './Post'
 
 

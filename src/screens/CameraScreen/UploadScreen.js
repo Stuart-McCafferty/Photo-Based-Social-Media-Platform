@@ -15,7 +15,7 @@ export default function FeedScreen({ route, navigation }) {
     />
     <Button
         title="Upload"
-        
+        color="#004a44"
       />
     </View>
   );

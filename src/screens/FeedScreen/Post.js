@@ -23,6 +23,14 @@ export default class Post extends React.Component{
                    alignItems:"center"
                 }}>
                     <View style={{width:"20%"}}>
+                        <TouchableOpacity
+                        onPress={onPress}
+                        style={{
+                            marginBottom:20,
+                            borderRadius:5,
+                            padding:5,
+                            backgroundColor:"#fafafa"
+                        }}>
                             <Image
                                 source={profile}
                                 style={{
@@ -31,6 +39,7 @@ export default class Post extends React.Component{
                                     borderRadius:13
                                 }}
                                 />
+                          </TouchableOpacity>
                     </View>
                     <View style={{
                         width:"60%"

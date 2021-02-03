@@ -86,13 +86,13 @@ const styles = StyleSheet.create({
     },
     bio: {
         flexDirection: 'row',
-        marginTop: 150,
+        marginTop: 130,
         width: '100%',
         paddingLeft: 20,
         paddingRight: 20,
     },
     photoGridRow1: {
-        flex: 2,
+
         flexDirection: 'row',
         margin: 5,
         width: '100%',
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
         paddingRight: 5,
     },
     photoGridRow2: {
-        flex: 5,
+
         flexDirection: 'row',
         margin: 5,
         width: '100%',

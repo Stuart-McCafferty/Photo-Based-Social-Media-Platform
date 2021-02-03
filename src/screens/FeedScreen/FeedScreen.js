@@ -38,18 +38,6 @@ export default class FeedScreen extends React.Component{
                         photo={require('../../assets/images/8.jpg')}
                       />
 
-                      <View style={{
-                          height:160,
-                          backgroundColor:"#3c636c",
-                          width:20,
-                          marginLeft:20,
-                          marginTop:120,
-                          borderTopLeftRadius:20,
-                          borderBottomLeftRadius:20
-                      }}>
-
-                      </View>
-
                   </View>
 
 
@@ -57,19 +45,6 @@ export default class FeedScreen extends React.Component{
                   <View style={{
                       flexDirection:"row"
                   }}>
-
-                      <View style={{
-                          height:160,
-                          backgroundColor:"#3c636c",
-                          width:20,
-                          marginLeft:-40,
-                          marginRight:20,
-                          marginTop:120,
-                          borderTopRightRadius:20,
-                          borderBottomRightRadius:20
-                      }}>
-
-                      </View>
 
                       <Post
                         onPress={()=>this.props.navigation.navigate('Profile')}
@@ -89,18 +64,6 @@ export default class FeedScreen extends React.Component{
                         profile={require('../../assets/images/p1.jpg')}
                         photo={require('../../assets/images/3.jpg')}
                       />
-
-                      <View style={{
-                          height:160,
-                          backgroundColor:"#3c636c",
-                          width:20,
-                          marginLeft:20,
-                          marginTop:120,
-                          borderTopLeftRadius:20,
-                          borderBottomLeftRadius:20
-                      }}>
-
-                      </View>
 
                   </View>
               </View>

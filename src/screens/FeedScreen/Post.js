@@ -36,13 +36,11 @@ export default class Post extends React.Component{
                         width:"60%"
                     }}>
                         <Text style={{
-                            fontFamily:"Bold",
                             fontSize:14,
                             color:"black"
                         }}>{name}</Text>
 
                         <Text style={{
-                            fontFamily:"Medium",
                             fontSize:12,
                             color:"#9ca1a2"
                         }}>

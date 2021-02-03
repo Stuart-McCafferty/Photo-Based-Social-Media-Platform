@@ -15,7 +15,7 @@ import ProfileScreen from './src/screens/ProfileScreen/ProfileScreen';
 //screen imports
 import FeedScreen from '../screens/FeedScreen/FeedScreen';
 import LeaderboardScreen from '../../STUARTS SCREENS/LeaderboardScreen';
-import ProfileScreen from '../../STUARTS SCREENS/ProfileScreen';
+import ProfileScreen from '../screens/ProfileScreen/ProfileScreen';
 import NotifcationsScreen from '../../STUARTS SCREENS/NotificationScreen';
 
 //component imports

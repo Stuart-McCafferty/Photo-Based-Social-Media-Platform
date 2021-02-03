@@ -7,9 +7,9 @@ export default function FeedScreen({ route, navigation }) {
   
     return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      {<Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
+      {<Image source={{ uri: image }} style={{ width: 375, height: 375 }} />}
       <TextInput
-      style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
+      style={{ height: 70, borderColor: 'gray', borderWidth: 1, padding: 20, margin: 30, fontSize: 20 }}
       onChangeText={text => onChangeText(text)}
       value={value}
     />

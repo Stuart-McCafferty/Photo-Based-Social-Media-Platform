@@ -36,7 +36,8 @@ export default class Post extends React.Component{
                         width:"60%"
                     }}>
                         <Text style={{
-                            fontSize:14,
+                            fontSize:18,
+                            fontWeight: 'bold',
                             color:"black"
                         }}>{name}</Text>
 
@@ -91,7 +92,7 @@ export default class Post extends React.Component{
                                     backgroundColor:"#e8e8e8"
                                 }}
                             >
-                                <Icon name="forward"
+                                <Icon name="menu"
                                 color="black"
                                 size={20}/>
                             </TouchableOpacity>

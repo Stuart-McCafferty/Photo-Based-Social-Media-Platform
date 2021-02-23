@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { StyleSheet, Text, View, Button, TouchableOpacity, Dimensions, Platform, Image } from 'react-native';
 import { Camera } from 'expo-camera';
 import * as ImagePicker from 'expo-image-picker';
@@ -8,6 +8,7 @@ export default function CameraScreen({ navigation }) {
   const [hasPermission, setHasPermission] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
   const [image, setImage] = useState(null);
+  const cameraRef = useRef();
 /*
   useEffect(() => {
     (async () => {
@@ -21,6 +22,21 @@ export default function CameraScreen({ navigation }) {
   }
   if (hasPermission === false) {
     return <Text>No access to camera</Text>;
+  }
+
+
+
+
+    const __takePicture = async () => {
+    const photo = await cam.takePictureAsync()
+  
+    console.log(photo);
+  
+     
+      setImage(photo.uri);
+      
+      navigation.navigate('Upload',{image: photo.uri})
+   
   }
 */
 
@@ -50,10 +66,22 @@ export default function CameraScreen({ navigation }) {
   };
 
 
+  const takePicture = async () => {
+    if (cameraRef.current) {
+      const data = await cameraRef.current.takePictureAsync();
+      const source = data.uri;
+
+      navigation.navigate('Upload',{image: data.uri})
+      
+    }
+  };
+
+
+
   return (
     <View style={styles.flexbox}>
       <View style={styles.container}>
-        <Camera style={styles.camera} type={type}>
+        <Camera ref={cameraRef} style={styles.camera} type={type} >
           <View style={styles.buttonContainer}>
             <TouchableOpacity
               style={styles.button}
@@ -68,7 +96,7 @@ export default function CameraScreen({ navigation }) {
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.button}
-              onPress={pickImage}>
+              onPress={takePicture}>
               <Text style={styles.text}> Take Pic </Text>
             </TouchableOpacity>
             <TouchableOpacity
@@ -82,6 +110,9 @@ export default function CameraScreen({ navigation }) {
     </View>
   );
 }
+
+
+
 
 const styles = StyleSheet.create({
   flexbox:{

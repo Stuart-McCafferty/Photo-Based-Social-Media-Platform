@@ -82,7 +82,10 @@ export default function CameraScreen({ navigation }) {
     <View style={styles.flexbox}>
       <View style={styles.container}>
         <Camera ref={cameraRef} style={styles.camera} type={type} >
-          <View style={styles.buttonContainer}>
+          
+        </Camera>
+      </View>
+      <View style={styles.buttonContainer}>
             <TouchableOpacity
               style={styles.button}
               onPress={() => {
@@ -95,9 +98,8 @@ export default function CameraScreen({ navigation }) {
               <Text style={styles.text}> Flip </Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={styles.button}
+              style={styles.capture}
               onPress={takePicture}>
-              <Text style={styles.text}> Take Pic </Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.button}
@@ -105,8 +107,6 @@ export default function CameraScreen({ navigation }) {
               <Text style={styles.text}> Gallery </Text>
             </TouchableOpacity>
           </View>
-        </Camera>
-      </View>
     </View>
   );
 }
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
   flexbox:{
     backgroundColor: 'black',
     flex: 1,
-    flexDirection: 'row'
+    flexDirection: 'column'
   },
   container: {
     width: Dimensions.get('window').width,
@@ -142,5 +142,14 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 18,
     color: 'white',
+  },
+  capture: {
+    width: 70,
+    height: 70,
+    bottom: 0,
+    borderRadius: 50,
+    backgroundColor: '#fff',
+    alignSelf: 'flex-end',
+    alignItems: 'center',
   },
 });

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View, TextInput, StyleSheet, Button} from 'react-native';
 
-const Page2 = () => {
+const SignUp = () => {
   const [username, onChangeUser] = React.useState('Username');
   const [password, onChangePass] = React.useState('Username');
   const [comfPassword, onChangeComfPass] = React.useState('Username');
@@ -62,4 +62,4 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   }
 })
-export default Page2;
+export default SignUp;

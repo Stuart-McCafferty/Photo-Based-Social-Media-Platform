@@ -9,7 +9,7 @@ export default function ProfileIcon(){
   return(
   <Icon.Button
     name="user"
-    color="black"
+    color="#28865C"
     backgroundColor="white"
     onPress={() => navigation.navigate('Profile')}
     size={20}

@@ -19,7 +19,7 @@ export default class FeedScreen extends React.Component{
             showsVerticalScrollIndicator={false}
             style={{
                 height:"100%",
-                backgroundColor:"#fff"
+                backgroundColor:"#C1E4D5"
             }}
           >
               <View style={{

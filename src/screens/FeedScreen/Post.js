@@ -19,7 +19,7 @@ export default class Post extends React.Component{
             <View>
                <View style={{
                    flexDirection:"row",
-                   paddingTop:25,
+                   paddingTop:10,
                    alignItems:"center"
                 }}>
                     <View style={{width:"20%"}}>
@@ -71,7 +71,7 @@ export default class Post extends React.Component{
                <View style={{
                    flexDirection:"row",
                    width:"100%",
-                   paddingTop:20
+                   paddingTop:5
                }}>
                     <ImageBackground
                     source={photo}
@@ -80,51 +80,59 @@ export default class Post extends React.Component{
                         height:220,
                     }}
                     imageStyle={{
-                        borderRadius:30
+                        borderRadius:20
                     }}
                     >
-                        <View style={{
-                            height:"100%",
-                            flexDirection:"row",
-                            alignItems:'flex-end',
-                            justifyContent:"flex-end"
-                        }}>
-
-
-                            <TouchableOpacity
-                                onPress={onPress}
-                                style={{
-                                    marginBottom:20,
-                                    borderRadius:5,
-                                    padding:5,
-                                    backgroundColor:"#e8e8e8"
-                                }}
-                            >
-                                <Icon name="comment-alt"
-                                color="black"
-                                size={20}/>
-                            </TouchableOpacity>
-
-
-                            <TouchableOpacity
-                                onPress={this.onLike}
-                                style={{
-                                    marginBottom:20,
-                                    borderRadius:5,
-                                    padding:5,
-                                    backgroundColor:"#e8e8e8",
-                                    marginLeft:10,
-                                    marginRight:20
-                                }}
-                            >
-                                <Icon name= {this.state.liked === true ? "heart":"heart"}
-                                color= {this.state.liked===true? "red":"black"}
-                                size={20}/>
-                            </TouchableOpacity>
-
-                        </View>
                     </ImageBackground>
-               </View>
+                </View>
+
+              <View style={{
+                  paddingTop:5,
+                  flexDirection:"row",
+                  alignItems:'flex-start',
+                  justifyContent:"flex-start"
+              }}>
+                <TouchableOpacity
+                    onPress={onPress}
+                    style={{
+                        marginBottom:20,
+                        borderRadius:5,
+                        padding:5,
+                        backgroundColor:'#fafafa'
+                    }}
+                >
+                    <Icon name="comment-alt"
+                    color="black"
+                    size={20}/>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                    onPress={this.onLike}
+                    style={{
+                        marginBottom:20,
+                        borderRadius:5,
+                        padding:5,
+                        backgroundColor:'#fafafa',
+                    }}
+                >
+                    <Icon name= {this.state.liked === true ? "heart":"heart"}
+                    color= {this.state.liked===true? "red":"black"}
+                    size={20}/>
+                </TouchableOpacity>
+                  <View style={{
+                      width:"80%",
+                      paddingTop:5,
+                      alignItems:'flex-end',
+                  }}>
+                    <Text style={{
+                        fontSize:12,
+                        fontWeight:'bold',
+                        color:"black"
+                    }}>
+                        Edinburgh, Scotland
+                    </Text>
+                  </View>
+                </View>
             </View>
         )
     }

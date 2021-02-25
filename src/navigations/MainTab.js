@@ -19,7 +19,9 @@ export default function MainTab(){
     <Tab.Navigator
       initialRouteName="Feed"
       tabBarOptions={{
-        activeTintColor: '#004a44',
+        activeTintColor: '#28865C',
+        inactiveTintColor: '#14432E',
+        style: { backgroundColor: 'white'}
       }}
     >
       <Tab.Screen

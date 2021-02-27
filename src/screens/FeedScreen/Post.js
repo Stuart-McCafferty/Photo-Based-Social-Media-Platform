@@ -86,6 +86,7 @@ export default class Post extends React.Component{
                     </ImageBackground>
                 </View>
 
+
               <View style={{
                   paddingTop:5,
                   flexDirection:"row",
@@ -93,17 +94,17 @@ export default class Post extends React.Component{
                   justifyContent:"flex-start"
               }}>
                 <TouchableOpacity
-                    onPress={onPress}
-                    style={{
-                        marginBottom:20,
-                        borderRadius:5,
-                        padding:5,
-                        backgroundColor:'#fafafa'
-                    }}
-                >
-                    <Icon name="comment-alt"
-                    color="black"
-                    size={20}/>
+                  onPress={onPress}
+                  style={{
+                      marginBottom:20,
+                      borderRadius:5,
+                      padding:5,
+                      backgroundColor:'#fafafa'
+                  }}
+              >
+                  <Icon name="comment-alt"
+                  color="black"
+                  size={20}/>
                 </TouchableOpacity>
 
                 <TouchableOpacity

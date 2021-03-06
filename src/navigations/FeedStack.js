@@ -26,6 +26,13 @@ export default function FeedStackNav(){
   return (
     <FeedStack.Navigator
       screenOptions={{
+        headerStyle: {
+            backgroundColor: 'white',
+          },
+          headerTintColor: '#28865C',
+           headerTitleStyle: {
+             fontWeight: 'bold',
+           },
         headerRight: () => (
           <View style={styles.iconContainer}>
           <>

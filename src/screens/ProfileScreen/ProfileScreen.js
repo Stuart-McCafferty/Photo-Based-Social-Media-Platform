@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { View, Text, Image, StyleSheet, Button,} from 'react-native';
 
 import POSTS from './POSTS';
@@ -15,14 +15,14 @@ export default class ProfileScreen extends React.Component {
                         <Image source={require('../../assets/images/p1.jpg')} style={styles.profilePic}></Image>
                     </View>
                     <View style={styles.userInfo}>
-                        <Text style={{ fontSize: 26, fontWeight: 'bold', marginBottom: 10 }}>Joe Bloggs</Text>
-                        <Text style={{ fontSize: 18, fontWeight: 'bold', lineHeight: 25 }}>
-                            Edinburgh
-                    {'\n'}
-                    13 followers
-                    {'\n'}
-                    10 posts
-                </Text>
+                    <Text style={{ fontSize: 26, fontWeight: 'bold', marginBottom: 10 }}>Joe Bloggs</Text>
+                    <Text style={{ fontSize: 16, lineHeight: 20 }}>
+                      Edinburgh
+                      {'\n'}
+                      13k followers
+                      {'\n'}
+                      143 posts
+                    </Text>
                     </View>
                 </View>
 
@@ -60,7 +60,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
       },
     profileDetail: {
-        flex: 1,
         flexDirection: 'row',
         margin: 10,
         width: '100%',
@@ -86,7 +85,7 @@ const styles = StyleSheet.create({
     },
     bio: {
         flexDirection: 'row',
-        marginTop: 130,
+        marginTop: 10,
         width: '100%',
         paddingLeft: 20,
         paddingRight: 20,

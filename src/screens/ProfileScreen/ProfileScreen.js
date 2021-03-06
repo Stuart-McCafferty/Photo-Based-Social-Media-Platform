@@ -19,9 +19,9 @@ export default class ProfileScreen extends React.Component {
                         <Text style={{ fontSize: 18, fontWeight: 'bold', lineHeight: 25 }}>
                             Edinburgh
                     {'\n'}
-                    13k followers
+                    13 followers
                     {'\n'}
-                    143 posts
+                    10 posts
                 </Text>
                     </View>
                 </View>

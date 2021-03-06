@@ -1,5 +1,5 @@
 import React from 'react';
-import {View,Text,Image,ImagBackground, ImageBackground} from 'react-native';
+import {View,Text,Image, ImageBackground} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
@@ -90,7 +90,6 @@ export default class Post extends React.Component{
                             justifyContent:"flex-end"
                         }}>
 
-
                             <TouchableOpacity
                                 onPress={onPress}
                                 style={{
@@ -98,6 +97,21 @@ export default class Post extends React.Component{
                                     borderRadius:5,
                                     padding:5,
                                     backgroundColor:"#e8e8e8"
+                                }}
+                            >
+                                <Icon name="search-location"
+                                color="black"
+                                size={20}/>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity
+                                onPress={onPress}
+                                style={{
+                                    marginBottom:20,
+                                    borderRadius:5,
+                                    padding:5,
+                                    backgroundColor:"#e8e8e8",
+                                    marginLeft:10,
                                 }}
                             >
                                 <Icon name="comment-alt"

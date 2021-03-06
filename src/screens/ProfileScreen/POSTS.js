@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   carousel: { flex: 1 },
 });
 
-const slideList = Array.from({ length: 9 }).map((_, i) => {
+const slideList = Array.from({ length: 10 }).map((_, i) => {
   return {
     id: i,
     image: `https://picsum.photos/1640/2842?random=${i}`,

@@ -4,17 +4,10 @@ export const SMALL_TEXT_SIZE = 0.8 * rem;
 export const TEXT_SIZE = rem;
 
 export const COLOR_LIGHT_GRAY = "#ccc";
-export const COLOR_EXTRA_LIGHT_GRAY = "#ddd";
 
 export const flexbox = {
   display: "flex",
   flexDirection: "row"
-};
-
-export const textInputStyle = {
-  fontSize: SMALL_TEXT_SIZE,
-  textIndent: 0.2 * rem,
-  marginBottom: 0.2 * rem
 };
 
 export const text = {
@@ -32,9 +25,6 @@ export const textSmall = {
 export const button = {
   flex: 1,
   fontSize: TEXT_SIZE,
-  backgroundColor: COLOR_EXTRA_LIGHT_GRAY,
-  borderRadius: 0.2 * rem,
-  borderWidth: 0.1 * rem,
-  borderColor: COLOR_LIGHT_GRAY,
-  borderStyle: "solid"
+  backgroundColor: COLOR_LIGHT_GRAY,
+  borderRadius: 0.2 * rem
 };

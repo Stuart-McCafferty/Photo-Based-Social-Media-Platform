@@ -11,7 +11,6 @@ function NavBar({ navigation }) {
       <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Home")}><Text style={styles.text}>Feed</Text></TouchableOpacity>
       <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Leaderboard")}><Text style={styles.text}>Camera</Text></TouchableOpacity>
       <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Profile")}><Text style={styles.text}>Explore</Text></TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Settings")}><Text style={styles.text}>Settings</Text></TouchableOpacity>
     </View>
   );
 

@@ -11,6 +11,8 @@ import LoginScreen from '../../STUARTS SCREENS/LoginScreen';
 import ResetPasswordScreen from '../../STUARTS SCREENS/ResetPasswordScreen';
 import SignupScreen from '../../STUARTS SCREENS/SignupScreen';
 import WelcomeScreen from '../../STUARTS SCREENS/WelcomeScreen';
+import c from '../../STUARTS SCREENS/c';
+import ChallengeScreen from '../../STUARTS SCREENS/ChallengeScreen';
 
 
 export default function WelcomeStackNav(){
@@ -20,6 +22,7 @@ export default function WelcomeStackNav(){
       <WelcomeStack.Screen name="Login" component={LoginScreen} />
       <WelcomeStack.Screen name="Signup" component={SignupScreen} />
       <WelcomeStack.Screen name="Reset Password" component={ResetPasswordScreen} />
+      <WelcomeStack.Screen name="Challenge" component={ChallengeScreen} />
     </WelcomeStack.Navigator>
   )
 }

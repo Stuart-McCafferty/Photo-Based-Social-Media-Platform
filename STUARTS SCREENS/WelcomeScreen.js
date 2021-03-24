@@ -17,6 +17,10 @@ export default function WelcomeScreen({ navigation }) {
         title="Go to ResetPasswordScreen"
         onPress={() => navigation.navigate('WelcomeStackNav', { screen: 'Reset Password' })}
       />
+      <Button
+        title="Go to ChallengeScreen"
+        onPress={() => navigation.navigate('WelcomeStackNav', { screen: 'Challenge' })}
+      />
     </View>
   );
 }

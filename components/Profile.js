@@ -4,7 +4,7 @@ import { Button, FlatList, Image, ScrollView, StyleSheet, Text, TouchableOpacity
 import Post from "./Post";
 import NavBar from "./NavBar";
 import { appBodyStyle, rem, scrollViewStyle } from "../global-variables";
-import { button, flexbox, text, textLarge, textSmall } from "./styles";
+import { SMALL_TEXT_SIZE, button, flexbox, text, textLarge, textSmall } from "./styles";
 
 function Profile({ navigation }) {
 
@@ -59,7 +59,8 @@ const styles = StyleSheet.create({
   },
   text: {
     flex: 1,
-    textAlign: "center"
+    textAlign: "center",
+    fontSize: SMALL_TEXT_SIZE
   },
   caption: {
     fontSize: 0.8 * rem,

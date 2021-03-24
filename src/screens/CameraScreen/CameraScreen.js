@@ -55,6 +55,7 @@ export default function CameraScreen({ navigation }) {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       quality: 1,
+      exif: true,
     });
 
     console.log(result);
@@ -62,7 +63,10 @@ export default function CameraScreen({ navigation }) {
     if (!result.cancelled) {
       setImage(result.uri);
     }
-    navigation.navigate('Upload',{image: result.uri})
+    const imgLong= result.exif.GPSLongitude;
+    navigation.navigate('Upload',{image: result.uri,
+                                  long: result.exif.GPSLongitude,
+                                  lat: result.exif.GPSLatitude})
   };
 
 

@@ -30,7 +30,33 @@ import MapView from 'react-native-maps';
       this._getLocationAsync();
     }
   
+    //map api stuff
+    constructor(props) {
+      super(props);
   
+      this.state = {
+        isLoading: true,
+        markers: [],
+      };
+    }
+
+    fetchMarkerData() {
+      fetch('https://feeds.citibikenyc.com/stations/stations.json')
+        .then((response) => response.json())
+        .then((responseJson) => {
+          this.setState({ 
+            isLoading: false,
+            markers: responseJson.stationBeanList, 
+          });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+    componentDidMount() {
+      this.fetchMarkerData();
+    }
+
     render(){
       let text = 'Waiting...';
       if (this.state.errorMsg) {
@@ -46,7 +72,34 @@ import MapView from 'react-native-maps';
   
           
           <View style={styles.container}>
-            <MapView style={styles.map} />
+            <MapView 
+              style={styles.map} 
+              initialRegion={{
+                latitude: 40.76727216,
+                longitude: -73.99392888,
+                latitudeDelta: 0.0922,
+                longitudeDelta: 0.0421
+                
+            }}>
+              {this.state.isLoading ? null : this.state.markers.map((marker, index) => {
+                const coords = {
+                    latitude: marker.latitude,
+                    longitude: marker.longitude,
+                };
+
+                const metadata = `Status: ${marker.statusValue}`;
+
+                return (
+                    <MapView.Marker
+                        key={index}
+                        coordinate={coords}
+                        title={marker.stationName}
+                        description={metadata}
+                    />
+                );
+               })}
+            </MapView>
+
           </View>
           <View style={{ flex: 0.2, alignSelf: 'flex-start', justifyContent: 'center', }}>
             <Text style={{ fontSize: 30 }}>Edinburgh, United Kingdom</Text>

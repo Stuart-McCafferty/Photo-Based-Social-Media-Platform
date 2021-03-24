@@ -9,6 +9,7 @@ import Header from "./components/Header";
 import Leaderboard from "./components/Leaderboard";
 import Profile from "./components/Profile";
 import Feed from "./components/Feed";
+import Settings from "./components/Settings";
 
 const Stack = createStackNavigator();
 
@@ -31,6 +32,11 @@ class App extends React.Component {
 	    name="Profile"
 	    component={Profile}
 	    options={{ title: "Profile" }}
+	  />
+	  <Stack.Screen
+	    name="Settings"
+	    component={Settings}
+	    options={{ title: "Settings" }}
 	  />
 	</Stack.Navigator>
       </NavigationContainer>

@@ -10,7 +10,7 @@ export default function FeedScreen({ route, navigation }) {
     var country = ''
     //console.log(image.exif);
     
-
+/*
     function getMoviesFromApiAsync() {
       return fetch('https://maps.googleapis.com/maps/api/geocode/json?address=' + lat + ',' + long + '&key=' + myApiKey)
         .then(response => response.json())
@@ -21,7 +21,7 @@ export default function FeedScreen({ route, navigation }) {
           console.error(error);
         });
     }
-
+*/
 
     /*
     fetch('https://maps.googleapis.com/maps/api/geocode/json?address=' + lat + ',' + long + '&key=' + myApiKey)
@@ -40,7 +40,7 @@ export default function FeedScreen({ route, navigation }) {
       <View style={{width: Dimensions.get('window').width, height: Dimensions.get('window').height*.4, alignItems: 'center', backgroundColor: 'black'}}>{/*image container */}
         {<Image source={{ uri: image }} resizeMode={'contain'} style={{ width: '100%', height: '100%', maxHeight: Dimensions.get('window').height*.4, maxWidth: Dimensions.get('window').width*.9 }} />}
       </View>
-      <Text style={{height: 70, padding: 20, margin: 10, fontSize: 28}}> Lat {getMoviesFromApiAsync()} </Text>
+      <Text style={{height: 70, padding: 20, margin: 10, fontSize: 28}}> Lat {lat} </Text>
       <Text style={{height: 70, padding: 20, margin: 10, fontSize: 28}}> Long {long} </Text>
       <TextInput
       style={{ height: 70, borderBottomWidth:1, padding: 20, margin: 10, fontSize: 28 }}

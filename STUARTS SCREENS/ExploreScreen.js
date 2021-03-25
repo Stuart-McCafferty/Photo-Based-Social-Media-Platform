@@ -1,10 +1,177 @@
-import * as React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { StyleSheet, Text, View, Button,ImageBackground,Image,TouchableOpacity, Permissions, Dimensions } from 'react-native';
 import {ScrollView,TextInput} from 'react-native-gesture-handler';
 import Icon from '@expo/vector-icons/AntDesign';
 import MapView from 'react-native-maps';
+import * as Location from 'expo-location';
+
+export default function ExploreScreen({ navigation }){
+  
+  
+  const [location, setLocation] = useState(null);
+  const [errorMsg, setErrorMsg] = useState(null);
+  const [region, setRegion] = useState(null);
 
 
+
+//get the location
+  useEffect(() => {
+    (async () => {
+      let { status } = await Location.requestPermissionsAsync();
+      if (status !== 'granted') {
+        setErrorMsg('Permission to access location was denied');
+        return;
+      }
+
+      let location = await Location.getCurrentPositionAsync({});
+
+      setLocation(location);
+      
+      let tempRegion = await Location.reverseGeocodeAsync(location.coords);
+      setRegion(tempRegion);
+      console.log(region);
+    })();
+  }, []);
+
+
+//set location variables
+  let currentLat = null;
+  let currentLon = null;
+  let currentRegion = null;
+  let currentCountry = null;
+  if (errorMsg) {
+  } else if (location) {
+    currentLat = JSON.stringify(location.coords.latitude);
+    currentLon = JSON.stringify(location.coords.longitude);
+    currentRegion = region ? region[0].subregion :"";
+    currentCountry = region ? region[0].isoCountryCode :"";
+  }
+  
+  //render
+  return(
+    <View style={{flex:1, backgroundColor:"white"}}>
+        
+        <View style={styles.mapContainer}>    
+            <MapView 
+              style={styles.map} 
+              showsUserLocation
+              showsMyLocationButton
+              initialRegion={{
+                latitude: 40.76727216,
+                longitude: -73.99392888,
+                latitudeDelta: 0.0922,
+                longitudeDelta: 0.0421
+                
+            }}>
+            </MapView>
+        </View>
+
+
+
+
+        <View  style={styles.bottom}>
+        <Text style={{height: 70, padding: 20, margin: 10, fontSize: 28}}> {currentRegion}, {currentCountry} </Text>
+            <ScrollView horizontal={true}>
+              <Text style={{ fontSize: 24 }}>Photos nearby</Text>
+              
+  
+              <Image
+                source={{
+                  uri: 'https://reactnative.dev/img/tiny_logo.png',
+                  width: 64,
+                  height: 64,
+                }}
+              />
+              <Image
+                source={{
+                  uri: 'https://reactnative.dev/img/tiny_logo.png',
+                  width: 64,
+                  height: 64,
+                }}
+              />
+              <Image
+                source={{
+                  uri: 'https://reactnative.dev/img/tiny_logo.png',
+                  width: 64,
+                  height: 64,
+                }}
+              />
+              <Image
+                source={{
+                  uri: 'https://reactnative.dev/img/tiny_logo.png',
+                  width: 64,
+                  height: 64,
+                }}
+              />
+            </ScrollView>
+          </View>
+          <View  style={styles.bottom}>
+            <ScrollView horizontal={true} >
+              <Text style={{ fontSize: 24 }}>Challenges nearby</Text>
+              <Image
+                source={{
+                  uri: 'https://reactnative.dev/img/tiny_logo.png',
+                  width: 64,
+                  height: 64,
+                }}
+              />
+              <Image
+                source={{
+                  uri: 'https://reactnative.dev/img/tiny_logo.png',
+                  width: 64,
+                  height: 64,
+                }}
+              />
+              <Image
+                source={{
+                  uri: 'https://reactnative.dev/img/tiny_logo.png',
+                  width: 64,
+                  height: 64,
+                }}
+              />
+              <Image
+                source={{
+                  uri: 'https://reactnative.dev/img/tiny_logo.png',
+                  width: 64,
+                  height: 64,
+                }}
+              />
+              <Image
+                source={{
+                  uri: 'https://reactnative.dev/img/tiny_logo.png',
+                  width: 64,
+                  height: 64,
+                }}
+              />
+            </ScrollView>
+          </View>
+
+            
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  mapContainer: {
+    flex: 0.5,
+    backgroundColor: 'white',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+  },
+  map: {
+    width: Dimensions.get('window').width*0.9,
+    height: Dimensions.get('window').width*0.9,
+    backgroundColor: 'white',
+  },
+  bottom: {
+    flex: 0.25,
+    justifyContent: 'flex-end',
+    backgroundColor: 'white',
+    
+  }
+});
+
+/*
   export default class ExploreScreen extends React.Component {
     state={
       location: {},
@@ -204,3 +371,6 @@ import MapView from 'react-native-maps';
       
     }
   });
+
+
+  */

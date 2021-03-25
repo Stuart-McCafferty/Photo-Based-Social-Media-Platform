@@ -3,13 +3,58 @@ import { StyleSheet, Text, View, Button, TouchableOpacity, Dimensions, Platform,
 import { Camera } from 'expo-camera';
 import * as ImagePicker from 'expo-image-picker';
 import Constants from 'expo-constants';
+import * as Location from 'expo-location';
 
 export default function CameraScreen({ navigation }) {
   const [hasPermission, setHasPermission] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
   const [image, setImage] = useState(null);
   const cameraRef = useRef();
-/*
+  const [location, setLocation] = useState(null);
+  const [errorMsg, setErrorMsg] = useState(null);
+  const [region, setRegion] = useState(null);
+
+
+
+
+  useEffect(() => {
+    (async () => {
+      let { status } = await Location.requestPermissionsAsync();
+      if (status !== 'granted') {
+        setErrorMsg('Permission to access location was denied');
+        return;
+      }
+
+      let location = await Location.getCurrentPositionAsync({});
+
+      setLocation(location);
+
+      let tempRegion = await Location.reverseGeocodeAsync(location.coords);
+      setRegion(tempRegion);
+      console.log(region);
+    })();
+  }, []);
+
+
+
+  let currentLat = null;
+  let currentLon = null;
+  let currentReg = null;
+  let currentCountry = null;
+  if (errorMsg) {
+  } else if (location) {
+    currentLat = JSON.stringify(location.coords.latitude);
+    currentLon = JSON.stringify(location.coords.longitude);
+    currentReg = region ? region[0].subregion :"";
+    currentCountry = region ? region[0].country :"";
+    console.log()
+  }
+
+
+
+
+
+  /*
   useEffect(() => {
     (async () => {
       const { status } = await Camera.requestPermissionsAsync();
@@ -44,6 +89,7 @@ export default function CameraScreen({ navigation }) {
     (async () => {
       if (Platform.OS !== 'web') {
         const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+        const { status2 } = await Camera.requestPermissionsAsync();
         if (status !== 'granted') {
           alert('Sorry, we need camera roll permissions to make this work!');
         }
@@ -63,10 +109,11 @@ export default function CameraScreen({ navigation }) {
     if (!result.cancelled) {
       setImage(result.uri);
     }
-    const imgLong= result.exif.GPSLongitude;
     navigation.navigate('Upload',{image: result.uri,
                                   long: result.exif.GPSLongitude,
-                                  lat: result.exif.GPSLatitude})
+                                  lat: result.exif.GPSLatitude,
+                                  region: currentReg,
+                                  country: currentCountry})
   };
 
 
@@ -75,8 +122,12 @@ export default function CameraScreen({ navigation }) {
       const data = await cameraRef.current.takePictureAsync();
       const source = data.uri;
 
-      navigation.navigate('Upload',{image: data.uri})
-      
+      navigation.navigate('Upload',{image: data.uri,
+                                    long: currentLon,
+                                    lat: currentLat,
+                                    region: currentReg,
+                                    country: currentCountry})
+                                  
     }
   };
 
@@ -99,7 +150,7 @@ export default function CameraScreen({ navigation }) {
                     : Camera.Constants.Type.back
                 );
               }}>
-              <Text style={styles.text}> Flip </Text>
+              <Text style={styles.text}> {currentReg} </Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.capture}

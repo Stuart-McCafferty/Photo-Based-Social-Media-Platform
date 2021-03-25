@@ -1,18 +1,8 @@
 import * as React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
-
-import React from "react";
-import Posts from "../src/screens/challengeScreen/Posts"
+import Posts from "./Posts"
 import { StyleSheet, Text, View, Button, flatList,Image,PullView,ScrollView} from 'react-native';
 
-
-
-
-
 export default function ChallengeScreen({ navigation }) {
-
-
-
   return (
     <View style={styles.Container}>
       <ScrollView
@@ -72,8 +62,8 @@ const styles = StyleSheet.create({
   },
 
   Container:{
-    flex: 1, 
-    alignItems: 'center', 
+    flex: 1,
+    alignItems: 'center',
     justifyContent: 'center' ,
     backgroundColor: '#fafafa',
   },

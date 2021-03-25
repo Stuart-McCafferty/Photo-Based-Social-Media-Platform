@@ -6,8 +6,8 @@ import MapView from 'react-native-maps';
 import * as Location from 'expo-location';
 
 export default function ExploreScreen({ navigation }){
-  
-  
+
+
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
   const [region, setRegion] = useState(null);
@@ -26,7 +26,7 @@ export default function ExploreScreen({ navigation }){
       let location = await Location.getCurrentPositionAsync({});
 
       setLocation(location);
-      
+
       let tempRegion = await Location.reverseGeocodeAsync(location.coords);
       setRegion(tempRegion);
       console.log(region);
@@ -46,14 +46,14 @@ export default function ExploreScreen({ navigation }){
     currentRegion = region ? region[0].subregion :"";
     currentCountry = region ? region[0].isoCountryCode :"";
   }
-  
+
   //render
   return(
     <View style={{flex:1, backgroundColor:"white"}}>
-        
-        <View style={styles.mapContainer}>    
-            <MapView 
-              style={styles.map} 
+
+        <View style={styles.mapContainer}>
+            <MapView
+              style={styles.map}
               showsUserLocation
               showsMyLocationButton
               initialRegion={{
@@ -61,7 +61,7 @@ export default function ExploreScreen({ navigation }){
                 longitude: -73.99392888,
                 latitudeDelta: 0.0922,
                 longitudeDelta: 0.0421
-                
+
             }}>
             </MapView>
         </View>
@@ -73,8 +73,8 @@ export default function ExploreScreen({ navigation }){
         <Text style={{height: 70, padding: 20, margin: 10, fontSize: 28}}> {currentRegion}, {currentCountry} </Text>
             <ScrollView horizontal={true}>
               <Text style={{ fontSize: 24 }}>Photos nearby</Text>
-              
-  
+
+
               <Image
                 source={{
                   uri: 'https://reactnative.dev/img/tiny_logo.png',
@@ -107,7 +107,10 @@ export default function ExploreScreen({ navigation }){
           </View>
           <View  style={styles.bottom}>
             <ScrollView horizontal={true} >
-              <Text style={{ fontSize: 24 }}>Challenges nearby</Text>
+              <Button
+                title="Challenges Nearby"
+                onPress={() => navigation.navigate('Challenge')}
+              />
               <Image
                 source={{
                   uri: 'https://reactnative.dev/img/tiny_logo.png',
@@ -146,7 +149,7 @@ export default function ExploreScreen({ navigation }){
             </ScrollView>
           </View>
 
-            
+
     </View>
   );
 }
@@ -167,7 +170,7 @@ const styles = StyleSheet.create({
     flex: 0.25,
     justifyContent: 'flex-end',
     backgroundColor: 'white',
-    
+
   }
 });
 
@@ -180,7 +183,7 @@ const styles = StyleSheet.create({
       address: null,
       errorMsg: null,
     }
-  
+
     _getLocationAsync = async () => {
       let { status } = await Permissions.askAsync(Permissions.LOCATION);
       if (status !== 'granted') {
@@ -192,15 +195,15 @@ const styles = StyleSheet.create({
       const address = await Location.reverseGeocodeAsync(location.coords);
       this.setState({ address });
     };
-  
+
     componentDidMount() {
       this._getLocationAsync();
     }
-  
+
     //map api stuff
     constructor(props) {
       super(props);
-  
+
       this.state = {
         isLoading: true,
         markers: [],
@@ -211,9 +214,9 @@ const styles = StyleSheet.create({
       fetch('https://feeds.citibikenyc.com/stations/stations.json')
         .then((response) => response.json())
         .then((responseJson) => {
-          this.setState({ 
+          this.setState({
             isLoading: false,
-            markers: responseJson.stationBeanList, 
+            markers: responseJson.stationBeanList,
           });
         })
         .catch((error) => {
@@ -233,20 +236,20 @@ const styles = StyleSheet.create({
       }
       return (
         <View style={{flex:1}}>
-                          
+
         <View style={{ flex: 1 }}>
-  
-  
-          
+
+
+
           <View style={styles.container}>
-            <MapView 
-              style={styles.map} 
+            <MapView
+              style={styles.map}
               initialRegion={{
                 latitude: 40.76727216,
                 longitude: -73.99392888,
                 latitudeDelta: 0.0922,
                 longitudeDelta: 0.0421
-                
+
             }}>
               {this.state.isLoading ? null : this.state.markers.map((marker, index) => {
                 const coords = {
@@ -274,8 +277,8 @@ const styles = StyleSheet.create({
           <View  style={styles.bottom}>
             <ScrollView horizontal={true}>
               <Text style={{ fontSize: 24 }}>Photos nearby</Text>
-              
-  
+
+
               <Image
                 source={{
                   uri: 'https://reactnative.dev/img/tiny_logo.png',
@@ -351,7 +354,7 @@ const styles = StyleSheet.create({
       );
     }
   }
-  
+
   const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -368,7 +371,7 @@ const styles = StyleSheet.create({
       flex: 0.2,
       justifyContent: 'flex-end',
       backgroundColor: 'white',
-      
+
     }
   });
 

@@ -33,7 +33,7 @@ export default function LeaderboardScreen({ navigation }) {
         data={DATA}
         numColumns={4}
         renderItem={renderItem}
-        keyExtractor={item => item.id}
+        keyExtractor={item => item.index_id.toString()}
       />
       <Button
         title="Go to Profiles"

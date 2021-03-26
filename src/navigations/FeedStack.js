@@ -21,11 +21,14 @@ import NotifcationsScreen from '../../STUARTS SCREENS/NotificationScreen';
 //component imports
 import ProfileIcon from '../components/ProfileIcon';
 import NotificationIcon from '../components/NotificationIcon';
+import TrophyIcon from '../components/TrophyIcon';
+
 
 export default function FeedStackNav(){
   return (
     <FeedStack.Navigator
       screenOptions={{
+        headerLeft: null,
         headerStyle: {
             backgroundColor: 'white',
           },
@@ -36,6 +39,7 @@ export default function FeedStackNav(){
         headerRight: () => (
           <View style={styles.iconContainer}>
           <>
+          <TrophyIcon />
           <ProfileIcon />
           <NotificationIcon />
           </>

@@ -14,14 +14,16 @@ import ProfileScreen from './src/screens/ProfileScreen/ProfileScreen';
 
 //screen imports
 import FeedScreen from '../screens/FeedScreen/FeedScreen';
-import LeaderboardScreen from '../../STUARTS SCREENS/LeaderboardScreen';
 import ProfileScreen from '../screens/ProfileScreen/ProfileScreen';
-import NotifcationsScreen from '../../STUARTS SCREENS/NotificationScreen';
+import NotifcationsScreen from '../screens/NotificationScreen/NotificationScreen';
+import LeaderboardScreen from '../screens/LeaderboardScreen/LeaderboardScreen';
+
 
 //component imports
 import ProfileIcon from '../components/ProfileIcon';
 import NotificationIcon from '../components/NotificationIcon';
 import TrophyIcon from '../components/TrophyIcon';
+import FeedModal from '../components/FeedModal';
 
 
 export default function FeedStackNav(){
@@ -39,6 +41,7 @@ export default function FeedStackNav(){
         headerRight: () => (
           <View style={styles.iconContainer}>
           <>
+          <FeedModal />
           <TrophyIcon />
           <ProfileIcon />
           <NotificationIcon />

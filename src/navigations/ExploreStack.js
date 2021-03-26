@@ -6,15 +6,13 @@ import { createStackNavigator } from '@react-navigation/stack';
 //create navigation
 const ExploreStack = createStackNavigator();
 
-//screen imports
+//temp screen imports
 import ChallengeScreen from '../screens/ChallengeScreen/ChallengeScreen';
-import CameraScreen from '../../STUARTS SCREENS/CameraScreen';
-import ExploreScreen from '../../STUARTS SCREENS/ExploreScreen';
-import FeedScreen from '../../STUARTS SCREENS/FeedScreen';
-import LeaderboardScreen from '../../STUARTS SCREENS/LeaderboardScreen';
-import ProfileScreen from '../../STUARTS SCREENS/ProfileScreen';
-import NotifcationsScreen from '../../STUARTS SCREENS/NotificationScreen';
-import LoginScreen from '../../STUARTS SCREENS/LoginScreen';
+import ExploreScreen from '../screens/ExploreScreen/ExploreScreen';
+import ProfileScreen from '../screens/ProfileScreen/ProfileScreen';
+import NotifcationsScreen from '../screens/NotificationScreen/NotificationScreen';
+import LeaderboardScreen from '../screens/LeaderboardScreen/LeaderboardScreen';
+
 
 //component imports
 import ProfileIcon from '../components/ProfileIcon';

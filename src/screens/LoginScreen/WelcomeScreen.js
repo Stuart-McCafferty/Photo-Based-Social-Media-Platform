@@ -1,7 +1,10 @@
 import * as React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, TextInput, View, Button } from 'react-native';
 
 export default function WelcomeScreen({ navigation }) {
+  const [username, onChangeUser] = React.useState('Username');
+  const [password, onChangePass] = React.useState('Username');
+  const [dob, onChangeDob] = React.useState('Username');
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text>Welcome Screen</Text>

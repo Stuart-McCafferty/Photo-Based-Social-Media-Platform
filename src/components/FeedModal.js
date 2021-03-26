@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Alert, Modal, StyleSheet, Text, Pressable, View } from "react-native";
 
-const App = () => {
+export default function FeedModal (){
   const [modalVisible, setModalVisible] = useState(false);
   return (
     <View style={styles.centeredView}>
       <Modal
-        animationType="fade"
+        animationType="slide"
         transparent={true}
         visible={modalVisible}
         onRequestClose={() => {
@@ -39,7 +39,7 @@ const App = () => {
 const styles = StyleSheet.create({
   centeredView: {
     flex: 1,
-    justifyContent: "flexEnd",
+    justifyContent: "center",
     alignItems: "center",
     marginTop: 22
   },
@@ -48,8 +48,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 20,
     padding: 35,
-    justifyContent: "center",
-    alignItems: "flex-start",
+    alignItems: "center",
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -80,5 +79,3 @@ const styles = StyleSheet.create({
     textAlign: "center"
   }
 });
-
-export default App;

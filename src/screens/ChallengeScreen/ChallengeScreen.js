@@ -10,6 +10,7 @@ export default function ChallengeScreen({ navigation }) {
             style={{
                 height:"100%",
                 width:"100%",
+          
             }}
           >
       <View style={styles.Header}>
@@ -42,7 +43,7 @@ export default function ChallengeScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   Header:{
-    paddingHorizontal:10
+    paddingHorizontal:10,
 
   },
 

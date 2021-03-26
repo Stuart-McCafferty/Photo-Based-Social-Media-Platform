@@ -7,10 +7,10 @@ import { createStackNavigator } from '@react-navigation/stack';
 const WelcomeStack = createStackNavigator();
 
 //screen imports
-import LoginScreen from '../../STUARTS SCREENS/LoginScreen';
-import ResetPasswordScreen from '../../STUARTS SCREENS/ResetPasswordScreen';
-import SignupScreen from '../../STUARTS SCREENS/SignupScreen';
-import WelcomeScreen from '../../STUARTS SCREENS/WelcomeScreen';
+import LoginScreen from '../screens/LoginScreen/LoginScreen';
+import ResetPasswordScreen from '../screens/LoginScreen/ResetPasswordScreen';
+import SignupScreen from '../screens/LoginScreen/SignupScreen';
+import WelcomeScreen from '../screens/LoginScreen/WelcomeScreen';
 
 
 export default function WelcomeStackNav(){

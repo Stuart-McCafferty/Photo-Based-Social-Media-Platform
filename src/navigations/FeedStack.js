@@ -23,7 +23,7 @@ import LeaderboardScreen from '../screens/LeaderboardScreen/LeaderboardScreen';
 import ProfileIcon from '../components/ProfileIcon';
 import NotificationIcon from '../components/NotificationIcon';
 import TrophyIcon from '../components/TrophyIcon';
-import FeedModal from '../components/FeedModal';
+import HeaderModal from '../components/HeaderModal';
 
 
 export default function FeedStackNav(){
@@ -32,19 +32,16 @@ export default function FeedStackNav(){
       screenOptions={{
         headerLeft: null,
         headerStyle: {
-            backgroundColor: 'white',
+            backgroundColor: "#28865C",
           },
-          headerTintColor: '#28865C',
+          headerTintColor: 'white',
            headerTitleStyle: {
              fontWeight: 'bold',
            },
         headerRight: () => (
           <View style={styles.iconContainer}>
           <>
-          <FeedModal />
-          <TrophyIcon />
-          <ProfileIcon />
-          <NotificationIcon />
+          <HeaderModal />
           </>
           </View>
         ),
@@ -58,6 +55,11 @@ export default function FeedStackNav(){
   )
 }
 
+/* Save these for HeaderModal
+<TrophyIcon />
+<ProfileIcon />
+<NotificationIcon />
+*/
 
 //NEED TO IMPORT THIS TOO
 const styles = StyleSheet.create({

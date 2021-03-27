@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Posts from "./Posts"
 import ChallengeInfo from "./ChallengeInfo"
-import { StyleSheet, Text, View, Button, flatList, Image, PullView, ScrollView, Modal } from 'react-native';
+import { StyleSheet, Text, View, Button, FlatList, Image, PullView, ScrollView, Modal } from 'react-native';
 
 export default function ChallengeScreen({ navigation }) {
   return (

@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { StyleSheet, Text, View, Button, TouchableOpacity, Dimensions, Platform, Image } from 'react-native';
+import { StyleSheet, Text, View, Button, TouchableOpacity, Dimensions, Platform, Image, Pressable } from 'react-native';
 import { Camera } from 'expo-camera';
 import * as ImagePicker from 'expo-image-picker';
 import Constants from 'expo-constants';
 import * as Location from 'expo-location';
+import { MaterialIcons } from '@expo/vector-icons';
+import * as FaceDetector from 'expo-face-detector';
 
 export default function CameraScreen({ navigation }) {
   const [hasPermission, setHasPermission] = useState(null);
@@ -37,6 +39,7 @@ export default function CameraScreen({ navigation }) {
 
 
 
+
   let currentLat = null;
   let currentLon = null;
   let currentReg = null;
@@ -46,14 +49,14 @@ export default function CameraScreen({ navigation }) {
     currentLat = JSON.stringify(location.coords.latitude);
     currentLon = JSON.stringify(location.coords.longitude);
     currentReg = region ? region[0].subregion :"";
-    currentCountry = region ? region[0].country :"";
+    currentCountry = region ? region[0].isoCountryCode :"";
     console.log()
   }
 
 
 
 
-
+//
   /*
   useEffect(() => {
     (async () => {
@@ -120,7 +123,7 @@ export default function CameraScreen({ navigation }) {
   const takePicture = async () => {
     if (cameraRef.current) {
       const data = await cameraRef.current.takePictureAsync();
-      const source = data.uri;
+
 
       navigation.navigate('Upload',{image: data.uri,
                                     long: currentLon,
@@ -150,16 +153,16 @@ export default function CameraScreen({ navigation }) {
                     : Camera.Constants.Type.back
                 );
               }}>
-              <Text style={styles.text}> {currentReg} </Text>
+              <MaterialIcons name="flip-camera-android" size={34}  style={{padding: 20}} color="white" /> 
             </TouchableOpacity>
-            <TouchableOpacity
+            <Pressable
               style={styles.capture}
               onPress={takePicture}>
-            </TouchableOpacity>
+            </Pressable>
             <TouchableOpacity
               style={styles.button}
               onPress={pickImage}>
-              <Text style={styles.text}> Gallery </Text>
+              <MaterialIcons name="add-photo-alternate" size={34}  style={{padding: 20}} color="white" /> 
             </TouchableOpacity>
           </View>
     </View>

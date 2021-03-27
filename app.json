@@ -25,8 +25,11 @@
         "backgroundColor": "#FFFFFF"
       },
       "config": {
-        "googleMaps": { "apiKey": "<AIzaSyDslejFk39qf8F0QhXPy8x8oIrq74Ud2y0>" }   
-      }
+        "googleMaps": {
+          "apiKey": "<AIzaSyDslejFk39qf8F0QhXPy8x8oIrq74Ud2y0>"
+        }
+      },
+      "package": "edenbuildtest.apk"
     },
     "web": {
       "favicon": "./assets/favicon.png"

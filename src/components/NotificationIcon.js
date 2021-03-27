@@ -9,8 +9,8 @@ export default function NotificationIcon(){
   return(
     <Icon.Button
       name="bell"
-      color="#28865C"
-      backgroundColor="white"
+      color="white"
+      backgroundColor="#28865C"
       onPress={() => navigation.navigate("Notification")}
       size={20}
     >

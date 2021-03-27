@@ -5,6 +5,9 @@ import Icon from '@expo/vector-icons/AntDesign';
 import MapView from 'react-native-maps';
 import * as Location from 'expo-location';
 
+import { MaterialIcons } from '@expo/vector-icons'; 
+
+
 export default function ExploreScreen({ navigation }){
 
 
@@ -70,7 +73,13 @@ export default function ExploreScreen({ navigation }){
 
 
         <View  style={styles.bottom}>
-        <Text style={{height: 70, padding: 20, margin: 10, fontSize: 28}}> {currentRegion}, {currentCountry} </Text>
+          
+          <View style={{flex:1, flexDirection: 'row', alignItems: 'center', alignContent: 'flex-end'}}>
+            <MaterialIcons name="my-location" size={34}  style={{padding: 20}} color="black" /> 
+            <Text style={{color: "black", fontSize: 28}}>{currentRegion},</Text>
+            <Text style={{color:'rgb(170,170,170)', fontSize: 28}}> {currentCountry}</Text> 
+          </View>
+
             <ScrollView horizontal={true}>
               <Text style={{ fontSize: 24 }}>Photos nearby</Text>
 

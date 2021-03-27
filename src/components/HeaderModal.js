@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { Alert, Modal, StyleSheet, Text, Pressable, View } from "react-native";
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
-export default function FeedModal (){
+const HeaderModal = () => {
   const [modalVisible, setModalVisible] = useState(false);
   return (
     <View style={styles.centeredView}>
       <Modal
-        animationType="slide"
+        animationType="fade"
         transparent={true}
         visible={modalVisible}
         onRequestClose={() => {
@@ -16,22 +17,28 @@ export default function FeedModal (){
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Text style={styles.modalText}>Hello World!</Text>
-            <Pressable
-              style={[styles.button, styles.buttonClose]}
-              onPress={() => setModalVisible(!modalVisible)}
-            >
-              <Text style={styles.textStyle}>Hide Modal</Text>
-            </Pressable>
+              <View style={styles.modalText}>
+                <Text style={{fontSize: 30, fontWeight: "bold"}}>Header Modal</Text>
+                <Text style={{fontSize: 24}}>Test test test </Text>
+                </View>
+                  <Icon.Button
+                    name="times"
+                    color="grey"
+                    backgroundColor="white"
+                    onPress={() => setModalVisible(!modalVisible)}
+                    size={20}
+                  />
           </View>
         </View>
       </Modal>
-      <Pressable
-        style={[styles.button, styles.buttonOpen]}
+      <Icon.Button
+        name="cog"
+        color="white"
+        backgroundColor="#28865C"
         onPress={() => setModalVisible(true)}
+        size={20}
       >
-        <Text style={styles.textStyle}>Show Modal</Text>
-      </Pressable>
+      </Icon.Button>
     </View>
   );
 };
@@ -41,9 +48,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 22
+    marginTop: 5,
   },
   modalView: {
+    height: '90%',
+    width: '90%',
     margin: 20,
     backgroundColor: "white",
     borderRadius: 20,
@@ -66,9 +75,6 @@ const styles = StyleSheet.create({
   buttonOpen: {
     backgroundColor: "#F194FF",
   },
-  buttonClose: {
-    backgroundColor: "#2196F3",
-  },
   textStyle: {
     color: "white",
     fontWeight: "bold",
@@ -79,3 +85,9 @@ const styles = StyleSheet.create({
     textAlign: "center"
   }
 });
+
+
+
+
+
+export default HeaderModal;

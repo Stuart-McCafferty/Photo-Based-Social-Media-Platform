@@ -1,19 +1,20 @@
-//imports
-import * as React from 'react';
-import { View, Text, Button } from 'react-native';
-import * as Font from 'expo-font';
-import {AppLoading} from 'expo'
-import { NavigationContainer } from '@react-navigation/native';
+import 'react-native-gesture-handler';
+import { NavigationContainer } from "@react-navigation/native";
+import { registerRootComponent } from "expo";
 import { createStackNavigator } from '@react-navigation/stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { StatusBar } from 'expo-status-bar';
+import React from 'react';
+import { Text, View } from 'react-native';
+import MasterStack from "./stacks/MasterStack";
 
-
-//file imports
-import Navigation from './src/navigations/navigation';
-
-export default function App() {
-  return (
-
-    <Navigation />
-  );
+class App extends React.Component {
+  render() {
+    return (
+      <MasterStack />
+    );
+  }
 }
+
+registerRootComponent(App);
+
+export default App;

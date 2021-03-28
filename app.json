@@ -1,38 +1,12 @@
 {
+  "name": "eden-front-end",
+  "displayName": "eden-front-end",
   "expo": {
-    "name": "LeaderboardProject",
-    "slug": "LeaderboardProject",
+    "name": "eden-front-end",
+    "slug": "eden-front-end",
     "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
-    "updates": {
-      "fallbackToCacheTimeout": 0
-    },
     "assetBundlePatterns": [
       "**/*"
-    ],
-    "ios": {
-      "supportsTablet": true
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
-      },
-      "config": {
-        "googleMaps": {
-          "apiKey": "<AIzaSyDslejFk39qf8F0QhXPy8x8oIrq74Ud2y0>"
-        }
-      },
-      "package": "edenbuildtest.apk"
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    }
+    ]
   }
 }

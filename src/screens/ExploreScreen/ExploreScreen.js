@@ -2,8 +2,11 @@ import React, { useState, useEffect, useRef } from 'react';
 import { StyleSheet, Text, View, Button,ImageBackground,Image,TouchableOpacity, Permissions, Dimensions } from 'react-native';
 import {ScrollView,TextInput} from 'react-native-gesture-handler';
 import Icon from '@expo/vector-icons/AntDesign';
-import MapView from 'react-native-maps';
+import MapView, { Camera, Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import * as Location from 'expo-location';
+
+import { MaterialIcons } from '@expo/vector-icons'; 
+
 
 export default function ExploreScreen({ navigation }){
 
@@ -12,6 +15,7 @@ export default function ExploreScreen({ navigation }){
   const [errorMsg, setErrorMsg] = useState(null);
   const [region, setRegion] = useState(null);
 
+  const mapView = React.createRef();
 
 
 //get the location
@@ -30,21 +34,39 @@ export default function ExploreScreen({ navigation }){
       let tempRegion = await Location.reverseGeocodeAsync(location.coords);
       setRegion(tempRegion);
       console.log(region);
+       //await mapView.animateToCoordinate() 
+
+  
+        const newCamera: Camera = {
+            center: { latitude: 55, longitude: 55 },
+            zoom: 15,
+            heading: 0,
+            pitch: 0,
+            altitude: 5
+        }
+
+        mapView.current.animateCamera(newCamera, { duration: 5000 });
+
+    
+
+
+
     })();
   }, []);
 
 
 //set location variables
-  let currentLat = null;
-  let currentLon = null;
+  let currentLat = 0;
+  let currentLon = 0;
   let currentRegion = null;
   let currentCountry = null;
   if (errorMsg) {
   } else if (location) {
-    currentLat = JSON.stringify(location.coords.latitude);
-    currentLon = JSON.stringify(location.coords.longitude);
+    currentLat = parseFloat(location.coords.latitude);
+    currentLon = parseFloat(location.coords.longitude);
     currentRegion = region ? region[0].subregion :"";
     currentCountry = region ? region[0].isoCountryCode :"";
+    
   }
 
   //render
@@ -53,12 +75,13 @@ export default function ExploreScreen({ navigation }){
 
         <View style={styles.mapContainer}>
             <MapView
+              ref={mapView}
               style={styles.map}
               showsUserLocation
               showsMyLocationButton
               initialRegion={{
-                latitude: 40.76727216,
-                longitude: -73.99392888,
+                latitude: currentLat,
+                longitude: currentLon,
                 latitudeDelta: 0.0922,
                 longitudeDelta: 0.0421
 
@@ -70,7 +93,13 @@ export default function ExploreScreen({ navigation }){
 
 
         <View  style={styles.bottom}>
-        <Text style={{height: 70, padding: 20, margin: 10, fontSize: 28}}> {currentRegion}, {currentCountry} </Text>
+        
+        <View style={{flex:1, flexDirection: 'row', alignItems: 'center', alignContent: 'flex-end'}}>
+            <MaterialIcons name="my-location" size={34}  style={{padding: 20}} color="black" /> 
+            <Text style={{color: "black", fontSize: 28}}>{currentRegion},</Text>
+            <Text style={{color:'rgb(170,170,170)', fontSize: 28}}> {currentCountry}</Text> 
+          </View>
+
             <ScrollView horizontal={true}>
               <Text style={{ fontSize: 24 }}>Photos nearby</Text>
 

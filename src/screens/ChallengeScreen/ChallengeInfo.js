@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Alert, Modal, StyleSheet, Text, Pressable, View } from "react-native";
+import { Alert, Modal, StyleSheet, Text, Pressable, View, Image } from "react-native";
 
 const ChallengeInfo = () => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -17,8 +17,18 @@ const ChallengeInfo = () => {
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
               <View style={styles.modalText}>
-                <Text style={{fontSize: 30, fontWeight: "bold"}}>Nature Challenge</Text>
+                <Text style={{fontSize: 30, fontWeight: "bold"}}>Tree Hugger Challenge</Text>
                 <Text style={{fontSize: 24}}>March 2021</Text>
+              </View>
+              <View style={styles.completeBadgeSection}>
+                <View style={styles.completeBadge}>
+                  <View style={styles.badge}></View>
+                </View>
+                <View style={styles.earnBadge}>
+                  <Text style={{ fontSize: 16, textAlign: "center", textJustify: "inter-word"}}>
+                    Take photos of trees to get that Tree Hugger badge!
+                  </Text>
+                </View>
               </View>
             <Pressable
               style={[styles.button, styles.buttonClose]}
@@ -80,9 +90,25 @@ const styles = StyleSheet.create({
     textAlign: "center"
   },
   modalText: {
-    marginBottom: 15,
+    marginBottom: 20,
     textAlign: "center"
-  }
+  },
+  completeBadgeSection: {
+    flexDirection: 'row',
+    margin: 10,
+    width: '100%',
+
+  },
+  completeBadge: {
+    width: '50%'
+  },  
+  earnBadge: {
+    width: '50%',
+  },
+  badge: {
+    backgroundColor: "black",
+    borderRadius: 360
+  },
 });
 
 export default ChallengeInfo;

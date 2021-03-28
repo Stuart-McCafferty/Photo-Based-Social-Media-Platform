@@ -40,6 +40,7 @@ function Feed({ navigation }) {
       <TouchableOpacity onPress={() => navigation.navigate("Challenges")}><Text style={text}>Challenges</Text></TouchableOpacity>
       <TouchableOpacity onPress={() => navigation.navigate("Profile")}><Text style={text}>Profile</Text></TouchableOpacity>
       <TouchableOpacity onPress={() => navigation.navigate("Leaderboard")}><Text style={text}>Leaderboard</Text></TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate("Challenges")}><Text style={text}>Challenges</Text></TouchableOpacity>
       <ScrollView style={scrollViewStyle}>
 	{content.map(item => <Post navigation={navigation} data={item} />)}
       </ScrollView>

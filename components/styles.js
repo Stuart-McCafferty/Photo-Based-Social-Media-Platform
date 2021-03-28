@@ -38,6 +38,10 @@ export const textSmall = {
   fontSize: SMALL_TEXT_SIZE
 };
 
+export const textExtraSmall = {
+  fontSize: EXTRA_SMALL_TEXT_SIZE
+};
+
 export const logoStyle = {
   fontSize: 3 * rem,
   color: COLOR_PRIMARY,

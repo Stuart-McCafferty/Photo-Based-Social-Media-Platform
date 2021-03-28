@@ -4,6 +4,7 @@ import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'reac
 import { postMethodFetch } from "../functions";
 import { DOMAIN_NAME, rem } from "../global-variables";
 import { COLOR_CYAN, SMALL_TEXT_SIZE, flexbox, textSmall } from "./styles";
+import Comment from "./Comment";
 import GLOBAL from "../GLOBAL";
 
 function Post(props) {
@@ -70,9 +71,9 @@ function Post(props) {
 
       <Text style={styles.hashtags}>{props.data.hashtags.length > 0 ? "#"+props.data.hashtags.join(", #") : ""}</Text>
 
-      {comments.map(item => <Text>{item.comment}</Text>)}
+      {props.data.commentsArray.map(item => <Comment navigation={props.navigation} data={item} />)}
 
-      <TextSubmit style={styles.button} placeholder="Leave a comment..." buttonText="Comment" onChangeText={setCommentInput} onPress={postComment} />
+      <TextSubmit style={styles.button} placeholder="Leave a comment..." buttonText="Comment" onChangeText={setCommentInput} onSubmit={postComment} />
 
     </View>
   );

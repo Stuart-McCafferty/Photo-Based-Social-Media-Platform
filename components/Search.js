@@ -35,10 +35,10 @@ function Search({ navigation }) {
 	  setPostContent(data);
 	});
       }
+      else {
+	setPostContent([]);
+      }
     });
-  };
-
-  const updateData = (activity) => {
   };
 
   return (

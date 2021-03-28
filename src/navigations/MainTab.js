@@ -4,6 +4,7 @@ import {Text, View, StyleSheet} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import { MaterialIcons } from '@expo/vector-icons'; 
 
 //Navigation imports
 import FeedStackNav from './FeedStack';
@@ -28,9 +29,10 @@ export default function MainTab(){
         name="Feed"
         component={FeedStackNav}
         options={{
-          tabBarLabel: 'home',
+          tabBarLabel: 'feed',
           tabBarIcon: ({ color, size }) => (
-            <Icon name="home" color={color} size={size}/>
+            <MaterialIcons name="dynamic-feed" size={size+4} color={color} />
+            //<Icon name="home" color={color} size={size}/>
           ),
         }}
       />

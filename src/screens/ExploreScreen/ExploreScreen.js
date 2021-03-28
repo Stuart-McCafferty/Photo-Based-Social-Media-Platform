@@ -6,6 +6,7 @@ import MapView, { Camera, Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import * as Location from 'expo-location';
 
 import { MaterialIcons } from '@expo/vector-icons'; 
+import { Systrace } from 'react-native';
 
 
 export default function ExploreScreen({ navigation }){
@@ -15,8 +16,8 @@ export default function ExploreScreen({ navigation }){
   const [errorMsg, setErrorMsg] = useState(null);
   const [region, setRegion] = useState(null);
 
-  const mapView = React.createRef();
-
+  const mapRef = useRef();
+  let camo =null;
 
 //get the location
   useEffect(() => {
@@ -33,27 +34,16 @@ export default function ExploreScreen({ navigation }){
 
       let tempRegion = await Location.reverseGeocodeAsync(location.coords);
       setRegion(tempRegion);
-      console.log(region);
+      console.log("location" + region);
        //await mapView.animateToCoordinate() 
-
-  
-        const newCamera: Camera = {
-            center: { latitude: 55, longitude: 55 },
-            zoom: 15,
-            heading: 0,
-            pitch: 0,
-            altitude: 5
-        }
-
-        mapView.current.animateCamera(newCamera, { duration: 5000 });
-
-    
-
 
 
     })();
   }, []);
 
+
+
+  
 
 //set location variables
   let currentLat = 0;
@@ -69,13 +59,41 @@ export default function ExploreScreen({ navigation }){
     
   }
 
+
+  const takePicture2 = async () => {
+    console.log("This works2");
+    //mapView.current.animateToCoordinate({location:{latitude:55, longitude:3}, duration: 2})
+    //const data = await cameraRef.current.takePictureAsync();
+    //mapView.current.animateToCoordinate({location:{latitude:55, longitude:3}, duration: 2})
+    camo = await mapRef.current.getCamera();
+  mapRef.current.setCamera({camera:{centre:{latitude:55, longitude:-3}, pitch:1, heading:1}, duration: 1});
+    console.log("So does this2");                   
+  
+};
+
+
+
+  const takePicture = async () => {
+      console.log("This works");
+      //mapView.current.animateToCoordinate({location:{latitude:55, longitude:3}, duration: 2})
+      //const data = await cameraRef.current.takePictureAsync();
+      //mapView.current.animateToCoordinate({location:{latitude:55, longitude:3}, duration: 2})
+          console.log(camo);   
+          
+      console.log("So does this");                   
+    
+  };
+
+
+
+
   //render
   return(
     <View style={{flex:1, backgroundColor:"white"}}>
 
         <View style={styles.mapContainer}>
             <MapView
-              ref={mapView}
+              ref = {mapRef} 
               style={styles.map}
               showsUserLocation
               showsMyLocationButton
@@ -139,6 +157,14 @@ export default function ExploreScreen({ navigation }){
               <Button
                 title="Challenges Nearby"
                 onPress={() => navigation.navigate('Challenge')}
+              />
+              <Button
+                title="Challenges Nearby"
+                onPress={takePicture}
+              />
+              <Button
+                title="Challenges Nearby"
+                onPress={takePicture2}
               />
               <Image
                 source={{

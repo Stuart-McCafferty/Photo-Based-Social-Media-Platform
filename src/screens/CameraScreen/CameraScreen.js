@@ -6,6 +6,7 @@ import Constants from 'expo-constants';
 import * as Location from 'expo-location';
 import { MaterialIcons } from '@expo/vector-icons';
 import * as FaceDetector from 'expo-face-detector';
+//import { NavigationEvents } from 'react-navigation';
 
 export default function CameraScreen({ navigation }) {
   const [hasPermission, setHasPermission] = useState(null);
@@ -15,27 +16,10 @@ export default function CameraScreen({ navigation }) {
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
   const [region, setRegion] = useState(null);
+  const [imgRegion, setImgRegion] = useState(null);
+  const [loaded, setLoaded ] = useState(true);
+ 
 
-
-
-
-  useEffect(() => {
-    (async () => {
-      let { status } = await Location.requestPermissionsAsync();
-      if (status !== 'granted') {
-        setErrorMsg('Permission to access location was denied');
-        return;
-      }
-
-      let location = await Location.getCurrentPositionAsync({});
-
-      setLocation(location);
-
-      let tempRegion = await Location.reverseGeocodeAsync(location.coords);
-      setRegion(tempRegion);
-      console.log(region);
-    })();
-  }, []);
 
 
 
@@ -50,9 +34,30 @@ export default function CameraScreen({ navigation }) {
     currentLon = JSON.stringify(location.coords.longitude);
     currentReg = region ? region[0].subregion :"";
     currentCountry = region ? region[0].isoCountryCode :"";
-    console.log()
+    console.log("loc" + currentLat);
   }
 
+
+
+// Allows camera to be reloaded after leaving a page
+    React.useEffect(() => {
+      const unsubscribe = navigation.addListener('focus', () => {
+        // do something
+        setLoaded(true);
+        console.log(loaded);
+      });
+  
+      return unsubscribe;
+    }); 
+    React.useEffect(() => {
+      const unsubscribe2 = navigation.addListener('blur', () => {
+        // do something
+        setLoaded(false);
+        console.log(loaded);
+      });
+  
+      return unsubscribe2;
+    });
 
 
 
@@ -93,6 +98,7 @@ export default function CameraScreen({ navigation }) {
       if (Platform.OS !== 'web') {
         const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
         const { status2 } = await Camera.requestPermissionsAsync();
+        const { status3 } = await Location.requestPermissionsAsync();
         if (status !== 'granted') {
           alert('Sorry, we need camera roll permissions to make this work!');
         }
@@ -100,12 +106,26 @@ export default function CameraScreen({ navigation }) {
     })();
   }, []);
 
+
+
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       quality: 1,
       exif: true,
     });
+
+    let imageLocation = await Location.reverseGeocodeAsync({"accuracy": 20,
+      "altitude": 216.9527497239431,
+      "altitudeAccuracy": 150,
+      "heading": 198.5382080078125,
+      "latitude": result.exif.GPSLatitude,
+      "longitude": result.exif.GPSLongitude,
+      "speed": 0.030248723924160004,});
+    console.log('Now....')
+    console.log(imageLocation);
+    let imageRegion = imageLocation ? imageLocation[0].subregion :"";
+    let imageCountry = imageLocation ? imageLocation[0].isoCountryCode :"";
 
     console.log(result);
 
@@ -115,8 +135,8 @@ export default function CameraScreen({ navigation }) {
     navigation.navigate('Upload',{image: result.uri,
                                   long: result.exif.GPSLongitude,
                                   lat: result.exif.GPSLatitude,
-                                  region: currentReg,
-                                  country: currentCountry})
+                                  region: imageRegion,
+                                  country: imageCountry})
   };
 
 
@@ -126,8 +146,8 @@ export default function CameraScreen({ navigation }) {
 
 
       navigation.navigate('Upload',{image: data.uri,
-                                    long: currentLon,
-                                    lat: currentLat,
+                                    long: 55,
+                                    lat: 3,
                                     region: currentReg,
                                     country: currentCountry})
                                   
@@ -137,11 +157,16 @@ export default function CameraScreen({ navigation }) {
 
 
   return (
-    <View style={styles.flexbox}>
+    <View style={styles.flexbox}> 
+
       <View style={styles.container}>
-        <Camera ref={cameraRef} style={styles.camera} type={type} >
+        {loaded && (
+                          <Camera ref={cameraRef} style={styles.camera} type={type} >
           
-        </Camera>
+                          </Camera>
+                )}
+        
+
       </View>
       <View style={styles.buttonContainer}>
             <TouchableOpacity

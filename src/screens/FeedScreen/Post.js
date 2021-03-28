@@ -1,22 +1,90 @@
-import React from 'react';
-import {View,Text,Image,ImagBackground, ImageBackground} from 'react-native';
+import React ,{ useState } from 'react';
+import {View,Text,Image,ImagBackground, ImageBackground, Modal,Pressable,StyleSheet,Alert} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
 
+
+
+
+
+
 export default class Post extends React.Component{
+    
+   
+    
     state={
-        liked:false
+        liked:false,
+        modalVisible: false
     }
     onLike=()=>{
         this.setState({liked:!this.state.liked})
     }
+    setModalVisible = (visible) => {
+        this.setState({ modalVisible: visible });
+    }
+    
     render(){
-
+        const { modalVisible } = this.state;
         const {name,profile,photo,onPress} = this.props
 
         return(
-            <View>
+         <View >
+        <View style = {styles.centeredView}>
+            <Modal  
+            visible={modalVisible} 
+            animationType='fade'
+            transparent={true}
+                    
+            ><View style={styles.backgroundColor}>
+                <View style={styles.modalView}>
+                <Icon 
+            name='times'
+            size={24} 
+            style={styles.icon2}
+            onPress={() => this.setModalVisible(!modalVisible)}
+                    />
+                    <Pressable
+                    style={styles.buttom }
+                    onPress={() => alert('report successful')}
+                    >
+                      <Text style={styles.textStyle}>Report</Text>
+                    </Pressable>
+
+                    <Pressable
+                    style={styles.buttom }
+                    onPress={() => alert('unfollow successful')}
+                    >
+                      <Text style={styles.textStyle}>Unfollow</Text>
+                    </Pressable>
+
+                    <Pressable
+                    style={styles.buttom }
+                    onPress={() => alert('mute successful')}
+                    >
+                      <Text style={styles.textStyle}>Mute</Text>
+                    </Pressable>
+
+                    <Pressable
+                    style={styles.buttom }
+                    onPress={() => alert('block successful')}
+                    >
+                      <Text style={styles.textStyle}>Block</Text>
+                    </Pressable>
+
+                    <Pressable
+                    style={styles.buttom }
+                    onPress={() => alert('There will be no more similar')}
+                    >
+                      <Text style={styles.textStyle}>Not Interested In</Text>
+                    </Pressable>
+
+                </View>
+         </View>
+      </Modal>
+      </View>
+
+
                <View style={{
                    flexDirection:"row",
                    paddingTop:10,
@@ -64,6 +132,7 @@ export default class Post extends React.Component{
                             name="sliders-h"
                             color="black"
                             size={20}
+                            onPress={() => this.setModalVisible(!modalVisible)}
                         />
                     </View>
                </View>
@@ -104,7 +173,8 @@ export default class Post extends React.Component{
               >
                   <Icon name="comment-alt"
                   color="black"
-                  size={20}/>
+                  onPress={onPress}
+                  size={20}/>  
                 </TouchableOpacity>
 
                 <TouchableOpacity
@@ -135,6 +205,53 @@ export default class Post extends React.Component{
                   </View>
                 </View>
             </View>
+
+            
         )
     }
+    
 }
+const styles = StyleSheet.create({
+    centeredView: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+      },
+      backgroundColor:{
+        flex: 1,
+        backgroundColor: '#000000AA',
+        justifyContent:'flex-end',
+      },
+      modalView: {
+        backgroundColor: "#C1E4D5",
+        justifyContent:'flex-end',
+        borderRadius: 20,
+        padding: 35,
+        height:400,
+        alignItems: "center",
+        shadowColor: "#000",
+      },
+      buttom: {
+        padding:20,
+        elevation: 2,
+        backgroundColor: "#C1E4D5",
+        borderBottomWidth:1,
+        borderBottomColor:"black",
+    
+        width:'100%',
+        height:'20%',
+      },
+      textStyle: {
+        fontSize:24,
+        color: "black",
+        fontWeight: "bold",
+        textAlign: "center",
+        justifyContent: "center",
+        
+        
+      },
+      icon2:{
+          color:"black",
+          marginLeft:310
+      },
+});

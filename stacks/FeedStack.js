@@ -20,6 +20,8 @@ import Challenge from "../components/Challenge";
 import Notifications from "../components/Notifications";
 import ProfileList from "../components/ProfileList";
 import AnalyticScreen from '../components/AnalyticScreen';
+import NotificationIcon from '../components/NotificationIcon';
+
 
 const Stack = createStackNavigator();
 
@@ -39,7 +41,13 @@ class FeedStack extends React.Component {
 	    shadowOffset: { width: 0, height: 0 }
 	  },
       headerTintColor: 'white',
-          headerRight: () => <HeaderModal />
+          headerRight: () =>
+          <View style={styles.iconContainer}>
+          <>
+          <NotificationIcon />
+          <HeaderModal />
+          </>
+          </View>
         }}
     >
 	<Stack.Screen
@@ -87,6 +95,11 @@ class FeedStack extends React.Component {
     component={AnalyticScreen}
     options={{ title: "Analytics" }}
   />
+  <Stack.Screen
+    name="Notifications"
+    component={Notifications}
+    options={{ title: "Notifications" }}
+  />
       </Stack.Navigator>
     );
   }
@@ -100,11 +113,11 @@ const styles = StyleSheet.create({
     flex: 1
   },
   icon: {
-    paddingLeft: 10
+    paddingLeft: 5
   },
   iconContainer: {
     flexDirection: "row",
     justifyContent: "space-evenly",
-    width: 80
+    width: 90,
   }
 });

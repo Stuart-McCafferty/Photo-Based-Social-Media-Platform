@@ -53,6 +53,11 @@ class FeedStack extends React.Component {
 	  component={Search}
 	  options={{ title: "Search" }}
 	/>
+	<Stack.Screen
+	  name="Registration"
+	  component={Registration}
+	  options={{ title: "Register" }}
+	/>
       </Stack.Navigator>
     );
   }

@@ -5,42 +5,35 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';  
 import { ceil } from 'react-native-reanimated';
 import {Picker} from '@react-native-picker/picker';
+import { COLOR_PRIMARY } from "../components/styles";
+import { postMethodFetch } from "../functions";
+import GLOBAL from "../GLOBAL";
 
-export default function FeedScreen({ route, navigation }) {
+export default function FeedScreen({ route, navigation, props }) {
     const {image} = route.params; //POST
     const {long} = route.params; //POST
     const {lat} = route.params; //POST
     let latShort = parseFloat(lat).toFixed(4); 
     let lonShort = parseFloat(long).toFixed(4);
+    const {subregion} = route.params; //POST
     const {region} = route.params; //POST
     const {country} = route.params; //POST
     const [face, faceExists] = useState(false); //POST
 
-    const [titleText, onChangeTitle] = React.useState('Title'); //POST
+    const [captionText, onChangeCaption] = React.useState('Caption'); //POST
     const [challenge, onChangeChallenge] = useState(); //POST
-    const [tag, onChangeTag] = React.useState('Comma-separated tags');
+    const [tag, onChangeTag] = React.useState('Comma-separated tags'); //POST
+
 
 
     const [shouldShow, setShouldShow] = useState(true);
-    const [shouldShowCoord, setShouldShowCoord] = useState(true);
     const [shouldShowBut, setShouldShowBut] = useState(true);
-    const [isEnabled, setIsEnabled] = useState(true);
-    const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+    const [exactLocation, setExactLocation] = useState(true); //POST
+    const toggleSwitch = () => setExactLocation(previousState => !previousState);
+
+
     
-    //console.log(image.exif);
     
-/*
-    function getMoviesFromApiAsync() {
-      return fetch('https://maps.googleapis.com/maps/api/geocode/json?address=' + lat + ',' + long + '&key=' + myApiKey)
-        .then(response => response.json())
-        .then(responseJson => {
-          return responseJson.results.address_components.long_name;
-        })
-        .catch(error => {
-          console.error(error);
-        });
-    }
-*/
 
     /*
     fetch('https://maps.googleapis.com/maps/api/geocode/json?address=' + lat + ',' + long + '&key=' + myApiKey)
@@ -53,7 +46,32 @@ export default function FeedScreen({ route, navigation }) {
 
 
 
-//To post: image*, lat/latShort, long/longShort, region*, country*,  titleText, challenge, face
+//To post: image*, lat/latShort, long/longShort, subregion, region*, country*,  captionText, challenge, face
+
+const postPhoto = () => {
+  const submission = {
+    //action: "comment",
+    ref: '123',
+    sourceUser: GLOBAL.USERNAME,
+    key: GLOBAL.KEY,
+    image:'eg', 
+    //latitude:lat, 
+    //longitude:long, 
+    location:subregion, 
+    //region:region, 
+    //country:country, 
+    caption:captionText,
+    //challenge:"challenge1",
+    //face:face,
+    hashtags:["tag1", "tag2"]
+  }; 
+      postMethodFetch(submission, "/post/upload", res => {
+            console.log(res)
+          });
+}
+
+
+
 
 //submit post
 const submitButton = async () => {
@@ -63,18 +81,19 @@ const submitButton = async () => {
 
     Alert.alert(
       "We think we see a person.",
-      "Eden is a service for sharing photos of things you find in the out in the world. This does not include humans. By pressing 'Post Anyway', you confirm that this image does not contain any people. If it does, your photo will be removed.",
+      "Eden is a service for sharing photos of things you find out in the world. This does not include humans. By pressing 'Post Anyway', you confirm that this image does not contain any people. If it does, your photo will be removed.",
       [
         {
           text: "Cancel",
           onPress: () => console.log("Cancel Pressed"),
           style: "cancel"
         },
-        { text: "Post anyway", onPress: () => console.log("OK Pressed") }
+        { text: "Post anyway", onPress: () => postPhoto }
       ],
       { cancelable: false }
     )              
   }
+  else {postPhoto;}
 };
 
 
@@ -144,12 +163,12 @@ useEffect(() => {
 
       <View style={{flex:1.5, flexDirection: 'row', alignItems: 'center', alignContent: 'center', justifyContent:'center'}}>
             <MaterialIcons name="my-location" size={34}  style={{padding: 20}} color="black" /> 
-            <Text style={{color: "black", fontSize: 28}}>{region},</Text>
+            <Text style={{color: "black", fontSize: 28}}>{subregion},</Text>
             <Text style={{color:'rgb(170,170,170)', fontSize: 28}}> {country}</Text> 
       </View>
       
 
-      {shouldShowCoord ?  
+      {exactLocation ?  
           <View style={{flex:1,flexDirection:'row', }}>
             <View style={{flex:0.5, flexDirection:'column', marginLeft:80}}>
                 <View style={{ flexDirection: 'row'}}>
@@ -163,8 +182,9 @@ useEffect(() => {
             </View>
             <View style={{flex:0.2, flexDirection:'column'}}> 
               <Switch
+              
               onValueChange={toggleSwitch}
-              value={isEnabled}     
+              value={exactLocation}     
               />
             </View>
           </View> 
@@ -173,17 +193,17 @@ useEffect(() => {
             <View style={{flex:0.5, flexDirection:'column', marginLeft:80}}>
                 <View style={{ flexDirection: 'row'}}>
                   <Text style={{color:'rgb(170,170,170)', fontSize: 20}}>Lat: </Text> 
-                  <Text style={{color: "gray", fontSize: 20, textDecorationLine: 'line-through'}}>{latShort}</Text>
+                  <Text style={{color: "lightgray", fontSize: 20, textDecorationLine: 'line-through'}}>{latShort}</Text>
                 </View>
                 <View style={{ flexDirection: 'row'}}>
                   <Text style={{color:'rgb(170,170,170)', fontSize: 20}}>Lon: </Text> 
-                  <Text style={{color: "gray", fontSize: 20, textDecorationLine: 'line-through'}}>{lonShort}</Text>
+                  <Text style={{color: "lightgray", fontSize: 20, textDecorationLine: 'line-through'}}>{lonShort}</Text>
                 </View>
             </View>
             <View style={{flex:0.2, flexDirection:'column'}}> 
               <Switch
               onValueChange={toggleSwitch}
-              value={isEnabled}     
+              value={exactLocation}     
               />
             </View>
           </View>
@@ -198,8 +218,8 @@ useEffect(() => {
                 <MaterialIcons name="text-fields" size={34} style={{padding: 20}} color="black" /> 
                 <TextInput
                   style={{borderBottomWidth:1, fontSize: 28 }}
-                  onChangeTitle={text => onChangeTitle(text)}
-                  value={titleText}
+                  onChangeCaption={text => onChangeCaption(text)}
+                  value={captionText}
                 />
           </View>
       </View> 
@@ -239,7 +259,7 @@ useEffect(() => {
     {shouldShowBut ?              
         <Pressable
             activeOpacity={0.7}
-            onPress={submitButton}
+            onPress={postPhoto}
             style={{
               position: 'absolute',
               width: 70,
@@ -250,7 +270,7 @@ useEffect(() => {
               bottom: 10,
               
               borderRadius: 50,
-              backgroundColor: 'teal',
+              backgroundColor: COLOR_PRIMARY,
               alignSelf: 'flex-end',
               
             }}>
@@ -258,7 +278,7 @@ useEffect(() => {
       </Pressable> : (
       <Pressable
             activeOpacity={0.7}
-            onPress={submitButton}
+            onPress={postPhoto}
             style={{
               position: 'absolute',
               width: 70,

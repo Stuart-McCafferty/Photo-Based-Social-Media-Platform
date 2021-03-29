@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+    import React, { useState, useEffect, useRef } from 'react';
   import { StyleSheet, Text, View, Button,ImageBackground,Image,TouchableOpacity, Permissions, Dimensions } from 'react-native';
   import {ScrollView,TextInput} from 'react-native-gesture-handler';
   import Icon from '@expo/vector-icons/AntDesign';
@@ -56,16 +56,7 @@ import React, { useState, useEffect, useRef } from 'react';
       currentLon = parseFloat(location.coords.longitude);
       currentRegion = region ? region[0].subregion :"";
       currentCountry = region ? region[0].isoCountryCode :"";
-      mapRef.current.animateCamera({
-        center: {
-            latitude: currentLat,
-            longitude: currentLon,
-          },
-        pitch: 50,
-        heading: 0,
-        altitude: 200,
-        zoom: 14,
-        });
+      
     }
 
 
@@ -75,7 +66,7 @@ import React, { useState, useEffect, useRef } from 'react';
     //const data = await cameraRef.current.takePictureAsync();
     //mapView.current.animateToCoordinate({location:{latitude:55, longitude:3}, duration: 2})
     camo = await mapRef.current.getCamera();
-
+  mapRef.current.setCamera({camera:{centre:{latitude:55, longitude:-3}, pitch:1, heading:1}, duration: 1});
     console.log("So does this2");                   
   
 };
@@ -88,17 +79,7 @@ import React, { useState, useEffect, useRef } from 'react';
       //const data = await cameraRef.current.takePictureAsync();
       //mapView.current.animateToCoordinate({location:{latitude:55, longitude:3}, duration: 2})
           console.log(camo);   
-        //mapRef.current.animateCamera({camera: camo, duration: 1});  
-        mapRef.current.animateCamera({
-            center: {
-                latitude: currentLat,
-                longitude: currentLon,
-              },
-            pitch: 50,
-            heading: 0,
-            altitude: 200,
-            zoom: 14,
-            });
+          
       console.log("So does this");                   
     
   };

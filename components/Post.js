@@ -76,7 +76,7 @@ function Post(props) {
 	  <Text style={styles.iconNumber}>{comments}</Text>
 	  <TouchableOpacity onPress={toggleHeart}>
 	    <Image
-	      source={require(`../assets/images/icons/heart${hearted ? "-red" : ""}.svg`)}
+	      source={require("../assets/images/icons/heart.svg")}
 	      style={styles.icon}
 	    />
 	  </TouchableOpacity>

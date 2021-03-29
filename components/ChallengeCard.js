@@ -7,7 +7,7 @@ function ChallengeCard({ navigation, data }) {
 
   return (
     <TouchableOpacity onPress={() => navigation.navigate("ChallengePage", { soo: "Jack" })}>
-      <ImageBackground resizeMode="contain" style={styles.image} source={require(`../assets/images/challenges/${data.id}.jpg`)}>
+      <ImageBackground resizeMode="contain" style={styles.image} source={require(`../assets/images/challenges/3.jpg`)}>
 	<Text style={styles.title}>{data.name}</Text>
 	<Text style={styles.description}>{data.description}</Text>
 	<Text style={styles.reward}>Reward: {data.reward}</Text>

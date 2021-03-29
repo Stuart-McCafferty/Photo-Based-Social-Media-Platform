@@ -1,9 +1,10 @@
 import 'react-native-gesture-handler';
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from '@react-navigation/stack';
-import React from 'react';
-import { Text, View } from 'react-native';
+import * as React from 'react';
+import {Text, View, StyleSheet} from 'react-native';
 import GLOBAL from "../GLOBAL";
+import HeaderModal from "../components/HeaderModal";
 import Header from "../components/Header";
 import Home from "../components/Home";
 import Leaderboard from "../components/Leaderboard";
@@ -22,7 +23,25 @@ const Stack = createStackNavigator();
 class FeedStack extends React.Component {
   render() {
     return (
-      <Stack.Navigator>
+      <Stack.Navigator
+        screenOptions={{
+          headerLeft: null,
+          headerStyle: {
+              backgroundColor: "#28865C",
+            },
+            headerTintColor: 'white',
+             headerTitleStyle: {
+               fontWeight: 'bold',
+             },
+          headerRight: () => (
+            <View style={styles.iconContainer}>
+            <>
+            <HeaderModal />
+            </>
+            </View>
+          ),
+        }}
+    >
 	<Stack.Screen
 	  name="Home"
 	  component={Feed}
@@ -64,3 +83,18 @@ class FeedStack extends React.Component {
 }
 
 export default FeedStack;
+
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1
+  },
+  icon: {
+    paddingLeft: 10
+  },
+  iconContainer: {
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    width: 80
+  }
+});

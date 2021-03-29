@@ -1,9 +1,18 @@
-import React, { useState } from "react";
-import { Alert, Modal, StyleSheet, Text, Pressable, View } from "react-native";
+import React, { useState, useEffect } from "react";
+import { Alert, Modal, StyleSheet, Text, Pressable, View, Button, FlatList, TouchableOpacity } from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import { text } from "./styles";
+import { useNavigation } from '@react-navigation/native';
 
 const HeaderModal = () => {
+  const navigation = useNavigation();
   const [modalVisible, setModalVisible] = useState(false);
+  const [navigate, onNavigate] = useState(false);
+  useEffect(() => {
+    if(modalVisible){
+      setModalVisible(!modalVisible)
+    }
+  }, [navigate]);
   return (
     <View style={styles.centeredView}>
       <Modal
@@ -19,7 +28,12 @@ const HeaderModal = () => {
           <View style={styles.modalView}>
               <View style={styles.modalText}>
                 <Text style={{fontSize: 30, fontWeight: "bold"}}>Header Modal</Text>
-                <Text style={{fontSize: 24}}>Test test test </Text>
+                <TouchableOpacity onPress={() => navigation.navigate("Search"), () => onNavigate(!navigate)}><Text style={text}>Search</Text></TouchableOpacity>
+              	<TouchableOpacity onPress={() => navigation.navigate("Challenges"), () => onNavigate(!navigate)}><Text style={text}>Challenges</Text></TouchableOpacity>
+              	<TouchableOpacity onPress={() => setModalVisible(!modalVisible), () => navigation.navigate("Profile")}><Text style={text}>Profile</Text></TouchableOpacity>
+              	<TouchableOpacity onPress={() => setModalVisible(!modalVisible), () => navigation.navigate("Leaderboard")}><Text style={text}>Leaderboard</Text></TouchableOpacity>
+              	<TouchableOpacity onPress={() => setModalVisible(!modalVisible), () => navigation.navigate("Challenges")}><Text style={text}>Challenges</Text></TouchableOpacity>
+              	<TouchableOpacity onPress={() => setModalVisible(!modalVisible), () => navigation.navigate("Registration")}><Text style={text}>Registration</Text></TouchableOpacity>
                 </View>
                   <Icon.Button
                     name="times"

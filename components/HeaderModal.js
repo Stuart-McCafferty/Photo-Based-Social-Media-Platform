@@ -45,27 +45,31 @@ export default function HeaderModal({ }) {
         }}
       >
         <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-              <View style={styles.modalText}>
-                <Text style={{fontSize: 30, fontWeight: "bold"}}>Header Modal</Text>
-		<View>
-		  <TouchableOpacity onPress={() => navigateTo(navigation, "Search")}><Text style={text}>Search</Text></TouchableOpacity>
-		  <TouchableOpacity onPress={() => navigateTo(navigation, "Challenges")}><Text style={text}>Challenges</Text></TouchableOpacity>
-		  <TouchableOpacity onPress={() => navigateTo(navigation, "Profile")}><Text style={text}>Profile</Text></TouchableOpacity>
-		  <TouchableOpacity onPress={() => navigateTo(navigation, "Leaderboard")}><Text style={text}>Leaderboard</Text></TouchableOpacity>
-		  <TouchableOpacity onPress={() => navigateTo(navigation, "Challenges")}><Text style={text}>Challenges</Text></TouchableOpacity>
-      <TouchableOpacity onPress={() => navigateTo(navigation, "Registration")}><Text style={text}>Registration</Text></TouchableOpacity>
-      { DEV_MODE === true ?   <TouchableOpacity onPress={() => navigateTo(navigation, "Analytics")}><Text style={text}>Analytics</Text></TouchableOpacity> : null }
-		</View>
-		<Icon.Button
+          <View style={styles.a}>
+            <View style={styles.modalView}>
+              <Icon
 		  name="times"
 		  color="grey"
 		  backgroundColor="white"
+      style={styles.icon}
 		  onPress={() => setModalVisible(!modalVisible)}
 		  size={20}
 		/>
+              <View style={styles.modalText}>
+                <Text style={{fontSize: 40, fontWeight: "bold"}}>Header Modal</Text>
+		<View>
+		  <TouchableOpacity style={styles.buttom} onPress={() => navigateTo(navigation, "Search")}><Text style={{fontSize:30}}>Search</Text></TouchableOpacity>
+		  <TouchableOpacity style={styles.buttom} onPress={() => navigateTo(navigation, "Challenges")}><Text style={{fontSize:30}}>Challenges</Text></TouchableOpacity>
+		  <TouchableOpacity style={styles.buttom} onPress={() => navigateTo(navigation, "Profile")}><Text style={{fontSize:30}}>Profile</Text></TouchableOpacity>
+		  <TouchableOpacity style={styles.buttom} onPress={() => navigateTo(navigation, "Leaderboard")}><Text style={{fontSize:30}}>Leaderboard</Text></TouchableOpacity>
+		  <TouchableOpacity style={styles.buttom} onPress={() => navigateTo(navigation, "Challenges")}><Text style={{fontSize:30}}>Challenges</Text></TouchableOpacity>
+      <TouchableOpacity style={styles.buttom} onPress={() => navigateTo(navigation, "Registration")}><Text style={{fontSize:30}}>Registration</Text></TouchableOpacity>
+      { DEV_MODE === true ?   <TouchableOpacity style={styles.buttom} onPress={() => navigateTo(navigation, "Analytics")}><Text style={{fontSize:30}}>Analytics</Text></TouchableOpacity> : null }
+		</View>
+		
 	      </View>
 	    </View>
+        </View>
         </View>
       </Modal>
       : null}
@@ -78,10 +82,13 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
   },
+  a:{
+    backgroundColor: '#000000AA',
+    flex : 1,
+    width:420,
+  },
   modalView: {
-    height: '90%',
-    width: '90%',
-    margin: 20,
+    marginTop:35,
     backgroundColor: "white",
     borderRadius: 20,
     padding: 35,
@@ -93,7 +100,8 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 4,
-    elevation: 5
+    elevation: 5,
+    height:550,
   },
   button: {
     borderRadius: 20,
@@ -106,10 +114,18 @@ const styles = StyleSheet.create({
   textStyle: {
     color: "white",
     fontWeight: "bold",
-    textAlign: "center"
+    textAlign: "center",
   },
   modalText: {
     marginBottom: 15,
-    textAlign: "center"
-  }
+    textAlign: "center",
+  },
+  icon:{
+    marginLeft:310
+  },
+  buttom: {
+    padding:10,
+    borderBottomWidth:0.5,
+    borderBottomColor:"black",
+  },
 });

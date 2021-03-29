@@ -1,31 +1,36 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, FlatList, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import GLOBAL from "../GLOBAL";
 import ChallengeCard from "./ChallengeCard";
-import { appBodyStyle, rem, scrollViewStyle } from "../global-variables";
+import { postMethodFetch } from "../functions";
+import { rem, scrollViewStyle } from "../global-variables";
 import { SMALL_TEXT_SIZE, buttonStyle, flexbox, text, textLarge, textSmall } from "./styles";
 
 function Challenges({ navigation }) {
 
-  const [rows,setRows] = useState([[0,0,0,0,0], [0,0,0], [0,0], [0,0,0,0]])
+  const [challengeIDs,setChallengeIDs] = useState([20,20,20,20,20])
+  const [challenges,setChallenges] = useState([]);
+
+  useEffect(() => {
+    const submission = {
+      username: GLOBAL.USERNAME,
+      key: GLOBAL.KEY,
+      message: "Yes"
+    };
+    postMethodFetch(submission, "/api_custom/challenges", res => {
+      console.log("Curious");
+      setChallenges(res.challenges);
+    });
+  }, [])
 
   return (
-    <View style={appBodyStyle}>
-      <ScrollView style={scrollViewStyle}>
+    <ScrollView style={scrollViewStyle}>
+      
+      <Text>Challenges</Text>
 
-	{rows.map(row => (
-	  <>
-	    <Text style={text}>Bugs</Text>
-	    <FlatList
-	      data={row}
-	      renderItem={({item}) => <ChallengeCard id={0} />}
-	      horizontal={true}
-	      style={styles.row}
-	    />
-	  </>
-	))}
+      {challenges.map(challenge => <ChallengeCard data={challenge} />)}
 
-      </ScrollView>
-    </View>
+    </ScrollView>
   );
 }
 

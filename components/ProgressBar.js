@@ -1,37 +1,37 @@
 import * as React from 'react';
 import { StyleSheet, Text, View, Button, Image } from 'react-native';
 
-function ZeroProgress(props) {
+function ZeroProgress() {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: 'green'}}>
-      <Image source={require('../../assets/images/0Progress.png')}
+      <Image source={require('../assets/images/0Progress.png')}
       />
     </View>
   );
 }
 
-function ThirtyThreeProgress(props) {
+function ThirtyThreeProgress() {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: 'green'}}>
-      <Image source={require('../../assets/images/33Progress.png')}
+      <Image source={require('../assets/images/33Progress.png')}
       />
     </View>
   );
 }
 
-function SixtySixProgress(props) {
+function SixtySixProgress() {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: 'green'}}>
-      <Image source={require('../../assets/images/66Progress.png')}
+      <Image source={require('../assets/images/66Progress.png')}
       />
     </View>
   );
 }
 
-function OneHundredProgress(props) {
+function OneHundredProgress() {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: 'green'}}>
-      <Image source={require('../../assets/images/100Progress.png')}
+      <Image source={require('../assets/images/100Progress.png')}
       />
     </View>
   );

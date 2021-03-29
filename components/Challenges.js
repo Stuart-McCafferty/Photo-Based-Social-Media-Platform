@@ -25,7 +25,7 @@ function Challenges({ navigation }) {
 
   return (
     <ScrollView style={scrollViewStyle}>
-      
+    
       <Text>Challenges</Text>
 
       {challenges.map(challenge => <ChallengeCard navigation={navigation} data={challenge} />)}

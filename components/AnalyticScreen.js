@@ -1,40 +1,53 @@
 import * as React from 'react';
-import { FlatList, StyleSheet, Text, View, Button, StatusBar, Image } from 'react-native';
-import { rem } from "../global-variables";
-import { SMALL_TEXT_SIZE, buttonStyle, flexbox, text, textLarge, textSmall } from "./styles";
-import GLOBAL from "../GLOBAL";
+import { StyleSheet, Text, View, Button, Image } from 'react-native';
 
-
-
-//
-
-export default function AnalyticScreen({ navigation }) {
+function ZeroProgress() {
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Image style={styles.mainProfilePicture} source={{ uri: `https://photography-app-content.s3.amazonaws.com/profile_pictures/${GLOBAL.USERNAME}` }} />
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: 'green'}}>
+      <Image source={require('../assets/images/0Progress.png')}
+      />
+    </View>
+  );
+}
+
+function ThirtyThreeProgress() {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: 'green'}}>
+      <Image source={require('../assets/images/33Progress.png')}
+      />
+    </View>
+  );
+}
+
+function SixtySixProgress() {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: 'green'}}>
+      <Image source={require('../assets/images/66Progress.png')}
+      />
+    </View>
+  );
+}
+
+function OneHundredProgress() {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: 'green'}}>
+      <Image source={require('../assets/images/100Progress.png')}
+      />
     </View>
   );
 }
 
 
-const styles = StyleSheet.create({
-  mainProfilePicture: {
-    width: 5 * rem,
-    height: 5 * rem,
-    borderRadius: 2.5 * rem
-  },
-  profileHeader: {
-    alignItems: "center",
-  },
-  text: {
-    flex: 1,
-    textAlign: "center",
-    fontSize: SMALL_TEXT_SIZE
-  },
-  caption: {
-    fontSize: 0.8 * rem,
-    marginTop: 0.5 * rem,
-    marginBottom: 0.8 * rem,
-    textAlign: "center"
-  }
-});
+export default function Progressbar({ navigation }) {
+  const noOfCompleted = '2';  //Change this to change the image, will need to link it with back end
+
+    if (noOfCompleted === '0') {
+      return <ZeroProgress />
+    } else if (noOfCompleted === '1') {
+      return <ThirtyThreeProgress />
+    } else if (noOfCompleted === '2') {
+      return <SixtySixProgress />
+    } else if (noOfCompleted === '3') {
+      return <OneHundredProgress />
+    }
+  };

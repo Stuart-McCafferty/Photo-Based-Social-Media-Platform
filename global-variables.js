@@ -1,5 +1,6 @@
 import { Dimensions } from "react-native";
 
+export const DEV_MODE = true;
 export const DOMAIN_NAME = "http://46.101.88.105";
 
 export let width = Dimensions.get("window").width;

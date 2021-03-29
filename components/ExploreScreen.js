@@ -175,7 +175,7 @@ import React, { useState, useEffect, useRef } from 'react';
             <ScrollView horizontal={true} >
               <Button
                 title="Challenges Nearby"
-                onPress={() => navigation.navigate('Challenge')}
+                onPress={() => navigation.navigate("Challenges")}
               />
               <Button
                 title="Challenges Nearby"

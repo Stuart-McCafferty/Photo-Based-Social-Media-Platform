@@ -16,7 +16,7 @@ function Notifications({ navigation }) {
       key: GLOBAL.KEY
     }
     postMethodFetch(submission, "/api_custom/notifications", res => {
-      setData(res.unseen)
+      if (res) setData(res.unseen)
     });
   }, []);
 

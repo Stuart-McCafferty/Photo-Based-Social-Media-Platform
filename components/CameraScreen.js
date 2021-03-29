@@ -227,15 +227,13 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'transparent',
     flexDirection: 'row',
-    margin: 20,
+    marginBottom: 20,
     justifyContent: 'space-between',
     position: 'absolute',
-              width: 70,
-              height: 70,
-              alignItems: 'center',
-
-
-              bottom: 10,
+    width: Dimensions.get('window').width,
+    height: 70,
+    alignItems: 'center',
+    bottom: 10,
   },
   button: {
     flex: 0.3,

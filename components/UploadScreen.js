@@ -50,20 +50,24 @@ export default function FeedScreen({ route, navigation, props }) {
 
 const postPhoto = () => {
   const submission = {
+    avatar:'eg',
+    caption:captionText,
+    poster: GLOBAL.USERNAME,
+    location:subregion,
+    hashtags:["tag1", "tag2"],
     //action: "comment",
-    ref: '123',
-    sourceUser: GLOBAL.USERNAME,
-    key: GLOBAL.KEY,
-    image:'eg', 
+    //ref: 'props.data.ref'
+    //key: GLOBAL.KEY,
+    
     //latitude:lat, 
     //longitude:long, 
-    location:subregion, 
+     
     //region:region, 
     //country:country, 
-    caption:captionText,
+    
     //challenge:"challenge1",
     //face:face,
-    hashtags:["tag1", "tag2"]
+    
   }; 
       postMethodFetch(submission, "/post/upload", res => {
             console.log(res)

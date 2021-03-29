@@ -82,13 +82,8 @@ import React, { useState, useEffect, useRef } from 'react';
 
 
 
-  const takePicture = async () => {
-      console.log("This works");
-      //mapView.current.animateToCoordinate({location:{latitude:55, longitude:3}, duration: 2})
-      //const data = await cameraRef.current.takePictureAsync();
-      //mapView.current.animateToCoordinate({location:{latitude:55, longitude:3}, duration: 2})
-          console.log(camo);   
-        //mapRef.current.animateCamera({camera: camo, duration: 1});  
+  const goBack = async () => {
+
         mapRef.current.animateCamera({
             center: {
                 latitude: currentLat,
@@ -98,8 +93,7 @@ import React, { useState, useEffect, useRef } from 'react';
             heading: 0,
             altitude: 200,
             zoom: 14,
-            });
-      console.log("So does this");                   
+            });           
     
   };
 
@@ -131,10 +125,10 @@ import React, { useState, useEffect, useRef } from 'react';
 
         <View  style={styles.bottom}>
         
-        <View style={{flex:1, flexDirection: 'row', alignItems: 'center', alignContent: 'flex-end'}}>
-            <MaterialIcons name="my-location" size={34}  style={{padding: 20}} color="black" /> 
-            <Text style={{color: "black", fontSize: 28}}>{currentRegion},</Text>
-            <Text style={{color:'rgb(170,170,170)', fontSize: 28}}> {currentCountry}</Text> 
+        <View style={{flex:1, flexDirection: 'row', alignItems: 'center', alignContent: 'flex-end'}} >
+            <MaterialIcons name="my-location" size={34}  style={{padding: 20}} color="black"  onPress={goBack}/> 
+            <Text style={{color: "black", fontSize: 28}} onPress={goBack}>{currentRegion},</Text>
+            <Text style={{color:'rgb(170,170,170)', fontSize: 28}} onPress={goBack}> {currentCountry}</Text> 
           </View>     
 
             <ScrollView horizontal={true}>
@@ -179,7 +173,7 @@ import React, { useState, useEffect, useRef } from 'react';
               />
               <Button
                 title="Challenges Nearby"
-                onPress={takePicture}
+                onPress={goBack}
               />
               <Button
                 title="Challenges Nearby"

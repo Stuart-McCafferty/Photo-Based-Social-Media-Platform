@@ -11,7 +11,10 @@ import GLOBAL from "../GLOBAL";
 function Post(props) {
 
   const [data,setData] = useState({});
-  const [comments,setComments] = useState([]);
+  const [hearted,setHearted] = useState(props.data.hearted);
+  const [hearts,setHearts] = useState(props.data.hearts);
+  const [commentsArray,setCommentsArray] = useState(props.data.commentsArray);
+  const [comments,setComments] = useState(props.data.comments);
   const [commentInput,setCommentInput] = useState("");
 
   const postComment = () => {
@@ -23,21 +26,27 @@ function Post(props) {
       key: GLOBAL.KEY
     };
     postMethodFetch(submission, "/interact", res => {
-      console.log(res);
+      if (res.success) {
+	setCommentsArray([...commentsArray, res.comment])
+	setComments(comments + 1);
+      }
     });
   }
 
-  const leaveHeart = () => {
+  const toggleHeart = () => {
     console.log("HEART");
+    const value = !hearted;
     const submission = {
       action: "heart",
+      value,
       ref: props.data.ref,
       sourceUser: GLOBAL.USERNAME,
       key: GLOBAL.KEY
     };
     console.log(submission);
     postMethodFetch(submission, "/interact", res => {
-      console.log(res);
+      setHearted(res.hearted);
+      setHearts(hearts + (res.hearted ? 1 : -1));
     });
   };
 
@@ -64,16 +73,14 @@ function Post(props) {
             onPress={() => console.log("Comment clicked")}
             size={1.5 * rem}
 	  />  
-	  <Text style={styles.iconNumber}>{props.data.comments}</Text>
-	  <TouchableOpacity>
-	    <Icon
-	      name= {data.hearted ? "heart":"heart"}
-              color= {data.hearted ? "red":"black"}
-	      size={1.5 * rem}
-	      onPress={leaveHeart}
+	  <Text style={styles.iconNumber}>{comments}</Text>
+	  <TouchableOpacity onPress={toggleHeart}>
+	    <Image
+	      source={require("../assets/images/icons/heart.svg")}
+	      style={styles.icon}
 	    />
 	  </TouchableOpacity>
-	  <Text style={styles.iconNumber}>{props.data.hearts}</Text>
+	  <Text style={styles.iconNumber}>{hearts}</Text>
 	</View>
 	<View>
 	  <Text style={text}>{props.data.location}</Text>
@@ -84,7 +91,7 @@ function Post(props) {
 
       <Text style={styles.hashtags}>{props.data.hashtags.length > 0 ? "#"+props.data.hashtags.join(", #") : ""}</Text>
 
-      {props.data.commentsArray.map(item => <Comment navigation={props.navigation} data={item} />)}
+      {commentsArray.map(item => <Comment navigation={props.navigation} data={item} />)}
 
       <TextSubmit placeholder="Leave a comment..." buttonText="Comment" onChangeText={setCommentInput} onSubmit={postComment} />
 
@@ -122,6 +129,10 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     flex: 1
+  },
+  icon: {
+    width: 1.5 * rem,
+    height: 1.5 * rem
   },
   iconNumber: {
     fontSize: TEXT_SIZE,

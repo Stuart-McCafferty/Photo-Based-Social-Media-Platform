@@ -24,7 +24,7 @@ function Feed({ navigation }) {
   const updateData = (feed) => {
     if (feed.length !== 0) {
       let refArgs = feed.map(item => item.ref).join("+");
-      fetch(`${DOMAIN_NAME}/api/photo/${refArgs}`)
+      fetch(`${DOMAIN_NAME}/api/photo/${refArgs}?username=${GLOBAL.USERNAME}`)
       .then(res => res.json())
       .then(data => {
 	console.log("CONETNTNTNT");

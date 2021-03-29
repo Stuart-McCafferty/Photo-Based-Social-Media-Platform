@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { StyleSheet, Text, View, Button, Image, TextInput, Dimensions, Switch, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, Button, Image, TextInput, Dimensions, Switch, ScrollView, Alert, TouchableOpacity, Pressable } from 'react-native';
 import * as FaceDetector from 'expo-face-detector';
 import { MaterialIcons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';  
@@ -7,18 +7,18 @@ import { ceil } from 'react-native-reanimated';
 import {Picker} from '@react-native-picker/picker';
 
 export default function FeedScreen({ route, navigation }) {
-    const {image} = route.params;
-    const {long} = route.params;
-    const {lat} = route.params;
-    let latShort = parseFloat(lat).toFixed(4);
+    const {image} = route.params; //POST
+    const {long} = route.params; //POST
+    const {lat} = route.params; //POST
+    let latShort = parseFloat(lat).toFixed(4); 
     let lonShort = parseFloat(long).toFixed(4);
-    const {region} = route.params;
-    const {country} = route.params;
-    let face = false;
+    const {region} = route.params; //POST
+    const {country} = route.params; //POST
+    const [face, faceExists] = useState(false); //POST
 
-    const [titleText, onChangeTitle] = React.useState('Title');
-    const [challenge, onChangeChallenge] = useState();
-    const [titleText2, onChangeText2] = React.useState('Title');
+    const [titleText, onChangeTitle] = React.useState('Title'); //POST
+    const [challenge, onChangeChallenge] = useState(); //POST
+    const [tag, onChangeTag] = React.useState('Comma-separated tags');
 
 
     const [shouldShow, setShouldShow] = useState(true);
@@ -53,10 +53,29 @@ export default function FeedScreen({ route, navigation }) {
 
 
 
-//To post: image*, lat/latShort, long/longShort, region*, country*,  titleText, 
+//To post: image*, lat/latShort, long/longShort, region*, country*,  titleText, challenge, face
 
+//submit post
+const submitButton = async () => {
+  console.log("No, bad!"); 
+  if (face == true) {
+    console.log("No, bad!2"); 
 
-
+    Alert.alert(
+      "We think we see a person.",
+      "Eden is a service for sharing photos of things you find in the out in the world. This does not include humans. By pressing 'Post Anyway', you confirm that this image does not contain any people. If it does, your photo will be removed.",
+      [
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel"
+        },
+        { text: "Post anyway", onPress: () => console.log("OK Pressed") }
+      ],
+      { cancelable: false }
+    )              
+  }
+};
 
 
 
@@ -71,14 +90,14 @@ useEffect(() => {
     console.log("no faces!!! :)");
     await setShouldShow(shouldShow);
     await setShouldShowBut(shouldShowBut);
-    face = false;
+    faceExists(false);
     console.log('face is ' + face);
   }
   else{
     console.log('fACE >:(');
     await setShouldShow(!shouldShow);
     await setShouldShowBut(!shouldShowBut);
-    face = true;
+    faceExists(true);
     console.log('face is ' + face);
   }
 })();
@@ -86,6 +105,7 @@ useEffect(() => {
 
     
     return (
+      <View>
     <ScrollView  contentContainerStyle={{justifyContent: 'space-between', }}>  
     <View style={{flex:2, backgroundColor:'white', alignItems: 'flex-start', justifyContent: 'flex-start' }}>
       <View style={{elevation:1, width: Dimensions.get('window').width, height: Dimensions.get('window').height*.4, alignItems: 'center', backgroundColor: 'black'}}>{/*image container */}
@@ -118,16 +138,7 @@ useEffect(() => {
       </View>
 
       <View style={{flex:1,  alignSelf: 'center', }}>
-        {shouldShowBut ?              
-        <Button
-              title="Post"
-              color = "green"
-            /> : (
-              <Button
-              title="Post"
-              color = "crimson"
-            />
-        ) }
+
       </View>
 
 
@@ -187,7 +198,7 @@ useEffect(() => {
                 <MaterialIcons name="text-fields" size={34} style={{padding: 20}} color="black" /> 
                 <TextInput
                   style={{borderBottomWidth:1, fontSize: 28 }}
-                  onChangeText={text => onChangeText(text)}
+                  onChangeTitle={text => onChangeTitle(text)}
                   value={titleText}
                 />
           </View>
@@ -214,8 +225,8 @@ useEffect(() => {
                 <MaterialCommunityIcons name="tag-outline" size={24} size={34} style={{padding: 20}} color="black" />
                 <TextInput
                   style={{borderBottomWidth:1, fontSize: 28, }}
-                  onChangeText={text => onChangeText(text)}
-                  value={titleText}
+                  onChangeTag={text => onChangeTag(text)}
+                  value={tag}
                 />
           </View>
       </View>
@@ -223,7 +234,49 @@ useEffect(() => {
 
     
     </View>
+    
     </ScrollView>
+    {shouldShowBut ?              
+        <Pressable
+            activeOpacity={0.7}
+            onPress={submitButton}
+            style={{
+              position: 'absolute',
+              width: 70,
+              height: 70,
+              alignItems: 'center',
+              justifyContent: 'center',
+              right: 10,
+              bottom: 10,
+              
+              borderRadius: 50,
+              backgroundColor: 'teal',
+              alignSelf: 'flex-end',
+              
+            }}>
+              <MaterialIcons name="send" size={28} color="white" />
+      </Pressable> : (
+      <Pressable
+            activeOpacity={0.7}
+            onPress={submitButton}
+            style={{
+              position: 'absolute',
+              width: 70,
+              height: 70,
+              alignItems: 'center',
+              justifyContent: 'center',
+              right: 10,
+              bottom: 10,
+              
+              borderRadius: 50,
+              backgroundColor: 'crimson',
+              alignSelf: 'flex-end',
+              
+            }}>
+              <MaterialIcons name="send" size={28} color="white" />
+      </Pressable>
+        ) }
+        </View>
   );
 }
 

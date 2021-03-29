@@ -26,13 +26,15 @@ export default function CameraScreen({ navigation }) {
 
   let currentLat = null;
   let currentLon = null;
-  let currentReg = null;
+  let currentSubregion = null;
+  let currentRegion = null;
   let currentCountry = null;
   if (errorMsg) {
   } else if (location) {
     currentLat = JSON.stringify(location.coords.latitude);
     currentLon = JSON.stringify(location.coords.longitude);
-    currentReg = region ? region[0].subregion :"";
+    currentSubregion = region ? region[0].subregion :"";
+    currentRegion = region ? region[0].region :"";
     currentCountry = region ? region[0].isoCountryCode :"";
     console.log("loc" + currentLat);
   }
@@ -132,7 +134,8 @@ export default function CameraScreen({ navigation }) {
       "speed": 0.030248723924160004,});
     console.log('Now....')
     console.log(imageLocation);
-    let imageRegion = imageLocation ? imageLocation[0].subregion :"";
+    let imageSubregion = imageLocation ? imageLocation[0].subregion :"";
+    let imageRegion = imageLocation ? imageLocation[0].region :"";
     let imageCountry = imageLocation ? imageLocation[0].isoCountryCode :"";
 
     console.log(result);
@@ -143,6 +146,7 @@ export default function CameraScreen({ navigation }) {
     navigation.navigate('Upload',{image: result.uri,
                                   long: result.exif.GPSLongitude,
                                   lat: result.exif.GPSLatitude,
+                                  subregion: imageSubregion,
                                   region: imageRegion,
                                   country: imageCountry})
   };
@@ -156,7 +160,8 @@ export default function CameraScreen({ navigation }) {
       navigation.navigate('Upload',{image: data.uri,
                                     long: currentLon,
                                     lat: currentLat,
-                                    region: currentReg,
+                                    subregion: currentSubregion,
+                                    region: currentRegion,
                                     country: currentCountry})
                                   
     }

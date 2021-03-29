@@ -102,6 +102,14 @@ export default function CameraScreen({ navigation }) {
         if (status !== 'granted') {
           alert('Sorry, we need camera roll permissions to make this work!');
         }
+        let location = await Location.getCurrentPositionAsync({});
+
+      setLocation(location);
+
+      let tempRegion = await Location.reverseGeocodeAsync(location.coords);
+      setRegion(tempRegion);
+      console.log(region);
+      console.log(location);
       }
     })();
   }, []);
@@ -146,8 +154,8 @@ export default function CameraScreen({ navigation }) {
 
 
       navigation.navigate('Upload',{image: data.uri,
-                                    long: 55,
-                                    lat: 3,
+                                    long: currentLon,
+                                    lat: currentLat,
                                     region: currentReg,
                                     country: currentCountry})
                                   

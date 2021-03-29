@@ -4,6 +4,7 @@ import * as FaceDetector from 'expo-face-detector';
 import { MaterialIcons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';  
 import { ceil } from 'react-native-reanimated';
+import {Picker} from '@react-native-picker/picker';
 
 export default function FeedScreen({ route, navigation }) {
     const {image} = route.params;
@@ -13,14 +14,19 @@ export default function FeedScreen({ route, navigation }) {
     let lonShort = parseFloat(long).toFixed(4);
     const {region} = route.params;
     const {country} = route.params;
-    const [value, onChangeText] = React.useState('Title');
-    const myApiKey = 'AIzaSyAdAGw-uAibA-dJmswJt-nuFAsKS_0Rtzw';
+    let face = false;
+
+    const [titleText, onChangeTitle] = React.useState('Title');
+    const [challenge, onChangeChallenge] = useState();
+    const [titleText2, onChangeText2] = React.useState('Title');
+
+
     const [shouldShow, setShouldShow] = useState(true);
     const [shouldShowCoord, setShouldShowCoord] = useState(true);
     const [shouldShowBut, setShouldShowBut] = useState(true);
     const [isEnabled, setIsEnabled] = useState(true);
     const toggleSwitch = () => setIsEnabled(previousState => !previousState);
-    let buttonColour = 'green';
+    
     //console.log(image.exif);
     
 /*
@@ -46,6 +52,14 @@ export default function FeedScreen({ route, navigation }) {
 */
 
 
+
+//To post: image*, lat/latShort, long/longShort, region*, country*,  titleText, 
+
+
+
+
+
+
 // face detection
 useEffect(() => {
   (async () => {
@@ -57,19 +71,22 @@ useEffect(() => {
     console.log("no faces!!! :)");
     await setShouldShow(shouldShow);
     await setShouldShowBut(shouldShowBut);
+    face = false;
+    console.log('face is ' + face);
   }
   else{
     console.log('fACE >:(');
     await setShouldShow(!shouldShow);
-    buttonColour = "red";
     await setShouldShowBut(!shouldShowBut);
+    face = true;
+    console.log('face is ' + face);
   }
 })();
 }, []);
 
     
     return (
-    <ScrollView  contentContainerStyle={{flex: 1,justifyContent: 'space-between', flexGrow:1}}>  
+    <ScrollView  contentContainerStyle={{justifyContent: 'space-between', }}>  
     <View style={{flex:2, backgroundColor:'white', alignItems: 'flex-start', justifyContent: 'flex-start' }}>
       <View style={{elevation:1, width: Dimensions.get('window').width, height: Dimensions.get('window').height*.4, alignItems: 'center', backgroundColor: 'black'}}>{/*image container */}
         {<Image source={{ uri: image }} resizeMode={'contain'} style={{ width: '100%', height: '100%', maxHeight: Dimensions.get('window').height*.4, maxWidth: Dimensions.get('window').width*.9 }}/>}
@@ -99,6 +116,20 @@ useEffect(() => {
           </View>
         ) }
       </View>
+
+      <View style={{flex:1,  alignSelf: 'center', }}>
+        {shouldShowBut ?              
+        <Button
+              title="Post"
+              color = "green"
+            /> : (
+              <Button
+              title="Post"
+              color = "crimson"
+            />
+        ) }
+      </View>
+
 
       <View style={{flex:1.5, flexDirection: 'row', alignItems: 'center', alignContent: 'center', justifyContent:'center'}}>
             <MaterialIcons name="my-location" size={34}  style={{padding: 20}} color="black" /> 
@@ -157,45 +188,39 @@ useEffect(() => {
                 <TextInput
                   style={{borderBottomWidth:1, fontSize: 28 }}
                   onChangeText={text => onChangeText(text)}
-                  value={value}
+                  value={titleText}
                 />
           </View>
       </View> 
       <View style={{flex:1,}}>
           <View style={{flex:1, flexDirection: 'row', alignItems: 'center', alignContent: 'flex-end'}}>
                 <MaterialCommunityIcons name="trophy-outline" size={34} style={{padding: 20}} color="black" />
-                <TextInput
-                  style={{borderBottomWidth:1, fontSize: 28 }}
-                  onChangeText={text => onChangeText(text)}
-                  value={value}
-                />
+                <Picker
+                  style={{ width: Dimensions.get('window').width*0.4, postion: 'absolute', transform: [{scaleX: 1.8}, {scaleY: 1.8}], left: 50,}}
+                  selectedValue={challenge}
+                  onValueChange={(itemValue, itemIndex) =>
+                    onChangeChallenge(itemValue)
+                  }>
+                  <Picker.Item label="Challenge" value="none" />
+                  <Picker.Item label="Birds" value="birds" />
+                  <Picker.Item label="Slug" value="slug" />
+                  <Picker.Item label="Buildings" value="building" />
+                </Picker>
+
           </View>
       </View>
       <View style={{flex:1,}}>
           <View style={{flex:1, flexDirection: 'row', alignItems: 'center', alignContent: 'flex-end'}}>
                 <MaterialCommunityIcons name="tag-outline" size={24} size={34} style={{padding: 20}} color="black" />
                 <TextInput
-                  style={{borderBottomWidth:1, fontSize: 28 }}
+                  style={{borderBottomWidth:1, fontSize: 28, }}
                   onChangeText={text => onChangeText(text)}
-                  value={value}
+                  value={titleText}
                 />
           </View>
       </View>
 
-      <View style={{flex:1,  alignSelf: 'center', }}>
-        {shouldShowBut ?              
-        <Button
-              title="Post"
-              color = "green"
-            /> : (
-              <Button
-              title="Post"
-              color = "crimson"
-            />
-        ) }
-            
 
-      </View>
     
     </View>
     </ScrollView>

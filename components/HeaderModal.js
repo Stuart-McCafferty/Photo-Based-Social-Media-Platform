@@ -3,8 +3,10 @@ import { Alert, Modal, StyleSheet, Text, Pressable, View, Button, FlatList, Touc
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { text } from "./styles";
 import { useNavigation } from '@react-navigation/native';
+import {DEV_MODE} from '../global-variables';
 
-function HeaderModal() {
+
+export default function HeaderModal({ }) {
 
   const navigation = useNavigation();
   const [modalVisible, setModalVisible] = useState(false);
@@ -52,7 +54,8 @@ function HeaderModal() {
 		  <TouchableOpacity onPress={() => navigateTo(navigation, "Profile")}><Text style={text}>Profile</Text></TouchableOpacity>
 		  <TouchableOpacity onPress={() => navigateTo(navigation, "Leaderboard")}><Text style={text}>Leaderboard</Text></TouchableOpacity>
 		  <TouchableOpacity onPress={() => navigateTo(navigation, "Challenges")}><Text style={text}>Challenges</Text></TouchableOpacity>
-		  <TouchableOpacity onPress={() => navigateTo(navigation, "Registration")}><Text style={text}>Registration</Text></TouchableOpacity>
+      <TouchableOpacity onPress={() => navigateTo(navigation, "Registration")}><Text style={text}>Registration</Text></TouchableOpacity>
+      { DEV_MODE === true ?   <TouchableOpacity onPress={() => navigateTo(navigation, "Analytics")}><Text style={text}>Analytics</Text></TouchableOpacity> : null }
 		</View>
 		<Icon.Button
 		  name="times"
@@ -110,6 +113,3 @@ const styles = StyleSheet.create({
     textAlign: "center"
   }
 });
-
-
-export default HeaderModal;

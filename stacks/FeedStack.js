@@ -19,6 +19,7 @@ import Challenges from "../components/Challenges";
 import Challenge from "../components/Challenge";
 import Notifications from "../components/Notifications";
 import ProfileList from "../components/ProfileList";
+import AnalyticScreen from '../components/AnalyticScreen';
 
 const Stack = createStackNavigator();
 
@@ -81,6 +82,11 @@ class FeedStack extends React.Component {
 	  component={Registration}
 	  options={{ title: "Register" }}
 	/>
+  <Stack.Screen
+    name="Analytics"
+    component={AnalyticScreen}
+    options={{ title: "Analytics" }}
+  />
       </Stack.Navigator>
     );
   }

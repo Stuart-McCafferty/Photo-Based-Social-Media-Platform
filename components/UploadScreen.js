@@ -50,7 +50,7 @@ export default function FeedScreen({ route, navigation, props }) {
 
 const postPhoto = () => {
   const submission = {
-    avatar:'eg',
+    avatar:image,
     caption:"captionText",
     poster: 'Jack',
     location:'subregion',

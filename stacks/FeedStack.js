@@ -15,7 +15,7 @@ import Settings from "../components/Settings";
 import Registration from "../components/Registration";
 import SignIn from "../components/SignIn";
 import Search from "../components/Search";
-import Challenges from "../components/Challenges";
+import Challenges from "../components/ChallengeScreen/Challenges";
 import Challenge from "../components/Challenge";
 import Notifications from "../components/Notifications";
 import ProfileList from "../components/ProfileList";

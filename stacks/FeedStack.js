@@ -37,6 +37,7 @@ class FeedStack extends React.Component {
 	    shadowRadius: 20,
 	    shadowOffset: { width: 0, height: 0 }
 	  },
+      headerTintColor: 'white',
           headerRight: () => <HeaderModal />
         }}
     >

@@ -8,7 +8,7 @@ import GLOBAL from "./GLOBAL";
 import { DEV_MODE } from "./global-variables";
 import { Text, View } from 'react-native';
 import SignIn from "./components/SignIn";
-import MasterStack from "./stacks/MasterStack";
+import MasterStack from "./stuart\ nav/MainTab";
 
 class App extends React.Component {
   

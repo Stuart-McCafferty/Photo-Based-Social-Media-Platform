@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
+import Icon from "react-native-vector-icons/FontAwesome5";
 import TextSubmit from "./TextSubmit";
 import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { postMethodFetch } from "../functions";
 import { DOMAIN_NAME, rem } from "../global-variables";
-import { COLOR_CYAN, SMALL_TEXT_SIZE, flexbox, textSmall } from "./styles";
+import { COLOR_CYAN, LARGE_TEXT_SIZE, SMALL_TEXT_SIZE, TEXT_SIZE, flexbox, text, textSmall } from "./styles";
 import Comment from "./Comment";
 import GLOBAL from "../GLOBAL";
 
@@ -56,24 +57,36 @@ function Post(props) {
       </View>
 
       <View style={flexbox}>
-	<View style={styles.iconsContainer} >
-	  <Image style={styles.icon} source={{ uri: "https://photography-app-content.s3.amazonaws.com/content/comment.svg" }} />
+	<View style={styles.iconsContainer}>
+	  <Icon
+	    name="comment-alt"
+            color="black"
+            onPress={() => console.log("Comment clicked")}
+            size={1.5 * rem}
+	  />  
 	  <Text style={styles.iconNumber}>{props.data.comments}</Text>
-	  <TouchableOpacity onPress={leaveHeart}><Image style={styles.icon} source={{ uri: "https://photography-app-content.s3.amazonaws.com/content/heart.svg" }} /></TouchableOpacity>
+	  <TouchableOpacity>
+	    <Icon
+	      name= {data.hearted ? "heart":"heart"}
+              color= {data.hearted ? "red":"black"}
+	      size={1.5 * rem}
+	      onPress={leaveHeart}
+	    />
+	  </TouchableOpacity>
 	  <Text style={styles.iconNumber}>{props.data.hearts}</Text>
 	</View>
 	<View>
-	  <Text style={textSmall}>{props.data.location}</Text>
+	  <Text style={text}>{props.data.location}</Text>
 	</View>
       </View>
 
-      <Text style={textSmall}>{props.data.caption}</Text>
+      <Text style={text}>{props.data.caption}</Text>
 
       <Text style={styles.hashtags}>{props.data.hashtags.length > 0 ? "#"+props.data.hashtags.join(", #") : ""}</Text>
 
       {props.data.commentsArray.map(item => <Comment navigation={props.navigation} data={item} />)}
 
-      <TextSubmit style={styles.button} placeholder="Leave a comment..." buttonText="Comment" onChangeText={setCommentInput} onSubmit={postComment} />
+      <TextSubmit placeholder="Leave a comment..." buttonText="Comment" onChangeText={setCommentInput} onSubmit={postComment} />
 
     </View>
   );
@@ -87,13 +100,13 @@ const styles = StyleSheet.create({
     marginBottom: 0.8 * rem
   },
   profilePicture: {
-    width: 1.5 * rem,
-    height: 1.5 * rem,
-    borderRadius: 0.75 * rem
+    width: 1.8 * rem,
+    height: 1.8 * rem,
+    borderRadius: 0.9 * rem
   },
   imageContainer: {
     width: "100%",
-    height: 10 * rem,
+    height: 14 * rem,
     marginTop: 0.3 * rem,
     marginBottom: 0.3 * rem
   },
@@ -102,28 +115,21 @@ const styles = StyleSheet.create({
     height: "100%"
   },
   username: {
-    marginLeft: 0.2 * rem,
-    fontSize: rem
+    marginLeft: 0.4 * rem,
+    fontSize: LARGE_TEXT_SIZE
   },
   iconsContainer: {
     display: "flex",
     flexDirection: "row",
     flex: 1
   },
-  icon: {
-    width: 1.2 * rem,
-    height: 1.2 * rem
-  },
   iconNumber: {
-    fontSize: SMALL_TEXT_SIZE,
+    fontSize: TEXT_SIZE,
     marginLeft: 0.4 * rem,
     marginRight: 0.4 * rem
   },
   hashtags: {
     color: COLOR_CYAN
-  },
-  button: {
-    backgroundColor: "red"
   }
 });
 

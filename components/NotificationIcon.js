@@ -11,7 +11,7 @@ export default function NotificationIcon(){
       name="bell"
       color="white"
       backgroundColor="#28865C"
-      onPress={() => navigation.navigate("Notification")}
+      onPress={() => navigation.navigate("Notifications")}
       size={20}
     >
     </Icon.Button>

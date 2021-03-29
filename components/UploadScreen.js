@@ -51,9 +51,9 @@ export default function FeedScreen({ route, navigation, props }) {
 const postPhoto = () => {
   const submission = {
     avatar:'eg',
-    caption:captionText,
-    poster: GLOBAL.USERNAME,
-    location:subregion,
+    caption:"captionText",
+    poster: 'Jack',
+    location:'subregion',
     hashtags:["tag1", "tag2"],
     //action: "comment",
     //ref: 'props.data.ref'

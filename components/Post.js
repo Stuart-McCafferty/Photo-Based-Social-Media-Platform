@@ -72,11 +72,11 @@ function Post(props) {
             color="black"
             onPress={() => console.log("Comment clicked")}
             size={1.5 * rem}
-	  />  
+	  />
 	  <Text style={styles.iconNumber}>{comments}</Text>
 	  <TouchableOpacity onPress={toggleHeart}>
 	    <Image
-	      source={require("../assets/images/icons/heart.svg")}
+	      source={require("../assets/images/icons/heart.png")}
 	      style={styles.icon}
 	    />
 	  </TouchableOpacity>

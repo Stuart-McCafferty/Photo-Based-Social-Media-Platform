@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import axios from "axios";
 import { StyleSheet, Text, View, Button, Image, TextInput, Dimensions, Switch, ScrollView, Alert, TouchableOpacity, Pressable } from 'react-native';
 import * as FaceDetector from 'expo-face-detector';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -50,11 +51,11 @@ export default function FeedScreen({ route, navigation, props }) {
 
 const postPhoto = () => {
   const submission = {
-    avatar:'eg',
-    caption:captionText,
-    poster: GLOBAL.USERNAME,
-    location:subregion,
-    hashtags:["tag1", "tag2"],
+    avatar: image,
+    caption:"captionText",
+    poster: 'Jack',
+    location:'subregion',
+    hashtags: "#just, #do, #it",
     //action: "comment",
     //ref: 'props.data.ref'
     //key: GLOBAL.KEY,
@@ -69,9 +70,22 @@ const postPhoto = () => {
     //face:face,
     
   }; 
-      postMethodFetch(submission, "/post/upload", res => {
-            console.log(res)
-          });
+
+  const config = { headers: { 'Content-Type': 'multipart/form-data' } };
+  console.log("IMAGE OBJECT");
+  console.log(image);
+  let fd = new FormData();
+  fd.append('avatar',image)
+  fd.append('caption',"My caption")
+  fd.append('poster',"Jack")
+  fd.append('location',"subregion")
+  fd.append('hashtags',"#just, #do, #it")
+  return axios.post("http://46.101.88.105/post/upload", fd, config)
+
+
+  postMethodFetch(submission, "/post/upload", res => {
+    console.log(res)
+  }, "multipart/form-data");
 }
 
 

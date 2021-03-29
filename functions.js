@@ -1,11 +1,11 @@
 import { DOMAIN_NAME } from "./global-variables";
 
-export function postMethodFetch(data, pathname, next) {
+export function postMethodFetch(data, pathname, next, contentType=null) {
   fetch(DOMAIN_NAME + pathname, {
     method: "POST",
     headers: {
       "Accept": "application/json",
-      "Content-Type": "application/json"
+      "Content-Type": contentType || "application/json",
     },
     body: JSON.stringify(data)
   })

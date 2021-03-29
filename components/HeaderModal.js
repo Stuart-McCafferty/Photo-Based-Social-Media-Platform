@@ -53,7 +53,7 @@ export default function HeaderModal({ }) {
 		  backgroundColor="white"
       style={styles.icon}
 		  onPress={() => setModalVisible(!modalVisible)}
-		  size={20}
+		  size={30}
 		/>
               <View style={styles.modalText}>
                 <Text style={{fontSize: 40, fontWeight: "bold"}}>Header Modal</Text>
@@ -88,10 +88,10 @@ const styles = StyleSheet.create({
     width:420,
   },
   modalView: {
-    marginTop:35,
-    backgroundColor: "white",
+    backgroundColor: "#C1E4D5",
     borderRadius: 20,
     padding: 35,
+    paddingLeft:0,
     alignItems: "center",
     shadowColor: "#000",
     shadowOffset: {
@@ -101,7 +101,8 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
-    height:550,
+    height:"100%",
+    marginLeft:170,
   },
   button: {
     borderRadius: 20,
@@ -121,7 +122,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   icon:{
-    marginLeft:310
+    marginLeft:190
   },
   buttom: {
     padding:10,

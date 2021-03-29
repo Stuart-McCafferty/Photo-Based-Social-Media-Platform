@@ -27,7 +27,7 @@ export default function HeaderModal({ }) {
   return (
     <View style={styles.centeredView}>
       <Icon.Button
-        name="cog"
+        name="bars"
         color="white"
         backgroundColor="#28865C"
         onPress={() => setModalVisible(!modalVisible)}
@@ -62,11 +62,9 @@ export default function HeaderModal({ }) {
 		  <TouchableOpacity style={styles.buttom} onPress={() => navigateTo(navigation, "Challenges")}><Text style={{fontSize:30}}>Challenges</Text></TouchableOpacity>
 		  <TouchableOpacity style={styles.buttom} onPress={() => navigateTo(navigation, "Profile")}><Text style={{fontSize:30}}>Profile</Text></TouchableOpacity>
 		  <TouchableOpacity style={styles.buttom} onPress={() => navigateTo(navigation, "Leaderboard")}><Text style={{fontSize:30}}>Leaderboard</Text></TouchableOpacity>
-		  <TouchableOpacity style={styles.buttom} onPress={() => navigateTo(navigation, "Challenges")}><Text style={{fontSize:30}}>Challenges</Text></TouchableOpacity>
-      <TouchableOpacity style={styles.buttom} onPress={() => navigateTo(navigation, "Registration")}><Text style={{fontSize:30}}>Registration</Text></TouchableOpacity>
       { DEV_MODE === true ?   <TouchableOpacity style={styles.buttom} onPress={() => navigateTo(navigation, "Analytics")}><Text style={{fontSize:30}}>Analytics</Text></TouchableOpacity> : null }
 		</View>
-		
+
 	      </View>
 	    </View>
         </View>

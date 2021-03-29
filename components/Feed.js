@@ -6,6 +6,7 @@ import { text } from "./styles";
 import Post from "./Post";
 import { postMethodFetch } from "../functions";
 
+
 function Feed({ navigation }) {
 
   const [items,setItems] = useState([]);

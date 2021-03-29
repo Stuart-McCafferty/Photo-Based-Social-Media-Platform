@@ -1,52 +1,61 @@
-import 'react-native-gesture-handler';
-import { NavigationContainer } from "@react-navigation/native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import React from 'react';
-import { Text, View } from 'react-native';
-import Header from "../components/Header";
-import Home from "../components/Home";
-import Leaderboard from "../components/Leaderboard";
-import Profile from "../components/Profile";
-import Feed from "../components/Feed";
-import Settings from "../components/Settings";
-import Registration from "../components/Registration";
-import SignIn from "../components/SignIn";
-import Search from "../components/Search";
-import Challenges from "../components/Challenges";
-import Notifications from "../components/Notifications";
-import ProfileList from "../components/ProfileList";
-import FeedStack from "./FeedStack";
-import CameraStack from "./CameraStack";
-import ExploreStack from "./ExploreStack";
+//imports
+import * as React from 'react';
+import {Text, View, StyleSheet} from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
+//Navigation imports
+import FeedStack from './FeedStack';
+import CameraStack from './CameraStack';
+import ExploreStack from './ExploreStack';
+
+//create navigation
 const Tab = createBottomTabNavigator();
 
-class MasterStack extends React.Component {
-  render() {
-    return (
-      <NavigationContainer>
-	<Tab.Navigator>
-	  <Tab.Screen
-	    name="Home"
-	    component={FeedStack}
-	    options={{ title: "Home" }}
-	  />
-	  <Tab.Screen
-	    name="Camera"
-	    component={CameraStack}
+
+export default function MasterStack(){
+  return (
+    <NavigationContainer>
+      <Tab.Navigator
+	initialRouteName="Feed"
+	tabBarOptions={{
+	  activeTintColor: '#28865C',
+	  inactiveTintColor: '#14432E',
+	  style: { backgroundColor: 'white'}
+	}}
+      >
+	<Tab.Screen
+	  name="Feed"
+	  component={FeedStack}
+	  options={{
+	    tabBarLabel: 'home',
+	    tabBarIcon: ({ color, size }) => (
+	      <Icon name="home" color={color} size={size}/>
+	    ),
+	  }}
+	/>
+	<Tab.Screen
+	  name="Camera"
+	  component={CameraStack}
 	    options={{
-	      title: "Camera",
+	      tabBarLabel: 'camera',
+	      tabBarIcon: ({ color, size }) => (
+		<Icon name="camera" color={color} size={size} />
+	      ),
+	    }}
+	/>
+	<Tab.Screen
+	  name="Explore"
+	  component={ExploreStack}
+	    options={{
+	      tabBarLabel: 'explore',
+	      tabBarIcon: ({ color, size }) => (
+		<Icon name="globe" color={color} size={size} />
+	      ),
 	    }}
 	  />
-	  <Tab.Screen
-	    name="Explore"
-	    component={ExploreStack}
-	    options={{ title: "Explore" }}
-	  />
-	</Tab.Navigator>
-      </NavigationContainer>
-    );
-  }
+      </Tab.Navigator>
+    </NavigationContainer>
+  )
 }
-
-export default MasterStack;

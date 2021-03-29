@@ -8,10 +8,10 @@ import GLOBAL from "./GLOBAL";
 import { DEV_MODE } from "./global-variables";
 import { Text, View } from 'react-native';
 import SignIn from "./components/SignIn";
-import MasterStack from "./stuart\ nav/MainTab";
+import MasterStack from "./stacks/MasterStack";
 
 class App extends React.Component {
-  
+
   constructor(props) {
     super(props);
     this.state = { signedIn: true };

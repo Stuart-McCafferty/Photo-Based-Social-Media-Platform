@@ -21,6 +21,7 @@ function Leaderboard({ navigation }) {
       <LeaderboardItem position="" data={{ position: "", username: "Username", points: "Points" }} />
       <FlatList
 	data={data}
+  keyExtractor={(item, index) => item.key}
 	renderItem={({item, index}) => (
 	    <LeaderboardItem position={index + 1} data={item}/>
 	)}

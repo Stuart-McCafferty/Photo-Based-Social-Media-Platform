@@ -27,7 +27,7 @@ function Search({ navigation }) {
       // render posts
       let refArgs = res[1].data.map(item => item).join("+");
       if (refArgs.length !== 0) {
-	fetch(`${DOMAIN_NAME}/api/photo/${refArgs}`)
+	fetch(`${DOMAIN_NAME}/api/photo/${refArgs}?username=${GLOBAL.USERNAME}`)
 	.then(res => res.json())
 	.then(data => {
 	  console.log("SEARCH");

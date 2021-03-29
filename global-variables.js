@@ -1,6 +1,6 @@
 import { Dimensions } from "react-native";
 
-const USE_LOCAL = false;
+const USE_LOCAL = true;
 export const DEV_MODE = true;
 export const DOMAIN_NAME = USE_LOCAL ? "http://localhost:5000" : "http://46.101.88.105";
 

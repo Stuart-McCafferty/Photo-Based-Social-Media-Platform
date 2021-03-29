@@ -14,6 +14,7 @@ import Registration from "../components/Registration";
 import SignIn from "../components/SignIn";
 import Search from "../components/Search";
 import Challenges from "../components/Challenges";
+import Challenge from "../components/Challenge";
 import Notifications from "../components/Notifications";
 import ProfileList from "../components/ProfileList";
 
@@ -41,6 +42,11 @@ class FeedStack extends React.Component {
 	<Stack.Screen
 	  name="Challenges"
 	  component={Challenges}
+	  options={{ title: "Challenges" }}
+	/>
+	<Stack.Screen
+	  name="ChallengePage"
+	  component={Challenge}
 	  options={{ title: "Challenges" }}
 	/>
 	<Stack.Screen

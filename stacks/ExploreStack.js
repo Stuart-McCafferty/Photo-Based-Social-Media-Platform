@@ -4,7 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
 import { DEV_MODE } from "../global-variables";
 import Blank from "../components/Blank";
-import ExploreScreen from "../components/ExploreScreen";
+// import ExploreScreen from "../components/ExploreScreen";
 
 const Stack = createStackNavigator();
 
@@ -14,7 +14,7 @@ class ExploreStack extends React.Component {
       <Stack.Navigator>
 	<Stack.Screen
 	  name="Home"
-	  component={Explore}
+	  component={Blank}
 	  options={{ title: "Explore" }}
 	/>
       </Stack.Navigator>

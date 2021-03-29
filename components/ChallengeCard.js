@@ -3,10 +3,10 @@ import { ImageBackground, StyleSheet, Text, TouchableOpacity, View } from 'react
 import { CONTAINER_WIDTH, DOMAIN_NAME, rem } from "../global-variables";
 import { EXTRA_SMALL_TEXT_SIZE, LARGE_TEXT_SIZE, SMALL_TEXT_SIZE, TEXT_SIZE, buttonStyle, flexbox, text, textLarge, textSmall } from "./styles";
 
-function ChallengeCard({ data }) {
+function ChallengeCard({ navigation, data }) {
 
   return (
-    <TouchableOpacity onPress={() => console.log("Clicked challenge")}>
+    <TouchableOpacity onPress={() => navigation.navigate("ChallengePage", { soo: "Jack" })}>
       <ImageBackground resizeMode="contain" style={styles.image} source={require(`../assets/images/challenges/${data.id}.jpg`)}>
 	<Text style={styles.title}>{data.name}</Text>
 	<Text style={styles.description}>{data.description}</Text>

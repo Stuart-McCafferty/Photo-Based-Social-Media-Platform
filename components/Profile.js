@@ -27,7 +27,7 @@ function Profile(props) {
 
   const updateData = (activity) => {
     let refArgs = activity.map(item => item.ref).join("+");
-    fetch(`${DOMAIN_NAME}/api/photo/${refArgs}`)
+    fetch(`${DOMAIN_NAME}/api/photo/${refArgs}?username=${GLOBAL.USERNAME}`)
     .then(res => res.json())
     .then(data => {
       console.log(data);

@@ -1,6 +1,6 @@
 const GLOBAL = {
   KEY: 8063858854765482000,
-  USERNAME: "Hannah"
+  USERNAME: "Jack"
 };
 
 export default GLOBAL;

@@ -11,8 +11,8 @@ function Profile(props) {
   const [username,setUsername] = useState(props.route.params ? props.route.params.username : username || props.username || GLOBAL.USERNAME);
   const [profileData,setProfileData] = useState({})
   const [content,setContent] = useState([]);
-  const [isFollowing,setIsFollowing] = useState(props.data.isFollowing);
-  const [followers,setFollowers] = useState(props.data.followers);
+  const [isFollowing,setIsFollowing] = useState(profileData.isFollowing);
+  const [followers,setFollowers] = useState(profileData.followers);
 
   useEffect(() => {
     fetch(`${DOMAIN_NAME}/api/user/${username}?username=${GLOBAL.USERNAME}`)

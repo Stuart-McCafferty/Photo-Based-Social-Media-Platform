@@ -16,7 +16,7 @@ class App extends React.Component {
     super(props);
     this.state = { signedIn: true };
     this.onSignIn.bind(this);
-    this.signedIn = DEV_MODE;
+    this.signedIn = false;
   }
 
   onSignIn(key, username) {

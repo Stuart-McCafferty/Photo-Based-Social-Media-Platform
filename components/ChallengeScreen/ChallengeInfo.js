@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Alert, Modal, StyleSheet, Text, Pressable, View, Image } from "react-native";
+import { Alert, Modal, StyleSheet, Text, Pressable, View, Image, Button } from "react-native";
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
 const ChallengeInfo = () => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -16,26 +17,27 @@ const ChallengeInfo = () => {
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-              <View style={styles.modalText}>
-                <Text style={{fontSize: 30, fontWeight: "bold"}}>Tree Hugger Challenge</Text>
-                <Text style={{fontSize: 24}}>March 2021</Text>
-              </View>
-              <View style={styles.completeBadgeSection}>
-                <View style={styles.completeBadge}>
-                  <View style={styles.badge}></View>
-                </View>
-                <View style={styles.earnBadge}>
-                  <Text style={{ fontSize: 16, textAlign: "center", textJustify: "inter-word"}}>
-                    Take photos of trees to get that Tree Hugger badge!
-                  </Text>
-                </View>
-              </View>
-            <Pressable
-              style={[styles.button, styles.buttonClose]}
+            <Icon
+              name="times"
+              color="grey"
+              backgroundColor="white"
+              style={styles.icon}
               onPress={() => setModalVisible(!modalVisible)}
-            >
-              <Text style={styles.textStyle}>Hide Modal</Text>
-            </Pressable>
+              size={30}
+            />
+            <View style={styles.challengeTitle}>
+              <Text style={{ fontSize: 30, fontWeight: "bold" }}>Tree Hugger Challenge</Text>
+              <Text style={{ fontSize: 24 }}>March 2021</Text>
+            </View>
+            <Image style={styles.image} source={{ uri: 'https://www.sciencenewsforstudents.org/wp-content/uploads/2020/04/1030_LL_trees.png' }}></Image>
+            <View>
+              <Text style={styles.challengeTask}>Take 5 photos of trees to complete this challenge!</Text>
+              <Text style={styles.challengeTask}>Reward: 25 points</Text>
+            </View>
+            <Button
+              title="Open Camera"
+              color= "#28865C"
+            />
           </View>
         </View>
       </Modal>
@@ -57,7 +59,7 @@ const styles = StyleSheet.create({
     marginTop: 22,
   },
   modalView: {
-    height: '90%',
+    height: '85%',
     width: '90%',
     margin: 20,
     backgroundColor: "white",
@@ -89,26 +91,22 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "center"
   },
-  modalText: {
+  challengeTitle: {
     marginBottom: 20,
-    textAlign: "center"
+    textAlign: "center",
   },
-  completeBadgeSection: {
-    flexDirection: 'row',
-    margin: 10,
-    width: '100%',
-
+  image: {
+    width: 300,
+    height: 200,
+    marginBottom: 20
   },
-  completeBadge: {
-    width: '50%'
-  },  
-  earnBadge: {
-    width: '50%',
+  icon: {
+    alignSelf: "flex-end"
   },
-  badge: {
-    backgroundColor: "black",
-    borderRadius: 360
-  },
+  challengeTask: {
+    fontSize: 18,
+    padding: 10
+  }
 });
 
 export default ChallengeInfo;

@@ -20,16 +20,6 @@ function ChallengeDetail() {
                 <Text style={{fontSize: 30, fontWeight: "bold"}}>Tree Hugger Challenge</Text>
                 <Text style={{fontSize: 24}}>March 2021</Text>
               </View>
-              <View style={styles.completeBadgeSection}>
-                <View style={styles.completeBadge}>
-                  <View style={styles.badge}></View>
-                </View>
-                <View style={styles.earnBadge}>
-                  <Text style={{ fontSize: 16, textAlign: "center", textJustify: "inter-word"}}>
-                    Take photos of trees to get that Tree Hugger badge!
-                  </Text>
-                </View>
-              </View>
             <Pressable
               style={[styles.button, styles.buttonClose]}
               onPress={() => setModalVisible(!modalVisible)}
@@ -92,22 +82,6 @@ const styles = StyleSheet.create({
   modalText: {
     marginBottom: 20,
     textAlign: "center"
-  },
-  completeBadgeSection: {
-    flexDirection: 'row',
-    margin: 10,
-    width: '100%',
-
-  },
-  completeBadge: {
-    width: '50%'
-  },  
-  earnBadge: {
-    width: '50%',
-  },
-  badge: {
-    backgroundColor: "black",
-    borderRadius: 360
   },
 });
 

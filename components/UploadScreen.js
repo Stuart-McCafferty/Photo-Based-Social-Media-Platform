@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import axios from "axios";
+// import axios from "axios";
 import { StyleSheet, Text, View, Button, Image, TextInput, Dimensions, Switch, ScrollView, Alert, TouchableOpacity, Pressable } from 'react-native';
 import * as FaceDetector from 'expo-face-detector';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -80,7 +80,7 @@ const postPhoto = () => {
   fd.append('poster',"Jack")
   fd.append('location',"subregion")
   fd.append('hashtags',"#just, #do, #it")
-  return axios.post("http://46.101.88.105/post/upload", fd, config)
+  // return axios.post("http://46.101.88.105/post/upload", fd, config)
 
 
   postMethodFetch(submission, "/post/upload", res => {

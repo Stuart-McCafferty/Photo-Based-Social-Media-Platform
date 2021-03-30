@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import axios from "axios";
+//import axios from "axios";
 import { StyleSheet, Text, View, Button, Image, TextInput, Dimensions, Switch, ScrollView, Alert, TouchableOpacity, Pressable } from 'react-native';
 import * as FaceDetector from 'expo-face-detector';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -12,6 +12,7 @@ import GLOBAL from "../GLOBAL";
 
 export default function FeedScreen({ route, navigation, props }) {
     const {image} = route.params; //POST
+    const {imageobj} = route.params; //POST
     const {long} = route.params; //POST
     const {lat} = route.params; //POST
     let latShort = parseFloat(lat).toFixed(4); 
@@ -51,7 +52,7 @@ export default function FeedScreen({ route, navigation, props }) {
 
 const postPhoto = () => {
   const submission = {
-    avatar: image,
+    avatar:imageobj,
     caption:"captionText",
     poster: 'Jack',
     location:'subregion',
@@ -80,7 +81,7 @@ const postPhoto = () => {
   fd.append('poster',"Jack")
   fd.append('location',"subregion")
   fd.append('hashtags',"#just, #do, #it")
-  return axios.post("http://46.101.88.105/post/upload", fd, config)
+  //return axios.post("http://46.101.88.105/post/upload", fd, config)
 
 
   postMethodFetch(submission, "/post/upload", res => {
@@ -93,7 +94,7 @@ const postPhoto = () => {
 
 //submit post
 const submitButton = async () => {
-  console.log("No, bad!"); 
+  console.log(imageobj); 
   if (face == true) {
     console.log("No, bad!2"); 
 
@@ -180,9 +181,9 @@ useEffect(() => {
 
 
       <View style={{flex:1.5, flexDirection: 'row', alignItems: 'center', alignContent: 'center', justifyContent:'center'}}>
-            <MaterialIcons name="my-location" size={34}  style={{padding: 20}} color="black" /> 
-            <Text style={{color: "black", fontSize: 28}}>{subregion},</Text>
-            <Text style={{color:'rgb(170,170,170)', fontSize: 28}}> {country}</Text> 
+            <MaterialIcons name="my-location" size={30}  style={{padding: 20}} color="black" /> 
+            <Text style={{color: "black", fontSize: 24}}>{subregion},</Text>
+            <Text style={{color:'rgb(170,170,170)', fontSize: 24}}> {country}</Text> 
       </View>
       
 
@@ -233,9 +234,9 @@ useEffect(() => {
 
         <View style={{flex:1,}}> 
           <View style={{flex:1, flexDirection: 'row', alignItems: 'center', alignContent: 'flex-end'}}>
-                <MaterialIcons name="text-fields" size={34} style={{padding: 20}} color="black" /> 
+                <MaterialIcons name="text-fields" size={30} style={{padding: 20}} color="black" /> 
                 <TextInput
-                  style={{borderBottomWidth:1, fontSize: 28 }}
+                  style={{borderBottomWidth:1, fontSize: 20 }}
                   onChangeCaption={text => onChangeCaption(text)}
                   value={captionText}
                 />
@@ -243,9 +244,9 @@ useEffect(() => {
       </View> 
       <View style={{flex:1,}}>
           <View style={{flex:1, flexDirection: 'row', alignItems: 'center', alignContent: 'flex-end'}}>
-                <MaterialCommunityIcons name="trophy-outline" size={34} style={{padding: 20}} color="black" />
+                <MaterialCommunityIcons name="trophy-outline" size={30} style={{padding: 20}} color="black" />
                 <Picker
-                  style={{ width: Dimensions.get('window').width*0.4, postion: 'absolute', transform: [{scaleX: 1.8}, {scaleY: 1.8}], left: 50,}}
+                  style={{ width: Dimensions.get('window').width*0.4, postion: 'absolute', transform: [{scaleX: 1.3}, {scaleY: 1.3}], left: 15,}}
                   selectedValue={challenge}
                   onValueChange={(itemValue, itemIndex) =>
                     onChangeChallenge(itemValue)
@@ -260,9 +261,9 @@ useEffect(() => {
       </View>
       <View style={{flex:1,}}>
           <View style={{flex:1, flexDirection: 'row', alignItems: 'center', alignContent: 'flex-end'}}>
-                <MaterialCommunityIcons name="tag-outline" size={24} size={34} style={{padding: 20}} color="black" />
+                <MaterialCommunityIcons name="tag-outline" size={24} size={30} style={{padding: 20}} color="black" />
                 <TextInput
-                  style={{borderBottomWidth:1, fontSize: 28, }}
+                  style={{borderBottomWidth:1, fontSize: 20, }}
                   onChangeTag={text => onChangeTag(text)}
                   value={tag}
                 />
@@ -296,7 +297,7 @@ useEffect(() => {
       </Pressable> : (
       <Pressable
             activeOpacity={0.7}
-            onPress={postPhoto}
+            onPress={submitButton}
             style={{
               position: 'absolute',
               width: 70,

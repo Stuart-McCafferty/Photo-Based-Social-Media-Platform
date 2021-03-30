@@ -144,6 +144,7 @@ export default function CameraScreen({ navigation }) {
       setImage(result.uri);
     }
     navigation.navigate('Upload',{image: result.uri,
+                                  imageobj: result,
                                   long: result.exif.GPSLongitude,
                                   lat: result.exif.GPSLatitude,
                                   subregion: imageSubregion,
@@ -158,6 +159,7 @@ export default function CameraScreen({ navigation }) {
 
 
       navigation.navigate('Upload',{image: data.uri,
+                                    imageobj: data, 
                                     long: currentLon,
                                     lat: currentLat,
                                     subregion: currentSubregion,

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { ImageBackground, StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native';
 import { CONTAINER_WIDTH, DOMAIN_NAME, rem } from "../global-variables";
 import { EXTRA_SMALL_TEXT_SIZE, LARGE_TEXT_SIZE, SMALL_TEXT_SIZE, TEXT_SIZE, buttonStyle, flexbox, text, textLarge, textSmall } from "./styles";
-import ProgressBar, { ZeroProgress, ThirtyThreeProgress, SixtySixProgress, OneHundredProgress} from './ProgressBar';
+//import ProgressBar, { ZeroProgress, ThirtyThreeProgress, SixtySixProgress, OneHundredProgress} from './ProgressBar';
 function ChallengeCard({ navigation, data }) {
 
   return (
@@ -24,7 +24,7 @@ function ChallengeCard({ navigation, data }) {
           alignSelf: "flex-end"
           }}
          >
-          <ProgressBar />
+          {/*<ProgressBar />*/}
         </View>
       </ImageBackground>
     </TouchableOpacity>

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { Button, ScrollView, Text, View } from 'react-native';
+import { Button, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import FormAttribute from "./FormAttribute";
-import { appBodyStyle, scrollViewStyle } from "../global-variables";
+import { appBodyStyle, rem, scrollViewStyle } from "../global-variables";
 import { postMethodFetch } from "../functions";
-import { buttonStyle, logoStyle } from "./styles";
+import { COLOR_ERROR, COLOR_PURPLE, buttonStyle, errorStyle, logoStyle } from "./styles";
 
-function Registration({ navigation }) {
+function Registration({ navigation, isAtRegistration }) {
 
   const [email,setEmailInput] = useState("");
   const [username,setUsernameInput] = useState("");
@@ -33,18 +33,45 @@ function Registration({ navigation }) {
     <View style={appBodyStyle}>
       <Text style={logoStyle}>eden</Text>
       <ScrollView style={scrollViewStyle}>
-	<Text>{usernameError}</Text>
+	{usernameError ? (<Text style={errorStyle}>{usernameError}</Text>) : null}
 	<FormAttribute heading="Username" onChangeText={ setUsernameInput } />
-	<Text>{emailError}</Text>
+	{emailError ? (<Text style={errorStyle}>{emailError}</Text>) : null}
 	<FormAttribute heading="Email" onChangeText={ setEmailInput } />
-	<Text>{passwordError}</Text>
-	<FormAttribute heading="Password" onChangeText={ setPassword1Input } />
-	<FormAttribute heading="Confirm Password" onChangeText={ setPassword2Input } />
-	<Button title="Create Account" style={buttonStyle} onPress={() => submit()}/>
+	{passwordError ? (<Text style={errorStyle}>{passwordError}</Text>) : null }
+	<FormAttribute secureTextEntry={true} heading="Password" onChangeText={ setPassword1Input } />
+	<FormAttribute secureTextEntry={true} heading="Confirm Password" onChangeText={ setPassword2Input } />
+	<TouchableOpacity
+	  style={styles.register}
+	  onPress={() => submit()}
+	>
+	  <Text style={buttonStyle}>Create account</Text>
+	</TouchableOpacity>
+	<TouchableOpacity
+	  style={styles.register}
+	  onPress={() => isAtRegistration(false)}
+	>
+	  <Text style={styles.signInText}>Already have an account? Sign in</Text>
+	</TouchableOpacity>
       </ScrollView>
     </View>
   );
 
 }
+
+const styles = StyleSheet.create({
+  container: {
+    padding: rem
+  },
+  register: {
+    marginTop: 1.2 * rem
+  },
+  signIn: {
+    marginTop: 1.2 * rem
+  },
+  signInText: {
+    ...buttonStyle,
+    backgroundColor: COLOR_PURPLE
+  }
+});
 
 export default Registration;

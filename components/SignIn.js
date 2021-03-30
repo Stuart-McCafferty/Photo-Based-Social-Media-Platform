@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { Button, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Button, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import FormAttribute from "./FormAttribute";
 import { appBodyStyle, rem, scrollViewStyle } from "../global-variables";
 import GLOBAL from "../GLOBAL";
 import { postMethodFetch } from "../functions";
-import { buttonStyle, logoStyle } from "./styles";
+import { COLOR_PURPLE, buttonStyle, errorStyle, logoStyle } from "./styles";
 
-function SignIn({ navigation, onSignIn }) {
+function SignIn({ navigation, onSignIn, isAtRegistration }) {
 
   const [email,setEmailInput] = useState("");
   const [password,setPasswordInput] = useState("");
@@ -27,11 +27,26 @@ function SignIn({ navigation, onSignIn }) {
   return (
     <View style={appBodyStyle}>
       <ScrollView style={styles.container}>
+
 	<Text style={logoStyle}>eden</Text>
-	<Text>{error}</Text>
+	{error ? (<Text style={errorStyle}>{error}</Text>) : null}
 	<FormAttribute heading="Email" onChangeText={ setEmailInput } />
-	<FormAttribute heading="Password" onChangeText={ setPasswordInput } />
-	<Button title="Sign In" style={styles.button} onPress={() => submit()}/>
+	<FormAttribute secureTextEntry={true} heading="Password" onChangeText={ setPasswordInput } />
+
+	<TouchableOpacity
+	  style={styles.button}
+	  onPress={() => submit()}
+	>
+	  <Text style={buttonStyle}>Sign In</Text>
+	</TouchableOpacity>
+
+	<TouchableOpacity
+	  style={styles.button}
+	  onPress={() => isAtRegistration(true)}
+	>
+	  <Text style={styles.registerText}>Don't have an account? Register</Text>
+	</TouchableOpacity>
+
       </ScrollView>
     </View>
   );
@@ -43,7 +58,11 @@ const styles = StyleSheet.create({
     padding: rem
   },
   button: {
+    marginTop: 1.2 * rem
+  },
+  registerText: {
     ...buttonStyle,
+    backgroundColor: COLOR_PURPLE
   }
 })
 

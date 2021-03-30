@@ -4,16 +4,16 @@ import { postMethodFetch } from "../functions";
 import { rem } from "../global-variables";
 import { COLOR_EXTRA_LIGHT_GRAY, SMALL_TEXT_SIZE, button, flexbox, textInputStyle, text } from "./styles";
 
-function FormAttribute({ heading, onChangeText }) {
+function FormAttribute({ navigation, heading, onChangeText, secureTextEntry }) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.name}>{heading}</Text>
+      <Text style={text}>{heading}</Text>
       <TextInput
 	placeholder={"\t"+heading}
 	onChangeText={(textValue) => { onChangeText(textValue) }}
 	style={styles.textInput}
-	secureTextEntry
+	secureTextEntry={secureTextEntry}
       />
     </View>
   );
@@ -22,10 +22,7 @@ function FormAttribute({ heading, onChangeText }) {
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 1.2 * rem,
-  },
-  name: {
-    ...text,
+    marginBottom: rem,
   },
   textInput: {
     ...textInputStyle,

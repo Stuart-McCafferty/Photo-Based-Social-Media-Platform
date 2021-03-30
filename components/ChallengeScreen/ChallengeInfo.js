@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { Alert, Modal, StyleSheet, Text, Pressable, View, Image, Button } from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import Posts from './Posts';
-
 
 const ChallengeInfo = () => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -44,9 +42,10 @@ const ChallengeInfo = () => {
         </View>
       </Modal>
       <Pressable
+        style={[styles.button, styles.buttonOpen]}
         onPress={() => setModalVisible(true)}
       >
-      <Posts />
+        <Text style={styles.textStyle}>Show Modal</Text>
       </Pressable>
     </View>
   );

@@ -19,19 +19,19 @@ export default function ChallengeScreen({ navigation }) {
             <Text style={styles.ChallengeName}>Started</Text>
           </View>
           <View style={styles.PhotoGridRow1}>
-            <ChallengeInfo />
+            <Posts></Posts>
           </View>
           <View>
             <Text style={styles.ChallengeName}>Challenges near you</Text>
           </View>
           <View style={styles.PhotoGridRow1}>
-          <ChallengeInfo />
+            <Posts></Posts>
           </View>
           <View>
             <Text style={styles.ChallengeName}>Challenges in Scotland</Text>
           </View>
           <View style={styles.PhotoGridRow1}>
-          <ChallengeInfo />
+            <Posts></Posts>
           </View>
         </View>
       </ScrollView>

@@ -8,14 +8,14 @@ function Notification(props) {
   if (props.data.type === "new_follower") return (
     <View style={styles.container}>
       <View style={styles.profileInfo}>
-	<Text style={{ fontSize: TEXT_SIZE }}>{props.data.username} is now following you</Text>
+	<Text style={styles.text}>{props.data.username} is now following you</Text>
       </View>
     </View>
   );
   else if (props.data.type === "challenge_completed") return (
     <View style={styles.container}>
       <View style={styles.profileInfo}>
-	<Text style={{ fontSize: TEXT_SIZE }}>You have completed the challenge {props.data.name}</Text>
+	<Text style={styles.text}>You have completed the challenge {props.data.name}</Text>
       </View>
     </View>
   );
@@ -24,8 +24,12 @@ function Notification(props) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: COLOR_EXTRA_LIGHT_GRAY
+    backgroundColor: "white"
+  },
+  text: {
+    ...text,
+    fontSize: LARGE_TEXT_SIZE
   }
-})
+});
 
 export default Notification;

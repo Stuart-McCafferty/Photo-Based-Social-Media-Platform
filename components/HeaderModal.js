@@ -56,7 +56,7 @@ export default function HeaderModal({ }) {
 		  size={30}
 		/>
               <View style={styles.modalText}>
-                <Text style={{fontSize: 40, fontWeight: "bold"}}>Header Modal</Text>
+                <Text style={{fontSize: 40, fontWeight: "bold"}}>Account Details</Text>
 		<View>
 		  <TouchableOpacity style={styles.buttom} onPress={() => navigateTo(navigation, "Search")}><Text style={{fontSize:30}}>Search</Text></TouchableOpacity>
 		  <TouchableOpacity style={styles.buttom} onPress={() => navigateTo(navigation, "Challenges")}><Text style={{fontSize:30}}>Challenges</Text></TouchableOpacity>

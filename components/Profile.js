@@ -12,13 +12,15 @@ function Profile(props) {
   const [profileData,setProfileData] = useState({})
   const [content,setContent] = useState([]);
   const [isFollowing,setIsFollowing] = useState(profileData.isFollowing);
-  const [followers,setFollowers] = useState(profileData.followers);
+  const [followers,setFollowers] = useState(0);
 
   useEffect(() => {
     fetch(`${DOMAIN_NAME}/api/user/${username}?username=${GLOBAL.USERNAME}`)
     .then(res => res.json())
     .then(data => {
       setProfileData(data);
+      setFollowers(data.followers);
+      setIsFollowing(profileData.isFollowing);
     })
     fetch(`${DOMAIN_NAME}/api/activity/${username}`)
     .then(res => res.json())
@@ -48,7 +50,7 @@ function Profile(props) {
     }
     postMethodFetch(submission, "/interact", res => {
       setIsFollowing(res.value);
-      setFollowers(res.value ? -1 : 1);
+      setFollowers(followers + (res.value ? 1 : -1));
       console.log(res);
     });
   }

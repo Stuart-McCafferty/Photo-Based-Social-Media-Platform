@@ -7,8 +7,8 @@ export const LARGE_TEXT_SIZE = 1.25 * rem;
 export const EXTRA_LARGE_TEXT_SIZE = 1.25 * 1.25 * rem;
 
 export const COLOR_PRIMARY = "#28865C";
-export const COLOR_PRIMARY_COMPLEMENT = "#4ae86c";
-export const COLOR_CYAN = "#57b0ba";
+export const COLOR_PRIMARY_COMPLEMENT = "#57bd8e";
+export const COLOR_CYAN = "#35b2ba";
 export const COLOR_LIGHT_GRAY = "#ccc";
 export const COLOR_EXTRA_LIGHT_GRAY = "#eee";
 
@@ -52,5 +52,7 @@ export const logoStyle = {
 export const buttonStyle = {
   flex: 1,
   backgroundColor: COLOR_PRIMARY_COMPLEMENT,
-  padding: 0.2 * rem
+  padding: 0.2 * rem,
+  paddingLeft: 0.4 * rem,
+  paddingRight: 0.4 * rem
 };

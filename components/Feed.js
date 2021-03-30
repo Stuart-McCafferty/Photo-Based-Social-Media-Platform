@@ -28,9 +28,7 @@ function Feed({ navigation }) {
       fetch(`${DOMAIN_NAME}/api/photo/${refArgs}?username=${GLOBAL.USERNAME}`)
       .then(res => res.json())
       .then(data => {
-	console.log("CONETNTNTNT");
-	console.log(data);
-	setContent(data);
+	setContent(data.reverse());
       });
     }
   };

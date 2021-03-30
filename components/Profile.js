@@ -56,7 +56,7 @@ function Profile(props) {
 	<View style={styles.profileHeader}>
 	  <Image style={styles.mainProfilePicture} source={{ uri: `https://photography-app-content.s3.amazonaws.com/profile_pictures/${username}` }} />
 	  <Text style={text}>{profileData.username}</Text>
-	  <Text style={textSmall}>{profileData.area}, {profileData.country}</Text>
+	  <Text style={textSmall}>{profileData.area}{profileData.area && profileData.country ? ", " : null}{profileData.country}</Text>
 	  <Text style={textLarge}>{profileData.points}</Text>
 	  <Text style={styles.caption}>{profileData.bio}</Text>
 	</View>

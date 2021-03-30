@@ -22,7 +22,7 @@ function ProfileCard({ username, navigation }) {
       <Image style={styles.profilePicture} source={{ uri: "https://photography-app-content.s3.amazonaws.com/profile_pictures/"+username }} />
       <View style={styles.profileInfo}>
 	<TouchableOpacity onPress={() => navigation.navigate("Profile", { username: data.username })}><Text style={{ fontSize: TEXT_SIZE }}>{data.username}</Text></TouchableOpacity>
-	<Text style={{ fontSize: SMALL_TEXT_SIZE }}>{data.area}, {data.country}</Text>
+	<Text style={{ fontSize: SMALL_TEXT_SIZE }}>{data.area}{data.area && data.country ? ", " : null}{data.country}</Text>
 	<Text style={{ fontSize: LARGE_TEXT_SIZE }}>{data.points}</Text>
       </View>
     </View>

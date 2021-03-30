@@ -59,6 +59,8 @@ function Post(props) {
   return (
     <View style={styles.container}>
 
+      {props.data.type === "review" ? (<Text>Question</Text>) : null}
+
       <View style={flexbox}>
 	<Image style={styles.profilePicture} source={{ uri: `https://photography-app-content.s3.amazonaws.com/profile_pictures/${props.data.poster}` }} />
 	<TouchableOpacity onPress={() => props.navigation.navigate("Profile", { username: props.data.poster })}><Text style={styles.username}>{props.data.poster}</Text></TouchableOpacity>
@@ -93,11 +95,12 @@ function Post(props) {
 	</View>
       </View>
 
-      <Text style={text}>{props.data.caption}</Text>
+      <View>
+	<Text style={text}>{props.data.caption}</Text>
+	<Text style={styles.hashtags}>{props.data.hashtags.length > 0 ? "#"+props.data.hashtags.join(", #") : ""}</Text>
+      </View>
 
-      <Text style={styles.hashtags}>{props.data.hashtags.length > 0 ? "#"+props.data.hashtags.join(", #") : ""}</Text>
-
-      {commentsVisible ? commentsArray.map(item => <Comment navigation={props.navigation} data={item} />) : null}
+      {commentsVisible ? commentsArray.map((item, index) => <Comment key={index} navigation={props.navigation} data={item} />) : null}
 
       <TextSubmit placeholder="Leave a comment..." buttonText="Post" onChangeText={setCommentInput} onSubmit={postComment} />
 
@@ -146,6 +149,7 @@ const styles = StyleSheet.create({
     marginRight: 0.4 * rem
   },
   hashtags: {
+    fontWeight: "700",
     color: COLOR_CYAN
   }
 });

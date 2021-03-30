@@ -4,7 +4,7 @@ import FormAttribute from "./FormAttribute";
 import { appBodyStyle, rem, scrollViewStyle } from "../global-variables";
 import GLOBAL from "../GLOBAL";
 import { postMethodFetch } from "../functions";
-import { COLOR_PURPLE, buttonStyle, errorStyle, logoStyle } from "./styles";
+import { COLOR_PURPLE, LARGE_TEXT_SIZE, buttonStyle, errorStyle, logoStyle } from "./styles";
 
 function SignIn({ navigation, onSignIn, isAtRegistration }) {
 
@@ -37,7 +37,7 @@ function SignIn({ navigation, onSignIn, isAtRegistration }) {
 	  style={styles.button}
 	  onPress={() => submit()}
 	>
-	  <Text style={buttonStyle}>Sign In</Text>
+	  <Text style={styles.signInText}>Sign In</Text>
 	</TouchableOpacity>
 
 	<TouchableOpacity
@@ -60,10 +60,15 @@ const styles = StyleSheet.create({
   button: {
     marginTop: 1.2 * rem
   },
+  signInText: {
+    ...buttonStyle,
+    fontSize: LARGE_TEXT_SIZE
+  },
   registerText: {
     ...buttonStyle,
-    backgroundColor: COLOR_PURPLE
+    backgroundColor: COLOR_PURPLE,
+    fontSize: LARGE_TEXT_SIZE
   }
-})
+});
 
 export default SignIn;

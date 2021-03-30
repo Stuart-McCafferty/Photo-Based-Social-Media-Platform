@@ -112,8 +112,9 @@ function Post(props) {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "white",
-    marginTop: 0.8 * rem,
-    marginBottom: 0.8 * rem
+    marginTop: 0.4 * rem,
+    marginBottom: 0.4 * rem,
+    padding:10
   },
   profilePicture: {
     width: 1.8 * rem,
@@ -124,11 +125,12 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 14 * rem,
     marginTop: 0.3 * rem,
-    marginBottom: 0.3 * rem
+    marginBottom: 0.3 * rem,
   },
   image: {
     width: "100%",
-    height: "100%"
+    height: "100%",
+    borderRadius: 25,
   },
   username: {
     marginLeft: 0.4 * rem,

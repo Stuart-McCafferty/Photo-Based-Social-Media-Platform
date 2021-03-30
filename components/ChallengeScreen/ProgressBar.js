@@ -48,7 +48,7 @@ function SixtySixProgress() {
               bottom: 0,
               alignSelf: "flex-end"
               }}>
-      <Image source={require('../../assets/images/66Progress.png')}
+      <Image style={{height: '100%' , width: '100%'}}source={require('../../assets/images/66Progress.png')}
       />
     </View>
   );
@@ -56,8 +56,17 @@ function SixtySixProgress() {
 
 function OneHundredProgress() {
   return (
-    <View style={{}}>
-      <Image source={require('../../assets/images/100Progress.png')}
+    <View style={{
+              height: 20,
+              width: 50,
+              borderRadius: 25,
+              alignItems: "center",
+              justifyContent: "center",
+              position: "absolute", //Here is the trick
+              bottom: 0,
+              alignSelf: "flex-end"
+              }}>
+      <Image style={{height: '100%' , width: '100%'}}source={require('../../assets/images/100Progress.png')}
       />
     </View>
   );

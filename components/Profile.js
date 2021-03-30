@@ -11,9 +11,11 @@ function Profile(props) {
   const [username,setUsername] = useState(props.route.params ? props.route.params.username : username || props.username || GLOBAL.USERNAME);
   const [profileData,setProfileData] = useState({})
   const [content,setContent] = useState([]);
+  const [isFollowing,setIsFollowing] = useState(props.data.isFollowing);
+  const [followers,setFollowers] = useState(props.data.followers);
 
   useEffect(() => {
-    fetch(`${DOMAIN_NAME}/api/user/${username}`)
+    fetch(`${DOMAIN_NAME}/api/user/${username}?username=${GLOBAL.USERNAME}`)
     .then(res => res.json())
     .then(data => {
       setProfileData(data);
@@ -39,11 +41,14 @@ function Profile(props) {
   const onFollow = () => {
     const submission = {
       action: "follow",
+      value: !isFollowing,
       username,
       key: GLOBAL.KEY,
       sourceUser: GLOBAL.USERNAME
     }
     postMethodFetch(submission, "/interact", res => {
+      setIsFollowing(res.value);
+      setFollowers(res.value ? -1 : 1);
       console.log(res);
     });
   }
@@ -62,9 +67,9 @@ function Profile(props) {
 	</View>
 
 	<View style={flexbox}>
-	  <TouchableOpacity style={styles.text} onPress={() => props.navigation.navigate("ProfileList", { api: "followers", username })}><Text style={styles.text}>{profileData.followers} follower{profileData.followers !== 1 ? "s" : ""}</Text></TouchableOpacity>
+	  <TouchableOpacity style={styles.text} onPress={() => props.navigation.navigate("ProfileList", { api: "followers", username })}><Text style={styles.text}>{followers} follower{followers !== 1 ? "s" : ""}</Text></TouchableOpacity>
 	  <TouchableOpacity style={styles.text} onPress={() => props.navigation.navigate("ProfileList", { api: "following", username })}><Text style={styles.text}>{profileData.following} following</Text></TouchableOpacity>
-	  {GLOBAL.USERNAME !== username ? <TouchableOpacity onPress={() => onFollow()} style={buttonStyle}><Text style={styles.text}>Follow</Text></TouchableOpacity> : <></>}
+	  {GLOBAL.USERNAME !== username ? <TouchableOpacity onPress={() => onFollow()} style={styles.followButton}><Text style={styles.text}>{isFollowing ? "Following" : "Follow"}</Text></TouchableOpacity> : <></>}
 	</View>
 
 	{content.map(item => (
@@ -96,6 +101,10 @@ const styles = StyleSheet.create({
     marginTop: 0.5 * rem,
     marginBottom: 0.8 * rem,
     textAlign: "center"
+  },
+  followButton: {
+    ...buttonStyle,
+    flex: 1
   }
 });
 

@@ -1,12 +1,18 @@
 import React, { useState, useEffect, useRef } from 'react';
-  import { StyleSheet, Text, View, Button,ImageBackground,Image,TouchableOpacity, Permissions, Dimensions } from 'react-native';
-  import {ScrollView,TextInput} from 'react-native-gesture-handler';
-  import Icon from '@expo/vector-icons/AntDesign';
-  import MapView, { Camera, Marker, PROVIDER_GOOGLE } from 'react-native-maps';
-  import * as Location from 'expo-location';
+import { StyleSheet, Text, View, Button,ImageBackground,Image,TouchableOpacity, Permissions, Dimensions } from 'react-native';
+import {ScrollView,TextInput} from 'react-native-gesture-handler';
+import Icon from '@expo/vector-icons/AntDesign';
+import MapView, { Camera, Marker, PROVIDER_GOOGLE } from 'react-native-maps';
+import * as Location from 'expo-location';
 
-  import { MaterialIcons } from '@expo/vector-icons'; 
-  import { Systrace } from 'react-native';
+import { MaterialIcons } from '@expo/vector-icons'; 
+import { Systrace } from 'react-native';
+
+//challenges
+import Posts from "./ChallengeScreen/Posts"
+import ChallengeInfo from "./ChallengeScreen/ChallengeInfo"
+
+
 
 
   export default function ExploreScreen({ navigation }){
@@ -64,7 +70,7 @@ import React, { useState, useEffect, useRef } from 'react';
         pitch: 50,
         heading: 0,
         altitude: 200,
-        zoom: 14,
+        zoom: 15.5,
         });
     }
 
@@ -92,7 +98,7 @@ import React, { useState, useEffect, useRef } from 'react';
             pitch: 50,
             heading: 0,
             altitude: 200,
-            zoom: 14,
+            zoom: 15.5,
             });           
     
   };
@@ -100,14 +106,22 @@ import React, { useState, useEffect, useRef } from 'react';
 
 
 
+//challenges
+
+
+
+
+
+
   //render
   return(
-    <View style={{flex:1, backgroundColor:"white"}}>
-
+    <View style={{backgroundColor:"white"}}>
+    <ScrollView>
         <View style={styles.mapContainer}>
             <MapView
               ref = {mapRef} 
               style={styles.map}
+              showsPointsOfInterest = {false}
               showsUserLocation
               showsMyLocationButton
               initialRegion={{
@@ -117,55 +131,94 @@ import React, { useState, useEffect, useRef } from 'react';
                 longitudeDelta: 0.0421
 
             }}>
+
+                  <Marker
+                    key={1}
+                    coordinate={{latitude:55.91168, longitude:-3.3193}}
+                    title={'Loch at night'}
+                    description={'Jack'}
+                    image={require('../assets/images/icons/photo.png')}
+                  />
+                
+                <Marker
+                    key={2}
+                    coordinate={{latitude:55.90912, longitude:-3.31989}}
+                    title={'Statue challenge!'}
+                    description={'Take a photo of James Watt'}
+                    image={require('../assets/images/icons/cupbigger.png')}
+                  />
+
+                <Marker
+                    key={3}
+                    coordinate={{latitude:55.90829, longitude:-3.32162}}
+                    title={'Cute squirel!!!'}
+                    description={'Hannah'}
+                    image={require('../assets/images/icons/photo.png')}
+                  />
+
+                  <Marker
+                    key={4}
+                    coordinate={{latitude:55.90748, longitude:-3.31281}}
+                    title={'Old oaks'}
+                    description={'Jack'}
+                    image={require('../assets/images/icons/photo.png')}
+                  />
+                
+
             </MapView>
         </View>
 
 
-
-
         <View  style={styles.bottom}>
         
-        <View style={{flex:1, flexDirection: 'row', alignItems: 'center', alignContent: 'flex-end'}} >
-            <MaterialIcons name="my-location" size={34}  style={{padding: 20}} color="black"  onPress={goBack}/> 
-            <Text style={{color: "black", fontSize: 28}} onPress={goBack}>{currentRegion},</Text>
-            <Text style={{color:'rgb(170,170,170)', fontSize: 28}} onPress={goBack}> {currentCountry}</Text> 
-          </View>     
+            <View style={{flexDirection: 'row', alignItems: 'center', alignContent: 'flex-end'}} >
+                <MaterialIcons name="my-location" size={34}  style={{padding: 20}} color="black"  onPress={goBack}/> 
+                <Text style={{color: "black", fontSize: 28}} onPress={goBack}>{currentRegion},</Text>
+                <Text style={{color:'rgb(170,170,170)', fontSize: 28}} onPress={goBack}> {currentCountry}</Text> 
+            </View>     
+         
+        </View>
+            <Text style={{color: "black", fontSize: 24, marginLeft:20, marginTop:10}} >Nearby Challenges</Text>
+            <View style={styles.PhotoGridRow1}>
+              
+              <Posts></Posts>
+            </View>
+    </ScrollView>
+    </View>
+  );
+}
 
-            <ScrollView horizontal={true}>
-              <Text style={{ fontSize: 24 }}>Photos nearby</Text>
+const styles = StyleSheet.create({
+  mapContainer: {
+    marginTop: Dimensions.get('window').width*0.05,
+    backgroundColor: 'white',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+  },
+  map: {
+    width: Dimensions.get('window').width*0.9,
+    height: Dimensions.get('window').width*0.9/3*4,
+    backgroundColor: 'white',
+  },
+  bottom: {
+
+    justifyContent: 'flex-end',
+    backgroundColor: 'white',
+
+  },
+  PhotoGridRow1: {
+
+    flexDirection: 'row',
+    marginBottom: 10,
+    width: '100%',
+
+  },
+});
 
 
-              <Image
-                source={{
-                  uri: 'https://reactnative.dev/img/tiny_logo.png',
-                  width: 64,
-                  height: 64,
-                }}
-              />
-              <Image
-                source={{
-                  uri: 'https://reactnative.dev/img/tiny_logo.png',
-                  width: 64,
-                  height: 64,
-                }}
-              />
-              <Image
-                source={{
-                  uri: 'https://reactnative.dev/img/tiny_logo.png',
-                  width: 64,
-                  height: 64,
-                }}
-              />
-              <Image
-                source={{
-                  uri: 'https://reactnative.dev/img/tiny_logo.png',
-                  width: 64,
-                  height: 64,
-                }}
-              />
-            </ScrollView>
-          </View>
-          <View  style={styles.bottom}>
+
+
+  {/* <View  style={styles.bottom}>
             <ScrollView horizontal={true} >
               <Button
                 title="Challenges Nearby"
@@ -215,33 +268,45 @@ import React, { useState, useEffect, useRef } from 'react';
                 }}
               />
             </ScrollView>
-          </View>
+              </View> */}
 
 
-    </View>
-  );
-}
 
-const styles = StyleSheet.create({
-  mapContainer: {
-    flex: 0.5,
-    backgroundColor: 'white',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-  },
-  map: {
-    width: Dimensions.get('window').width*0.9,
-    height: Dimensions.get('window').width*0.9,
-    backgroundColor: 'white',
-  },
-  bottom: {
-    flex: 0.25,
-    justifyContent: 'flex-end',
-    backgroundColor: 'white',
 
-  }
-});
 
+            {/*<ScrollView horizontal={true}>
+              <Text style={{ fontSize: 24 }}>Photos nearby</Text>
+
+
+              <Image
+                source={{
+                  uri: 'https://reactnative.dev/img/tiny_logo.png',
+                  width: 64,
+                  height: 64,
+                }}
+              />
+              <Image
+                source={{
+                  uri: 'https://reactnative.dev/img/tiny_logo.png',
+                  width: 64,
+                  height: 64,
+                }}
+              />
+              <Image
+                source={{
+                  uri: 'https://reactnative.dev/img/tiny_logo.png',
+                  width: 64,
+                  height: 64,
+                }}
+              />
+              <Image
+                source={{
+                  uri: 'https://reactnative.dev/img/tiny_logo.png',
+                  width: 64,
+                  height: 64,
+                }}
+              />
+              </ScrollView>*/}
 /*
   export default class ExploreScreen extends React.Component {
     state={

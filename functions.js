@@ -12,3 +12,16 @@ export function postMethodFetch(data, pathname, next, contentType=null) {
   .then(response => response.json())
   .then(response => next(response));
 }
+
+export function getProfileContent(username, next) {
+  fetch(`${DOMAIN_NAME}/api/user/${username}?username=${GLOBAL.USERNAME}`)
+  .then(res => res.json())
+  .then(data => {
+    let profileData = data;
+    fetch(`${DOMAIN_NAME}/api/activity/${username}`)
+    .then(res => res.json())
+    .then(data => {
+      next(profileData, data.activity.reverse());
+    });
+  });
+}

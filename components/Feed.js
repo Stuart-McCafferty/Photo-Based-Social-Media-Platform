@@ -36,7 +36,7 @@ function Feed({ navigation }) {
   return (
     <View style={appBodyStyle}>
       <ScrollView style={scrollViewStyle}>
-	{content.map(item => <Post navigation={navigation} data={item} />)}
+	{content.map((item, index) => <Post key={index} navigation={navigation} data={item} />)}
       </ScrollView>
     </View>
   );

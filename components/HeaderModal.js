@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   icon:{
-    marginLeft:190
+    alignSelf: "flex-end"
   },
   buttom: {
     padding:10,

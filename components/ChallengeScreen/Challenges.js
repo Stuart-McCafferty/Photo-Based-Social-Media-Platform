@@ -14,7 +14,6 @@ export default function ChallengeScreen({ navigation }) {
         }}
       >
         <View style={styles.Header}>
-          <Text style={styles.BoldText}>Challenges</Text>
           <ChallengeInfo></ChallengeInfo>
           <View >
             <Text style={styles.ChallengeName}>Started</Text>

@@ -11,7 +11,21 @@ function ChallengeCard({ navigation, data }) {
       	<Text style={styles.title}>{data.name}</Text>
       	<Text style={styles.description}>{data.description}</Text>
       	<Text style={styles.reward}>Reward: {data.reward}</Text>
-        <ProgressBar />
+        <View
+          style={{
+          height: 50,
+          width: 50,
+          borderRadius: 25,
+          backgroundColor: "#99AAAB",
+          alignItems: "center",
+          justifyContent: "center",
+          position: "absolute", //Here is the trick
+          bottom: 0,
+          alignSelf: "flex-end"
+          }}
+         >
+          <ProgressBar />
+        </View>
       </ImageBackground>
     </TouchableOpacity>
   );

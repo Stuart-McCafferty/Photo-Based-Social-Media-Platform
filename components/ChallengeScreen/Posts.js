@@ -5,7 +5,9 @@ import {
   Text,
   StyleSheet,
   Image,
+  ImageBackground,
 } from "react-native";
+import ProgressBar, { ZeroProgress, ThirtyThreeProgress, SixtySixProgress, OneHundredProgress} from './ProgressBar';
 
 const windowWidth = 300
 const windowHeight = 300
@@ -35,9 +37,24 @@ const Slide = React.memo(function Slide({ data }) {
   return (
     <View style={styles.slide}>
 
-      <Image source={{ uri: data.image }} style={styles.slideImage}></Image>
+      <ImageBackground source={{ uri: data.image }} style={styles.slideImage}>
+      <View
+          style={{
+          height: 20,
+          width: 50,
+          borderRadius: 25,
+          alignItems: "center",
+          justifyContent: "center",
+          position: "absolute", //Here is the trick
+          bottom: 0,
+          alignSelf: "flex-end"
+          }}
+         >
+          <ProgressBar />
+        </View>
+      </ImageBackground>
       <Text style={styles.slideTitle}>{data.title}</Text>
-      
+
     </View>
   );
 });
@@ -45,7 +62,7 @@ const Slide = React.memo(function Slide({ data }) {
 
 
 export default function Posts() {
-  
+
 
   const renderItem = useCallback(function renderItem({ item }) {
     return <Slide data={item} />;
@@ -53,7 +70,7 @@ export default function Posts() {
 
   return (
     <>
-      
+
       <FlatList
         data={slideList}
         style={styles.carousel}
@@ -62,10 +79,10 @@ export default function Posts() {
         horizontal
         showsHorizontalScrollIndicator={false}
         bounces={false}
-        
-       
+
+
       />
-       
+
 
     </>
   );

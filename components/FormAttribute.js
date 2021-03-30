@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 import { postMethodFetch } from "../functions";
 import { rem } from "../global-variables";
-import { COLOR_EXTRA_LIGHT_GRAY, SMALL_TEXT_SIZE, button, flexbox, textInputStyle, textSmall } from "./styles";
+import { COLOR_EXTRA_LIGHT_GRAY, SMALL_TEXT_SIZE, button, flexbox, textInputStyle, text } from "./styles";
 
 function FormAttribute({ heading, onChangeText }) {
 
@@ -10,9 +10,10 @@ function FormAttribute({ heading, onChangeText }) {
     <View style={styles.container}>
       <Text style={styles.name}>{heading}</Text>
       <TextInput
-	placeholder={heading}
+	placeholder={"\t"+heading}
 	onChangeText={(textValue) => { onChangeText(textValue) }}
 	style={styles.textInput}
+	secureTextEntry
       />
     </View>
   );
@@ -21,16 +22,14 @@ function FormAttribute({ heading, onChangeText }) {
 
 const styles = StyleSheet.create({
   container: {
-    ...flexbox,
-    marginBottom: 0.6 * rem
+    marginBottom: 1.2 * rem,
   },
   name: {
-    ...textSmall,
-    flex: 2
+    ...text,
   },
   textInput: {
     ...textInputStyle,
-    flex: 6
+    paddingLeft: 0.1 * rem
   }
 });
 

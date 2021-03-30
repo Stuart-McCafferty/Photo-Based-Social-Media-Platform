@@ -43,10 +43,12 @@ export const textExtraSmall = {
 };
 
 export const logoStyle = {
-  fontSize: 3 * rem,
+  fontSize: 4 * rem,
   color: COLOR_PRIMARY,
   textAlign: "center",
-  backgroundColor: "white"
+  backgroundColor: "white",
+  marginTop: 4 * rem,
+  marginBottom: rem
 }
 
 export const buttonStyle = {

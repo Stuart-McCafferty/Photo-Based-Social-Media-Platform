@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Button, ScrollView, Text, View } from 'react-native';
+import { Button, ScrollView, StyleSheet, Text, View } from 'react-native';
 import FormAttribute from "./FormAttribute";
-import { appBodyStyle, scrollViewStyle } from "../global-variables";
+import { appBodyStyle, rem, scrollViewStyle } from "../global-variables";
 import GLOBAL from "../GLOBAL";
 import { postMethodFetch } from "../functions";
 import { buttonStyle, logoStyle } from "./styles";
@@ -26,16 +26,25 @@ function SignIn({ navigation, onSignIn }) {
 
   return (
     <View style={appBodyStyle}>
-      <ScrollView style={scrollViewStyle}>
+      <ScrollView style={styles.container}>
 	<Text style={logoStyle}>eden</Text>
 	<Text>{error}</Text>
 	<FormAttribute heading="Email" onChangeText={ setEmailInput } />
 	<FormAttribute heading="Password" onChangeText={ setPasswordInput } />
-	<Button title="Sign In" style={buttonStyle} onPress={() => submit()}/>
+	<Button title="Sign In" style={styles.button} onPress={() => submit()}/>
       </ScrollView>
     </View>
   );
 
 }
+
+const styles = StyleSheet.create({
+  container: {
+    padding: rem
+  },
+  button: {
+    ...buttonStyle,
+  }
+})
 
 export default SignIn;

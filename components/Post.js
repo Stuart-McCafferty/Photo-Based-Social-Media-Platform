@@ -7,6 +7,8 @@ import { DOMAIN_NAME, rem } from "../global-variables";
 import { COLOR_CYAN, LARGE_TEXT_SIZE, SMALL_TEXT_SIZE, TEXT_SIZE, flexbox, text, textSmall } from "./styles";
 import Comment from "./Comment";
 import GLOBAL from "../GLOBAL";
+import heartImage from "../assets/images/icons/heart.png";
+import heartImageRed from "../assets/images/icons/heart-red.png";
 
 function Post(props) {
 
@@ -17,6 +19,7 @@ function Post(props) {
   const [comments,setComments] = useState(props.data.comments);
   const [commentsVisible,setCommentsVisible] = useState(false);
   const [commentInput,setCommentInput] = useState("");
+  const [heartImageFile,setHeartImageFile] = useState(props.data.hearted ? heartImageRed : heartImage);
 
   const postComment = () => {
     const submission = {
@@ -47,6 +50,8 @@ function Post(props) {
     console.log(submission);
     postMethodFetch(submission, "/interact", res => {
       setHearted(res.hearted);
+      if (res.hearted) setHeartImageFile(heartImageRed);
+      else setHeartImageFile(heartImage);
       setHearts(hearts + (res.hearted ? 1 : -1));
     });
   };
@@ -77,7 +82,7 @@ function Post(props) {
 	  <Text style={styles.iconNumber}>{comments}</Text>
 	  <TouchableOpacity onPress={toggleHeart}>
 	    <Image
-	      source={require(`../assets/images/icons/heart${hearted ? "-red" : ""}.png`)}
+	      source={heartImageFile}
 	      style={styles.icon}
 	    />
 	  </TouchableOpacity>
@@ -94,7 +99,7 @@ function Post(props) {
 
       {commentsVisible ? commentsArray.map(item => <Comment navigation={props.navigation} data={item} />) : null}
 
-      <TextSubmit placeholder="Leave a comment..." buttonText="Comment" onChangeText={setCommentInput} onSubmit={postComment} />
+      <TextSubmit placeholder="Leave a comment..." buttonText="Post" onChangeText={setCommentInput} onSubmit={postComment} />
 
     </View>
   );

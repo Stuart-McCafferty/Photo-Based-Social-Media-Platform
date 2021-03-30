@@ -21,7 +21,7 @@ function Profile(props) {
     fetch(`${DOMAIN_NAME}/api/activity/${username}`)
     .then(res => res.json())
     .then(data => {
-      updateData(data.activity);
+      updateData(data.activity.reverse());
     });
   }, []);
 

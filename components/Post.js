@@ -15,6 +15,7 @@ function Post(props) {
   const [hearts,setHearts] = useState(props.data.hearts);
   const [commentsArray,setCommentsArray] = useState(props.data.commentsArray);
   const [comments,setComments] = useState(props.data.comments);
+  const [commentsVisible,setCommentsVisible] = useState(false);
   const [commentInput,setCommentInput] = useState("");
 
   const postComment = () => {
@@ -70,13 +71,13 @@ function Post(props) {
 	  <Icon
 	    name="comment-alt"
             color="black"
-            onPress={() => console.log("Comment clicked")}
+            onPress={() => setCommentsVisible(!commentsVisible)}
             size={1.5 * rem}
 	  />
 	  <Text style={styles.iconNumber}>{comments}</Text>
 	  <TouchableOpacity onPress={toggleHeart}>
 	    <Image
-	      source={require("../assets/images/icons/heart.png")}
+	      source={require(`../assets/images/icons/heart${hearted ? "-red" : ""}.png`)}
 	      style={styles.icon}
 	    />
 	  </TouchableOpacity>
@@ -91,7 +92,7 @@ function Post(props) {
 
       <Text style={styles.hashtags}>{props.data.hashtags.length > 0 ? "#"+props.data.hashtags.join(", #") : ""}</Text>
 
-      {commentsArray.map(item => <Comment navigation={props.navigation} data={item} />)}
+      {commentsVisible ? commentsArray.map(item => <Comment navigation={props.navigation} data={item} />) : null}
 
       <TextSubmit placeholder="Leave a comment..." buttonText="Comment" onChangeText={setCommentInput} onSubmit={postComment} />
 

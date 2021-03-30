@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, FlatList, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Button, FlatList, ScrollView, StyleSheet, Text, View, Image } from 'react-native';
 import { appBodyStyle, rem, scrollViewStyle } from "../global-variables";
 import { DOMAIN_NAME } from "../global-variables";
 import { COLOR_PRIMARY } from "../components/styles";
@@ -22,7 +22,9 @@ function Leaderboard({ navigation }) {
       <LeaderboardItem position="" data={{ position: "", profile: "", username: "Username", points: "Points" }} usernameHeaderStyle={usernameHeaderStyle} pointsHeaderStyle={pointsHeaderStyle}/>
       <FlatList
         data={data}
-        keyExtractor={(item, index) => item.key}
+        keyExtractor={(item, index) => {
+          return item.id;
+        }}
         renderItem={({ item, index }) => (
           <LeaderboardItem position={index + 1} data={item} />
         )}
@@ -36,7 +38,7 @@ function LeaderboardItem(props) {
   return (
     <View style={styles.leaderboardItem}>
       <Text style={styles.position}>{props.position}</Text>
-      <View style={styles.profile}>{props.profile}</View>
+      <Image style={styles.profile} source={{ uri: "https://photography-app-content.s3.amazonaws.com/profile_pictures/Hannah" }}/>
       <Text style={props.usernameHeaderStyle || styles.username}>{props.data.username}</Text>
       <Text style={props.pointsHeaderStyle || styles.points}>{props.data.points}</Text>
     </View>
@@ -57,8 +59,9 @@ const styles = StyleSheet.create({
     color: COLOR_PRIMARY
   },
   profile: {
-    flex: 2,
-    padding: 10
+    flex: 1,
+    borderRadius: 360,
+    marginRight: 10
   },
   username: {
     flex: 9,

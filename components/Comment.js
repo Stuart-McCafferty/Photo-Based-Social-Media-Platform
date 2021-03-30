@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { postMethodFetch } from "../functions";
 import { rem } from "../global-variables";
-import { flexbox, textExtraSmall } from "./styles";
+import { flexbox, text } from "./styles";
 import GLOBAL from "../GLOBAL";
 
 function Comment(props) {
@@ -18,11 +18,11 @@ function Comment(props) {
 
 const styles = StyleSheet.create({
   poster: {
-    ...textExtraSmall,
+    ...text,
     fontWeight: "700"
   },
   comment: {
-    ...textExtraSmall,
+    ...text,
     marginLeft: 0.2 * rem
   }
 });

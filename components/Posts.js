@@ -6,7 +6,7 @@ import { text } from "./styles";
 import Post from "./Post";
 import { postMethodFetch } from "../functions";
 
-function Feed({ navigation }) {
+function Posts({ navigation, route }) {
 
   const [items,setItems] = useState([]);
   const [content,setContent] = useState([]);
@@ -32,13 +32,22 @@ function Feed({ navigation }) {
     }
   };
 
+  const onSelect = (item) => {
+    route.params.onSelect(item.ref);
+    navigation.goBack();
+  }
+
   return (
     <View style={appBodyStyle}>
       <ScrollView style={scrollViewStyle}>
-	{content.map((item, index) => <Post key={index} navigation={navigation} data={item} />)}
+	{content.map((item, index) => (
+	  <TouchableOpacity onPress={() => onSelect(item)}>
+	    <Post key={index} navigation={navigation} data={item} />
+	  </TouchableOpacity>
+	))}
       </ScrollView>
     </View>
   );
 }
 
-export default Feed;
+export default Posts;

@@ -5,21 +5,20 @@ import ChallengeCard from "./ChallengeCard";
 import { StyleSheet, Text, View, Button, FlatList, Image, PullView, ScrollView, Modal } from 'react-native';
 import { scrollViewStyle } from "../../global-variables";
 
-export default function ChallengeScreen({ navigation }) {
+function Challenges({ navigation }) {
 
   const [row1,setRow1] = useState([0,1,2,3]);
 
   return (
     <ScrollView style={scrollViewStyle}>
       <View style={styles.Header}>
-	<ChallengeInfo></ChallengeInfo>
 	<View>
 	  <Text style={styles.ChallengeName}>Started</Text>
 	</View>
 	<View style={styles.PhotoGridRow1}>
 	  <FlatList
 	    data={row1}
-	    renderItem={({item}) => <ChallengeCard navigation={navigation} id={item} />}
+	    renderItem={({item}) => <ChallengeInfo navigation={navigation} id={item} />}
 	    horizontal
 	  />
 	</View>
@@ -82,3 +81,5 @@ const styles = StyleSheet.create({
 
 
 });
+
+export default Challenges;

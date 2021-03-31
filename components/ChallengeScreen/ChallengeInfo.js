@@ -1,9 +1,20 @@
+/*
+**  Courtesy of https://reactnative.dev/docs/modal
+*/
+
 import React, { useState } from "react";
 import { Alert, Modal, StyleSheet, Text, Pressable, View, Image, Button } from "react-native";
+import { rem } from "../../global-variables";
+import { textLarge } from "../styles";
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import ChallengeCard from "./ChallengeCard";
+import Task from "./Task";
+import CHALLENGES from "../../assets/CHALLENGES";
 
-const ChallengeInfo = () => {
+function ChallengeInfo({ navigation, id }) {
+
   const [modalVisible, setModalVisible] = useState(false);
+
   return (
     <View style={styles.centeredView}>
       <Modal
@@ -11,7 +22,6 @@ const ChallengeInfo = () => {
         transparent={true}
         visible={modalVisible}
         onRequestClose={() => {
-          Alert.alert("Modal has been closed.");
           setModalVisible(!modalVisible);
         }}
       >
@@ -23,29 +33,22 @@ const ChallengeInfo = () => {
               backgroundColor="white"
               style={styles.icon}
               onPress={() => setModalVisible(!modalVisible)}
-              size={30}
+              size={1.5 * rem}
             />
-            <View style={styles.challengeTitle}>
-              <Text style={{ fontSize: 30, fontWeight: "bold" }}>Tree Hugger Challenge</Text>
-              <Text style={{ fontSize: 24 }}>March 2021</Text>
-            </View>
-            <Image style={styles.image} source={{ uri: 'https://www.sciencenewsforstudents.org/wp-content/uploads/2020/04/1030_LL_trees.png' }}></Image>
-            <View>
-              <Text style={styles.challengeTask}>Take 5 photos of trees to complete this challenge!</Text>
-              <Text style={styles.challengeTask}>Reward: 25 points</Text>
-            </View>
-            <Button
-              title="Open Camera"
-              color= "#28865C"
-            />
+	    <Text style={textLarge}>{CHALLENGES[id].name}</Text>
+	    {CHALLENGES[id].tasks.map((item,index) => (
+	      <Task
+		onPress={() => setModalVisible(false)}
+		navigation={navigation}
+		challengeID={id}
+		taskIndex={index}
+	      />
+	    ))}
           </View>
         </View>
       </Modal>
-      <Pressable
-        style={[styles.button, styles.buttonOpen]}
-        onPress={() => setModalVisible(true)}
-      >
-        <Text style={styles.textStyle}>Show Modal</Text>
+      <Pressable onPress={() => setModalVisible(true)}>
+	<ChallengeCard navigation={navigation} id={id} />
       </Pressable>
     </View>
   );

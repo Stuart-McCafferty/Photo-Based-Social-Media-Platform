@@ -16,12 +16,11 @@ import Registration from "../components/Registration";
 import SignIn from "../components/SignIn";
 import Search from "../components/Search";
 import Challenges from "../components/ChallengeScreen/Challenges";
-import Challenge from "../components/Challenge";
 import Notifications from "../components/Notifications";
 import ProfileList from "../components/ProfileList";
+import Posts from "../components/Posts";
 import AnalyticScreen from '../components/AnalyticScreen';
 import NotificationIcon from '../components/NotificationIcon';
-
 
 const Stack = createStackNavigator();
 
@@ -52,7 +51,7 @@ class FeedStack extends React.Component {
     >
 	<Stack.Screen
 	  name="Home"
-	  component={Feed}
+	  component={Challenges}
 	  options={{ title: "Feed" }}
 	/>
 	<Stack.Screen
@@ -71,11 +70,6 @@ class FeedStack extends React.Component {
 	  options={{ title: "Challenges" }}
 	/>
 	<Stack.Screen
-	  name="ChallengePage"
-	  component={Challenge}
-	  options={{ title: "Challenges" }}
-	/>
-	<Stack.Screen
 	  name="ProfileList"
 	  component={ProfileList}
 	  options={{ title: "List" }}
@@ -90,23 +84,26 @@ class FeedStack extends React.Component {
 	  component={Registration}
 	  options={{ title: "Register" }}
 	/>
-  <Stack.Screen
-    name="Analytics"
-    component={AnalyticScreen}
-    options={{ title: "Analytics" }}
-  />
-  <Stack.Screen
-    name="Notifications"
-    component={Notifications}
-    options={{ title: "Notifications" }}
-  />
+	<Stack.Screen
+	  name="Posts"
+	  component={Posts}
+	  options={{ title: "Your Posts" }}
+	/>
+	<Stack.Screen
+	  name="Analytics"
+	  component={AnalyticScreen}
+	  options={{ title: "Analytics" }}
+	/>
+	<Stack.Screen
+	  name="Notifications"
+	  component={Notifications}
+	  options={{ title: "Notifications" }}
+	/>
       </Stack.Navigator>
     );
   }
+
 }
-
-export default FeedStack;
-
 
 const styles = StyleSheet.create({
   container: {
@@ -121,3 +118,5 @@ const styles = StyleSheet.create({
     width: 90,
   }
 });
+
+export default FeedStack;

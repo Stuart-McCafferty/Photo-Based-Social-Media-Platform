@@ -1,7 +1,6 @@
 #!/bin/bash
 
-for i in {6..20}
+for i in {0..20}
 do
-    mv $i.png $i
-    mv $i.jpg $i
+    mv $i.jpg.jpg $i.jpg
 done

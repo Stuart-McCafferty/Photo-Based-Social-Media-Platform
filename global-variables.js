@@ -4,11 +4,11 @@ const USE_LOCAL = false;
 export const DEV_MODE = true;
 export const DOMAIN_NAME = USE_LOCAL ? "http://localhost:5000" : "http://46.101.88.105";
 
-export let width = Dimensions.get("window").width;
-export let height = Dimensions.get("window").height;
+export let SCREEN_WIDTH = Dimensions.get("window").width;
+export let SCREEN_HEIGHT = Dimensions.get("window").height;
 
-export let rem = Math.floor(width / 24);
-export const CONTAINER_WIDTH = 0.9 * width;
+export let rem = Math.floor(SCREEN_WIDTH / 24);
+export const CONTAINER_WIDTH = 0.9 * SCREEN_WIDTH;
 
 export const containerStyle = {
   margin: "auto",
@@ -23,6 +23,6 @@ export const appBodyStyle = {
 
 export const scrollViewStyle = {
   backgroundColor: "white",
-  height: height - 12 * rem,
+  height: SCREEN_HEIGHT - 12 * rem,
   padding: 0.5 * rem
 };

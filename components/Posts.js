@@ -16,8 +16,8 @@ function Posts({ navigation, route }) {
       sourceUser: GLOBAL.USERNAME,
       key: GLOBAL.KEY
     }
-    postMethodFetch(submission, "/api_custom/feed", res => {
-      updateData(res.feed);
+    postMethodFetch(submission, "/api_custom/activity", res => {
+      updateData(res.activity);
     });
   }, []);
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Alert, Modal, StyleSheet, Text, Pressable, View, Button, FlatList, TouchableOpacity } from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import { SolidIcons } from 'react-native-vector-icons/FontAwesome5';
 import { text } from "./styles";
 import { useNavigation } from '@react-navigation/native';
 import { DEV_MODE } from '../global-variables';
@@ -56,11 +57,11 @@ export default function HeaderModal({ }) {
                   size={30}
                 />
                 <View style={styles.modalText}>
-                  <TouchableOpacity style={styles.buttom} onPress={() => navigateTo(navigation, "Search")}><Text style={{ fontSize: 18 }}>Search</Text></TouchableOpacity>
-                  <TouchableOpacity style={styles.buttom} onPress={() => navigateTo(navigation, "Profile")}><Text style={{ fontSize: 18 }}>Profile</Text></TouchableOpacity>
-                  <TouchableOpacity style={styles.buttom} onPress={() => navigateTo(navigation, "Challenges")}><Text style={{ fontSize: 18 }}>Challenges</Text></TouchableOpacity>
-                  <TouchableOpacity style={styles.buttom} onPress={() => navigateTo(navigation, "Leaderboard")}><Text style={{ fontSize: 18 }}>Leaderboard</Text></TouchableOpacity>
-                  {DEV_MODE === true ?  <TouchableOpacity style={styles.buttom} onPress={() => navigateTo(navigation, "Analytics")}><Text style={{ fontSize: 18 }}>Analytics</Text></TouchableOpacity> : null }
+                  <TouchableOpacity style={styles.button} onPress={() => navigateTo(navigation, "Search")}><Icon name="search"color="black" size={20} /><Text style={{ fontSize: 18 }}>Search</Text></TouchableOpacity>
+                  <TouchableOpacity style={styles.button} onPress={() => navigateTo(navigation, "Profile")}><Icon name="user"color="black" size={20} /><Text style={{ fontSize: 18 }}>Profile</Text></TouchableOpacity>
+                  <TouchableOpacity style={styles.button} onPress={() => navigateTo(navigation, "Challenges")}><Icon name="map-marker"color="black" size={20} /><Text style={{ fontSize: 18 }}>Challenges</Text></TouchableOpacity>
+                  <TouchableOpacity style={styles.button} onPress={() => navigateTo(navigation, "Leaderboard")}><Icon name="trophy"color="black" size={20} /><Text style={{ fontSize: 17}}>Leaderboard</Text></TouchableOpacity>
+                  {DEV_MODE === true ?  <TouchableOpacity style={styles.button} onPress={() => navigateTo(navigation, "Analytics")}><Icon name="chart-bar"color="black" size={20} /><Text style={{ fontSize: 18 }}>Analytics</Text></TouchableOpacity> : null }
                 </View>
               </View>
             </View>
@@ -100,9 +101,10 @@ const styles = StyleSheet.create({
     width: "50%"
   },
   button: {
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2
+    flexDirection: "row",
+    justifyContent: "space-between",
+    margin: 5,
+    paddingLeft: 10
   },
   buttonOpen: {
     backgroundColor: "#F194FF",
@@ -115,7 +117,8 @@ const styles = StyleSheet.create({
   modalText: {
     marginBottom: 15,
     textAlign: "center",
-    
+    fontSize: 15
+
   },
   icon: {
     alignSelf: "flex-end"

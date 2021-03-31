@@ -156,7 +156,7 @@ import ChallengeInfo from "./ChallengeScreen/ChallengeInfo"
                                                 })}
 
 
-                  {chal.map((item, index) =>{ 
+                  {/*chal.map((item, index) =>{ 
                     
                                                 console.log('help pls' + item.latitude);
 
@@ -171,7 +171,7 @@ import ChallengeInfo from "./ChallengeScreen/ChallengeInfo"
                                                     description={'Desc'}
                                                     image={require('../assets/images/icons/cupbigger.png')}
                                                   />);
-                                                })}
+                                                })*/}
 
                   
 

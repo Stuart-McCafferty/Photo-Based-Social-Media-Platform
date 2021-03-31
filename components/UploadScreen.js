@@ -131,6 +131,8 @@ useEffect(() => {
     await setShouldShowBut(shouldShowBut);
     faceExists(false);
     console.log('face is ' + face);
+    console.log(image64);
+    con
 
   }
   else{

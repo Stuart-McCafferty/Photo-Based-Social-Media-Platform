@@ -1,12 +1,5 @@
 import React, { useCallback, memo, useRef, useState } from "react";
-import {
-  FlatList,
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  ImageBackground,
-} from "react-native";
+import { FlatList, View, Text, StyleSheet, Image, ImageBackground } from "react-native";
 import ProgressBar, { ZeroProgress, ThirtyThreeProgress, SixtySixProgress, OneHundredProgress} from './ProgressBar';
 
 const windowWidth = 300

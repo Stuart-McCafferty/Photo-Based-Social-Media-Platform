@@ -1,41 +1,42 @@
-import * as React from 'react';
+import React, { useState } from "react";
 import Posts from "./Posts"
 import ChallengeInfo from "./ChallengeInfo"
+import ChallengeCard from "./ChallengeCard";
 import { StyleSheet, Text, View, Button, FlatList, Image, PullView, ScrollView, Modal } from 'react-native';
+import { scrollViewStyle } from "../../global-variables";
 
 export default function ChallengeScreen({ navigation }) {
+
+  const [row1,setRow1] = useState([0,1,2,3]);
+
   return (
-    <View style={styles.Container}>
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        style={{
-          height: "100%",
-          width: "100%",
-        }}
-      >
-        <View style={styles.Header}>
-          <ChallengeInfo></ChallengeInfo>
-          <View >
-            <Text style={styles.ChallengeName}>Started</Text>
-          </View>
-          <View style={styles.PhotoGridRow1}>
-            <Posts></Posts>
-          </View>
-          <View>
-            <Text style={styles.ChallengeName}>Challenges near you</Text>
-          </View>
-          <View style={styles.PhotoGridRow1}>
-            <Posts></Posts>
-          </View>
-          <View>
-            <Text style={styles.ChallengeName}>Challenges in Scotland</Text>
-          </View>
-          <View style={styles.PhotoGridRow1}>
-            <Posts></Posts>
-          </View>
-        </View>
-      </ScrollView>
-    </View>
+    <ScrollView style={scrollViewStyle}>
+      <View style={styles.Header}>
+	<ChallengeInfo></ChallengeInfo>
+	<View>
+	  <Text style={styles.ChallengeName}>Started</Text>
+	</View>
+	<View style={styles.PhotoGridRow1}>
+	  <FlatList
+	    data={row1}
+	    renderItem={({item}) => <ChallengeCard navigation={navigation} id={item} />}
+	    horizontal
+	  />
+	</View>
+	<View>
+	  <Text style={styles.ChallengeName}>Challenges near you</Text>
+	</View>
+	<View style={styles.PhotoGridRow1}>
+	  <Posts></Posts>
+	</View>
+	<View>
+	  <Text style={styles.ChallengeName}>Challenges in Scotland</Text>
+	</View>
+	<View style={styles.PhotoGridRow1}>
+	  <Posts></Posts>
+	</View>
+      </View>
+    </ScrollView>
   );
 
 }

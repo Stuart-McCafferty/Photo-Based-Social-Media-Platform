@@ -17,13 +17,18 @@ import ChallengeInfo from "./ChallengeScreen/ChallengeInfo"
 
   export default function ExploreScreen({ navigation }){
 
-
+  
     const [location, setLocation] = useState(null);
     const [errorMsg, setErrorMsg] = useState(null);
     const [region, setRegion] = useState(null);
 
     const mapRef = useRef();      
     let camo =null;
+
+
+    const [photos,setPhotos] = useState([{caption:'works', latitude:55.91068, longitude: -3.3203, index:1},{caption: 'works even better', latitude:55.92068, longitude: -3.3303, index:2}]);
+    const [chal,setChallenge] = useState([{caption:'works', latitude:55.91068, longitude: -3.3203, index:1},{caption: 'works even better', latitude:55.92068, longitude: -3.3303, index:2}]);
+
 
   //get the location
     useEffect(() => {
@@ -132,8 +137,45 @@ import ChallengeInfo from "./ChallengeScreen/ChallengeInfo"
 
             }}>
 
+                  {photos.map((item, index) =>{ 
+   
+                                                console.log('help pls' + item.latitude);
+
+                                                  return (
+                                                  <Marker
+                                                    key={index}
+                                                    coordinate={{
+                                                      latitude: item.latitude,
+                                                      longitude: item.longitude,
+                                                  }}
+                                                    title={item.caption}
+                                                    description={'Desc'}
+                                                    image={require('../assets/images/icons/photo.png')}
+                                                  />);
+                                                })}
+
+
+                  {chal.map((item, index) =>{ 
+                    
+                                                console.log('help pls' + item.latitude);
+
+                                                  return (
+                                                  <Marker
+                                                    key={index}
+                                                    coordinate={{
+                                                      latitude: item.latitude,
+                                                      longitude: item.longitude,
+                                                  }}
+                                                    title={item.caption}
+                                                    description={'Desc'}
+                                                    image={require('../assets/images/icons/cupbigger.png')}
+                                                  />);
+                                                })}
+
+                  
+
                   <Marker
-                    key={1}
+                    key={991}
                     coordinate={{latitude:55.91168, longitude:-3.3193}}
                     title={'Loch at night'}
                     description={'Jack'}
@@ -141,7 +183,7 @@ import ChallengeInfo from "./ChallengeScreen/ChallengeInfo"
                   />
                 
                 <Marker
-                    key={2}
+                    key={992}
                     coordinate={{latitude:55.90912, longitude:-3.31989}}
                     title={'Statue challenge!'}
                     description={'Take a photo of James Watt'}
@@ -149,7 +191,7 @@ import ChallengeInfo from "./ChallengeScreen/ChallengeInfo"
                   />
 
                 <Marker
-                    key={3}
+                    key={993}
                     coordinate={{latitude:55.90829, longitude:-3.32162}}
                     title={'Cute squirel!!!'}
                     description={'Hannah'}
@@ -157,7 +199,7 @@ import ChallengeInfo from "./ChallengeScreen/ChallengeInfo"
                   />
 
                   <Marker
-                    key={4}
+                    key={994}
                     coordinate={{latitude:55.90748, longitude:-3.31281}}
                     title={'Old oaks'}
                     description={'Jack'}

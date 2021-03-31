@@ -13,6 +13,7 @@ import GLOBAL from "../GLOBAL";
 export default function FeedScreen({ route, navigation, props }) {
     const {image} = route.params; //POST
     const {imageobj} = route.params; //POST
+    const {image64} = route.params; //POST
     const {long} = route.params; //POST
     const {lat} = route.params; //POST
     let latShort = parseFloat(lat).toFixed(4); 
@@ -52,7 +53,7 @@ export default function FeedScreen({ route, navigation, props }) {
 
 const postPhoto = () => {
   const submission = {
-    avatar:imageobj,
+    avatar:image64,
     caption:"captionText",
     poster: 'Jack',
     location:'subregion',
@@ -76,7 +77,7 @@ const postPhoto = () => {
   console.log("IMAGE OBJECT");
   console.log(image);
   let fd = new FormData();
-  fd.append('avatar',image)
+  fd.append('avatar',image64)
   fd.append('caption',"My caption")
   fd.append('poster',"Jack")
   fd.append('location',"subregion")
@@ -130,6 +131,7 @@ useEffect(() => {
     await setShouldShowBut(shouldShowBut);
     faceExists(false);
     console.log('face is ' + face);
+
   }
   else{
     console.log('fACE >:(');
@@ -137,6 +139,7 @@ useEffect(() => {
     await setShouldShowBut(!shouldShowBut);
     faceExists(true);
     console.log('face is ' + face);
+
   }
 })();
 }, []);

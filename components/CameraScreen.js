@@ -18,6 +18,7 @@ export default function CameraScreen({ navigation }) {
   const [region, setRegion] = useState(null);
   const [imgRegion, setImgRegion] = useState(null);
   const [loaded, setLoaded ] = useState(true);
+  const [image64, setImage64 ] = useState(null);
  
 
 
@@ -155,11 +156,16 @@ export default function CameraScreen({ navigation }) {
 
   const takePicture = async () => {
     if (cameraRef.current) {
-      const data = await cameraRef.current.takePictureAsync();
+      const data = await cameraRef.current.takePictureAsync({
+        base64: true,
+      });
+
+        setImage64({base64:data.base64});
 
 
       navigation.navigate('Upload',{image: data.uri,
-                                    imageobj: data, 
+                                    imageobj: data,
+                                    image64: image64, 
                                     long: currentLon,
                                     lat: currentLat,
                                     subregion: currentSubregion,

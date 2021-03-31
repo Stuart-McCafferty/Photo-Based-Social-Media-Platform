@@ -7,33 +7,41 @@ import { scrollViewStyle } from "../../global-variables";
 
 function Challenges({ navigation }) {
 
-  const [row1,setRow1] = useState([0,1,2,3]);
+  const [row1, setRow1] = useState([0, 1, 2, 3]);
 
   return (
     <ScrollView style={scrollViewStyle}>
       <View style={styles.Header}>
-	<View>
-	  <Text style={styles.ChallengeName}>Started</Text>
-	</View>
-	<View style={styles.PhotoGridRow1}>
-	  <FlatList
-	    data={row1}
-	    renderItem={({item}) => <ChallengeInfo navigation={navigation} id={item} />}
-	    horizontal
-	  />
-	</View>
-	<View>
-	  <Text style={styles.ChallengeName}>Challenges near you</Text>
-	</View>
-	<View style={styles.PhotoGridRow1}>
-	  <Posts></Posts>
-	</View>
-	<View>
-	  <Text style={styles.ChallengeName}>Challenges in Scotland</Text>
-	</View>
-	<View style={styles.PhotoGridRow1}>
-	  <Posts></Posts>
-	</View>
+        <View>
+          <Text style={styles.ChallengeName}>Started</Text>
+        </View>
+        <View style={styles.PhotoGridRow1}>
+          <FlatList
+            data={row1}
+            renderItem={({ item }) => <ChallengeInfo navigation={navigation} id={item} />}
+            horizontal
+          />
+        </View>
+        <View>
+          <Text style={styles.ChallengeName}>Challenges near you</Text>
+        </View>
+        <View style={styles.PhotoGridRow1}>
+          <FlatList
+            data={row1}
+            renderItem={({ item }) => <ChallengeInfo navigation={navigation} id={item} />}
+            horizontal
+          />
+        </View>
+        <View>
+          <Text style={styles.ChallengeName}>Challenges in Scotland</Text>
+        </View>
+        <View style={styles.PhotoGridRow1}>
+          <FlatList
+            data={row1}
+            renderItem={({ item }) => <ChallengeInfo navigation={navigation} id={item} />}
+            horizontal
+          />
+        </View>
       </View>
     </ScrollView>
   );

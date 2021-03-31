@@ -51,7 +51,7 @@ class FeedStack extends React.Component {
     >
 	<Stack.Screen
 	  name="Home"
-	  component={Challenges}
+    component={Feed}
 	  options={{ title: "Feed" }}
 	/>
 	<Stack.Screen

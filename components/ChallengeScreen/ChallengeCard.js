@@ -36,7 +36,8 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: LARGE_TEXT_SIZE,
-    color: "white"
+    color: "white",
+    padding: 10
   },
   description: {
     fontSize: SMALL_TEXT_SIZE,
@@ -45,7 +46,8 @@ const styles = StyleSheet.create({
   reward: {
     fontSize: SMALL_TEXT_SIZE,
     marginTop: 0.5 * rem,
-    color: "white"
+    color: "white",
+    padding: 10
   }
 })
 

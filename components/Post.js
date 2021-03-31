@@ -12,14 +12,14 @@ import heartImageRed from "../assets/images/icons/heart-red.png";
 
 function Post(props) {
 
-  const [data,setData] = useState({});
-  const [hearted,setHearted] = useState(props.data.hearted);
-  const [hearts,setHearts] = useState(props.data.hearts);
-  const [commentsArray,setCommentsArray] = useState(props.data.commentsArray);
-  const [comments,setComments] = useState(props.data.comments);
-  const [commentsVisible,setCommentsVisible] = useState(false);
-  const [commentInput,setCommentInput] = useState("");
-  const [heartImageFile,setHeartImageFile] = useState(props.data.hearted ? heartImageRed : heartImage);
+  const [data, setData] = useState({});
+  const [hearted, setHearted] = useState(props.data.hearted);
+  const [hearts, setHearts] = useState(props.data.hearts);
+  const [commentsArray, setCommentsArray] = useState(props.data.commentsArray);
+  const [comments, setComments] = useState(props.data.comments);
+  const [commentsVisible, setCommentsVisible] = useState(false);
+  const [commentInput, setCommentInput] = useState("");
+  const [heartImageFile, setHeartImageFile] = useState(props.data.hearted ? heartImageRed : heartImage);
 
   const postComment = () => {
     const submission = {
@@ -31,8 +31,8 @@ function Post(props) {
     };
     postMethodFetch(submission, "/interact", res => {
       if (res.success) {
-	setCommentsArray([...commentsArray, res.comment])
-	setComments(comments + 1);
+        setCommentsArray([...commentsArray, res.comment])
+        setComments(comments + 1);
       }
     });
   }
@@ -62,42 +62,50 @@ function Post(props) {
       {props.data.type === "review" ? (<Text>Question</Text>) : null}
 
       <View style={flexbox}>
-	<Image style={styles.profilePicture} source={{ uri: `https://photography-app-content.s3.amazonaws.com/profile_pictures/${props.data.poster}` }} />
-	<TouchableOpacity onPress={() => props.navigation.navigate("Profile", { username: props.data.poster })}><Text style={styles.username}>{props.data.poster}</Text></TouchableOpacity>
+        <Image style={styles.profilePicture} source={{ uri: `https://photography-app-content.s3.amazonaws.com/profile_pictures/${props.data.poster}` }} />
+        <TouchableOpacity onPress={() => props.navigation.navigate("Profile", { username: props.data.poster })}><Text style={styles.username}>{props.data.poster}</Text></TouchableOpacity>
+        <View style={styles.menuIcon}>
+        <Icon
+          name="ellipsis-h"
+          color="black"
+          size={20}
+        />
+        </View>
+
       </View>
 
       <View style={styles.imageContainer}>
-	<Image
-	  style={styles.image}
-	  source={{ uri: `https://photography-app-content.s3.amazonaws.com/photos/${props.data.ref}` }}
-	/>
+        <Image
+          style={styles.image}
+          source={{ uri: `https://photography-app-content.s3.amazonaws.com/photos/${props.data.ref}` }}
+        />
       </View>
 
       <View style={flexbox}>
-	<View style={styles.iconsContainer}>
-	  <Icon
-	    name="comment-alt"
+        <View style={styles.iconsContainer}>
+          <Icon
+            name="comment-alt"
             color="black"
             onPress={() => setCommentsVisible(!commentsVisible)}
             size={1.5 * rem}
-	  />
-	  <Text style={styles.iconNumber}>{comments}</Text>
-	  <TouchableOpacity onPress={toggleHeart}>
-	    <Image
-	      source={heartImageFile}
-	      style={styles.icon}
-	    />
-	  </TouchableOpacity>
-	  <Text style={styles.iconNumber}>{hearts}</Text>
-	</View>
-	<View>
-	  <Text style={text}>{props.data.location}</Text>
-	</View>
+          />
+          <Text style={styles.iconNumber}>{comments}</Text>
+          <TouchableOpacity onPress={toggleHeart}>
+            <Image
+              source={heartImageFile}
+              style={styles.icon}
+            />
+          </TouchableOpacity>
+          <Text style={styles.iconNumber}>{hearts}</Text>
+        </View>
+        <View>
+          <Text style={text}>{props.data.location}</Text>
+        </View>
       </View>
 
       <View>
-	<Text style={text}>{props.data.caption}</Text>
-	<Text style={styles.hashtags}>{props.data.hashtags.length > 0 ? "#"+props.data.hashtags.join(", #") : ""}</Text>
+        <Text style={text}>{props.data.caption}</Text>
+        <Text style={styles.hashtags}>{props.data.hashtags.length > 0 ? "#" + props.data.hashtags.join(", #") : ""}</Text>
       </View>
 
       {commentsVisible ? commentsArray.map((item, index) => <Comment key={index} navigation={props.navigation} data={item} />) : null}
@@ -114,7 +122,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     marginTop: 0.4 * rem,
     marginBottom: 0.4 * rem,
-    padding:10
+    padding: 10
   },
   profilePicture: {
     width: 1.8 * rem,
@@ -153,6 +161,9 @@ const styles = StyleSheet.create({
   hashtags: {
     fontWeight: "700",
     color: COLOR_CYAN
+  },
+  menuIcon: {
+    marginLeft: 220
   }
 });
 

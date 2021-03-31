@@ -29,26 +29,26 @@ function ChallengeInfo({ navigation, id }) {
           <View style={styles.modalView}>
             <Icon
               name="times"
-              color="grey"
+              color="black"
               backgroundColor="white"
               style={styles.icon}
               onPress={() => setModalVisible(!modalVisible)}
               size={1.5 * rem}
             />
-	    <Text style={textLarge}>{CHALLENGES[id].name}</Text>
-	    {CHALLENGES[id].tasks.map((item,index) => (
-	      <Task
-		onPress={() => setModalVisible(false)}
-		navigation={navigation}
-		challengeID={id}
-		taskIndex={index}
-	      />
-	    ))}
+            <Text style={{fontSize: 26, marginBottom: 30}}>{CHALLENGES[id].name}</Text>
+            {CHALLENGES[id].tasks.map((item, index) => (
+              <Task
+                onPress={() => setModalVisible(false)}
+                navigation={navigation}
+                challengeID={id}
+                taskIndex={index}
+              />
+            ))}
           </View>
         </View>
       </Modal>
       <Pressable onPress={() => setModalVisible(true)}>
-	<ChallengeCard navigation={navigation} id={id} />
+        <ChallengeCard navigation={navigation} id={id} />
       </Pressable>
     </View>
   );
@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
   },
   challengeTask: {
     fontSize: 18,
-    padding: 10
+    padding: 10,
   }
 });
 

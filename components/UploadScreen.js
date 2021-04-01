@@ -23,9 +23,9 @@ export default function FeedScreen({ route, navigation, props }) {
     const {country} = route.params; //POST
     const [face, faceExists] = useState(false); //POST
 
-    const [captionText, onChangeCaption] = React.useState('Caption'); //POST
+    const [captionText, onChangeCaption] = React.useState(); //POST
     const [challenge, onChangeChallenge] = useState(); //POST
-    const [tag, onChangeTag] = React.useState('Comma-separated tags'); //POST
+    const [tag, onChangeTag] = React.useState(); //POST
 
 
 
@@ -35,7 +35,7 @@ export default function FeedScreen({ route, navigation, props }) {
     const toggleSwitch = () => setExactLocation(previousState => !previousState);
 
 
-    
+
     
 
     /*
@@ -54,10 +54,10 @@ export default function FeedScreen({ route, navigation, props }) {
 const postPhoto = () => {
 
   const submission = {
-    caption:"captionText",
-    poster: 'Jack',
+    caption:captionText,
+    poster: GLOBAL.USERNAME,
     location:'subregion',
-    hashtags: "#just, #do, #it",
+    hashtags: tag,
     key: GLOBAL.KEY,
   }; 
 
@@ -147,7 +147,6 @@ useEffect(() => {
     faceExists(false);
     console.log('face is ' + face);
     console.log(image64);
-    con
 
   }
   else{
@@ -255,10 +254,12 @@ useEffect(() => {
         <View style={{flex:1,}}> 
           <View style={{flex:1, flexDirection: 'row', alignItems: 'center', alignContent: 'flex-end'}}>
                 <MaterialIcons name="text-fields" size={30} style={{padding: 20}} color="black" /> 
+
                 <TextInput
-                  style={{borderBottomWidth:1, fontSize: 20 }}
-                  onChangeCaption={text => onChangeCaption(text)}
+                  style={{borderBottomWidth:1, fontSize: 20, width: Dimensions.get('window').width*0.7, }}
+                  placeholder={'Caption'}
                   value={captionText}
+                  onChangeText={captionText => onChangeCaption({ captionText })}
                 />
           </View>
       </View> 
@@ -283,9 +284,10 @@ useEffect(() => {
           <View style={{flex:1, flexDirection: 'row', alignItems: 'center', alignContent: 'flex-end'}}>
                 <MaterialCommunityIcons name="tag-outline" size={24} size={30} style={{padding: 20}} color="black" />
                 <TextInput
-                  style={{borderBottomWidth:1, fontSize: 20, }}
-                  onChangeTag={text => onChangeTag(text)}
+                  style={{borderBottomWidth:1, fontSize: 20, width: Dimensions.get('window').width*0.7, }}
+                  placeholder={'Comma-separated hashtags'}
                   value={tag}
+                  onChangeText={tag => onChangeTag({ tag })}
                 />
           </View>
       </View>

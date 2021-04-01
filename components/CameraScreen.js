@@ -124,7 +124,10 @@ export default function CameraScreen({ navigation }) {
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       quality: 1,
       exif: true,
+      base64: true,
     });
+
+    setImage64({base64:result.base64});
 
     let imageLocation = await Location.reverseGeocodeAsync({"accuracy": 20,
       "altitude": 216.9527497239431,
@@ -146,6 +149,7 @@ export default function CameraScreen({ navigation }) {
     }
     navigation.navigate('Upload',{image: result.uri,
                                   imageobj: result,
+                                  image64: image64,
                                   long: result.exif.GPSLongitude,
                                   lat: result.exif.GPSLatitude,
                                   subregion: imageSubregion,

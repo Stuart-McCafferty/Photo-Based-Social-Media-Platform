@@ -73,7 +73,6 @@ const postPhoto = () => {
 
 };
 
-
 const pushFrames = (postData, image) => {
 
 
@@ -85,14 +84,32 @@ const pushFrames = (postData, image) => {
 
   postMethodFetch(postData, "/post/include-post-data", response => {
     console.log(response);
-    if (response && response.success)
+    if (response && response.success) {
+
+      console.log("POST DATA SENT SUCCESSFULLY");
+      ////// show alert box saying "Image being uploaded" //////
+
       frames.forEach((chunk, index) => {
 
 	const submission = { sourceUser: postData.poster, index, chunk };
 
-	postMethodFetch(submission, "/post/push-frame", res => {});
+	postMethodFetch(submission, "/post/push-frame", res => {
+	  
+	  if (res.completed) {
+	    console.log("IMAGE HAS BEEN SUCCESSFULL UPLOADED");
+	    console.log(res);
+	    ////// image has been uploaded //////
+	    ////// hide alert box - or change to "Image Uploaded" //////
+	  }
+
+	});
 
       });
+    }
+    else {
+  
+      ////// show alert box saying error trying to upload image //////
+
     }
   });
 
@@ -148,7 +165,7 @@ useEffect(() => {
     await setShouldShowBut(shouldShowBut);
     faceExists(false);
     console.log('face is ' + face);
-    console.log(image64);
+    // console.log(image64);
 
   }
   else{

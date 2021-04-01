@@ -50,6 +50,14 @@ import ChallengeInfo from "./ChallengeScreen/ChallengeInfo"
 
 
       })();
+
+      fetch(`${DOMAIN_NAME}/api/pinpoints`)
+      .then(res => res.json())
+      .then(data => {
+	console.log("PINPOINTS");
+	console.log(data);
+	if (data) setPhotos(data);
+      });
     }, []);
 
 

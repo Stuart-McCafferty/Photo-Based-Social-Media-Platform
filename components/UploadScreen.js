@@ -52,45 +52,60 @@ export default function FeedScreen({ route, navigation, props }) {
 //To post: image*, lat/latShort, long/longShort, subregion, region*, country*,  captionText, challenge, face
 
 const postPhoto = () => {
+
   const submission = {
-    avatar:image64,
     caption:"captionText",
     poster: 'Jack',
     location:'subregion',
     hashtags: "#just, #do, #it",
-    //action: "comment",
-    //ref: 'props.data.ref'
-    //key: GLOBAL.KEY,
-    
-    //latitude:lat, 
-    //longitude:long, 
-     
-    //region:region, 
-    //country:country, 
-    
-    //challenge:"challenge1",
-    //face:face,
-    
+    key: GLOBAL.KEY,
   }; 
 
-  const config = { headers: { 'Content-Type': 'multipart/form-data' } };
-  console.log("IMAGE OBJECT");
-  console.log(image);
-  let fd = new FormData();
-  fd.append('avatar',image64)
-  fd.append('caption',"My caption")
-  fd.append('poster',"Jack")
-  fd.append('location',"subregion")
-  fd.append('hashtags',"#just, #do, #it")
-  // return axios.post("http://46.101.88.105/post/upload", fd, config)
+  if (image64) {
+    console.log("IMAGE OBJECT");
+    console.log(submission);
+    console.log(image64.base64.length);
+    pushFrames(submission, image64.base64)
+  }
+  else {
+    console.log("IMAGE IS NULL");
+  }
+
+};
 
 
-  postMethodFetch(submission, "/post/upload", res => {
-    console.log(res)
-  }, "multipart/form-data");
-}
+const pushFrames = (postData, image) => {
 
 
+  image = "data:image/jpeg;base64," + image;
+  console.log("POST DATA");
+  console.log(postData);
+
+  const frames = chunkText(image);
+
+  postMethodFetch(postData, "/post/include-post-data", response => {
+    console.log(response);
+  });
+
+  frames.forEach((chunk, index) => {
+
+    const submission = { sourceUser: postData.poster, index, chunk };
+
+    postMethodFetch(submission, "/post/push-frame", res => {});
+
+  });
+
+};
+
+const chunkText = (text) => {
+  const chunkSize = 20000;
+  const chunks = new Array();
+  for (let i = 0; i <= text.length; i += chunkSize) {
+    chunks.push(text.substring(i, i + chunkSize));
+  }
+  chunks.push("#");
+  return chunks;
+};
 
 
 //submit post

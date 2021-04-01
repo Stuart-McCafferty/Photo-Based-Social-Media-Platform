@@ -56,7 +56,7 @@ const postPhoto = () => {
   const submission = {
     caption:captionText,
     poster: GLOBAL.USERNAME,
-    location:'subregion',
+    location: "",
     hashtags: tag,
     key: GLOBAL.KEY,
   }; 
@@ -85,15 +85,17 @@ const pushFrames = (postData, image) => {
 
   postMethodFetch(postData, "/post/include-post-data", response => {
     console.log(response);
+    if (response && response.success)
+      frames.forEach((chunk, index) => {
+
+	const submission = { sourceUser: postData.poster, index, chunk };
+
+	postMethodFetch(submission, "/post/push-frame", res => {});
+
+      });
+    }
   });
 
-  frames.forEach((chunk, index) => {
-
-    const submission = { sourceUser: postData.poster, index, chunk };
-
-    postMethodFetch(submission, "/post/push-frame", res => {});
-
-  });
 
 };
 

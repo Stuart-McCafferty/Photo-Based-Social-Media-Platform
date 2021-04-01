@@ -23,9 +23,9 @@ export default function FeedScreen({ route, navigation, props }) {
     const {country} = route.params; //POST
     const [face, faceExists] = useState(false); //POST
 
-    const [captionText, onChangeCaption] = React.useState(); //POST
+    const [captionText, onChangeCaption] = React.useState(''); //POST
     const [challenge, onChangeChallenge] = useState(); //POST
-    const [tag, onChangeTag] = React.useState(); //POST
+    const [tag, onChangeTag] = React.useState(''); //POST
 
 
 
@@ -54,10 +54,10 @@ export default function FeedScreen({ route, navigation, props }) {
 const postPhoto = () => {
 
   const submission = {
-    caption:captionText,
+    caption:captionText.captionText,
     poster: GLOBAL.USERNAME,
     location: "",
-    hashtags: tag,
+    hashtags: tag.tag,
     key: GLOBAL.KEY,
   }; 
 
@@ -88,6 +88,18 @@ const pushFrames = (postData, image) => {
 
       console.log("POST DATA SENT SUCCESSFULLY");
       ////// show alert box saying "Image being uploaded" //////
+      Alert.alert(
+        "UPLOADING",
+        "Please Wait",
+        [
+          {
+            text: "Cancel Upload",
+            onPress: () => console.log("Cancel Pressed"),
+            style: "cancel"
+          }
+        ],
+        { cancelable: false }
+      )  
 
       frames.forEach((chunk, index) => {
 
@@ -100,7 +112,20 @@ const pushFrames = (postData, image) => {
 	    console.log(res);
 	    ////// image has been uploaded //////
 	    ////// hide alert box - or change to "Image Uploaded" //////
+      Alert.alert(
+        "IMAGE UPLOADED",
+        "",
+        [
+          {
+            text: "Return",
+            onPress: () => console.log("Cancel Pressed"),
+            style: "cancel"
+          }
+        ],
+        { cancelable: false }
+      )
 	  }
+  
 
 	});
 

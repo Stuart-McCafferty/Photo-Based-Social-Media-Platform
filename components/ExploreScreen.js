@@ -193,32 +193,37 @@ import ChallengeCard from "./ChallengeScreen/ChallengeCard";
                     coordinate={{latitude:55.91168, longitude:-3.3193}}
                     title={'Loch at night'}
                     description={'Jack'}
-                    image={require('../assets/images/icons/photo.png')}
-                  />
+                    >
+                      <Image source={require('../assets/images/icons/photo.png')} style={{height: 20, width:20 }} />
+                    </Marker>
                 
                 <Marker
                     key={992}
                     coordinate={{latitude:55.90912, longitude:-3.31989}}
                     title={'Statue challenge!'}
                     description={'Take a photo of James Watt'}
-                    image={require('../assets/images/icons/cupbigger.png')}
-                  />
+                    >
+                      <Image source={require('../assets/images/icons/cupbigger.png')} style={{height: 20, width:20 }} />
+                    </Marker>
 
                 <Marker
                     key={993}
                     coordinate={{latitude:55.90829, longitude:-3.32162}}
                     title={'Cute squirel!!!'}
-                    description={'Hannah'}
-                    image={require('../assets/images/icons/photo.png')}
-                  />
+                    description={'Hannah'}>
+                      <Image source={require('../assets/images/icons/photo.png')} style={{height: 20, width:20 }} />
+                    </Marker>
+                  
+                  
 
                   <Marker
                     key={994}
                     coordinate={{latitude:55.90748, longitude:-3.31281}}
                     title={'Old oaks'}
                     description={'Jack'}
-                    image={require('../assets/images/icons/photo.png')}
-                  />
+                    >
+                      <Image source={require('../assets/images/icons/photo.png')} style={{height: 20, width:20 }} />
+                    </Marker>
                 
 
             </MapView>

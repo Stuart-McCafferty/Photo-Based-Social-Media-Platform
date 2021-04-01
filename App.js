@@ -15,9 +15,9 @@ class App extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { signedIn: true };
+    this.state = { signedIn: false };
     this.onSignIn.bind(this);
-    this.signedIn = true;
+    this.signedIn = false;
     this.register = false;
   }
 
